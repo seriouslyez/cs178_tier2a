@@ -1,0 +1,1 @@
+{"version":3,"file":"deep-set-key.d.ts","sourceRoot":"","sources":["../../src/deep-set-key.ts"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,GAAG,EAAE,KAAK,EAAE,MAAM,eAAe,CAAC;AAGhD,wBAAgB,UAAU,CAAC,IAAI,SAAS,GAAG,EAAE,GAAG,CAAC,EAAE,IAAI,GAAG,IAAI,CAgB7D;AAED,wBAAgB,aAAa,CAAC,IAAI,SAAS,GAAG,EAC5C,GAAG,CAAC,EAAE,KAAK,CAAC,IAAI,CAAC,GAAG,IAAI,GACvB,IAAI,CAeN"}

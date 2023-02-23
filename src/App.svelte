@@ -1,11 +1,11 @@
 <!-- Code referenced from https://svelte.dev/repl/8eb738732cf74edd86f680c53e6ba253?version=3.44.2 -->
 
 <script>
-  import startPage from "./components/startPage.svelte";
-  import collectionPage from "./components/collectionPage.svelte";
+  import Page1 from "./components/Page1.svelte";
+  import Page2 from "./components/Page2.svelte";
 
 
-  const pages = [startPage, collectionPage];
+  const pages = [Page1, Page2];
 
   // The current page of our form.
   let page = 0;
