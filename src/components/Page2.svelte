@@ -13,7 +13,7 @@
 	export let days = ["Monday   ", "Tuesday  ", "Wednesday", "Thursday ", 
 					   "Friday   ", "Saturday ", "Sunday   "];
 
-	export let times = ["12:00 am\&nbsp", "12:15 am ", "12:30 am ", "12:45 am ",
+	export let times = ["12:00 am", "12:15 am ", "12:30 am ", "12:45 am ",
 						"1:00 am  ", "1:15 am  ", "1:30 am  ", "1:45 am  ",
 						"2:00 am  ", "2:15 am  ", "2:30 am  ", "2:45 am  ",
 						"3:00 am  ", "3:15 am  ", "3:30 am  ", "3:45 am  ",
@@ -40,24 +40,26 @@
 
 </script>
 
-
 <div>
 <h1>Enter Availability</h1>
 </div>
 
-{#each days as day, i}
-  <Button>{day}</Button>
-{/each}
- 
-
-<div>
-	{#each times as time, i}
-		{#each days as day, j}
-		  <Button class="notavailable sm">{time}  </Button>
-		{/each}
-		<br />
+<table>
+  <tr>
+    {#each days as day, i}
+  		<th>{day}</th>
 	{/each}
-</div>
+  </tr>
+  {#each times as time, i}
+  <tr>
+		{#each days as day, j}
+		  <td><Button class="notavailable sm">{time}  </Button></td>
+		{/each}
+  </tr>
+  {/each}
+</table>
+
+
 
 <form use:form>
 	<label for=aboutMe>Notes to host</label>

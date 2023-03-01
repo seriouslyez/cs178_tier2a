@@ -2763,78 +2763,27 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (49:2) <Button>
-    function create_default_slot_1(ctx) {
+    // (49:4) {#each days as day, i}
+    function create_each_block_2(ctx) {
+    	let th;
     	let t_value = /*day*/ ctx[12] + "";
     	let t;
 
     	const block = {
     		c: function create() {
+    			th = element("th");
     			t = text(t_value);
+    			add_location(th, file$2, 49, 4, 1956);
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, t, anchor);
+    			insert_dev(target, th, anchor);
+    			append_dev(th, t);
     		},
     		p: function update(ctx, dirty) {
     			if (dirty & /*days*/ 2 && t_value !== (t_value = /*day*/ ctx[12] + "")) set_data_dev(t, t_value);
     		},
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(t);
-    		}
-    	};
-
-    	dispatch_dev("SvelteRegisterBlock", {
-    		block,
-    		id: create_default_slot_1.name,
-    		type: "slot",
-    		source: "(49:2) <Button>",
-    		ctx
-    	});
-
-    	return block;
-    }
-
-    // (48:0) {#each days as day, i}
-    function create_each_block_2(ctx) {
-    	let button;
-    	let current;
-
-    	button = new Button({
-    			props: {
-    				$$slots: { default: [create_default_slot_1] },
-    				$$scope: { ctx }
-    			},
-    			$$inline: true
-    		});
-
-    	const block = {
-    		c: function create() {
-    			create_component(button.$$.fragment);
-    		},
-    		m: function mount(target, anchor) {
-    			mount_component(button, target, anchor);
-    			current = true;
-    		},
-    		p: function update(ctx, dirty) {
-    			const button_changes = {};
-
-    			if (dirty & /*$$scope, days*/ 65538) {
-    				button_changes.$$scope = { dirty, ctx };
-    			}
-
-    			button.$set(button_changes);
-    		},
-    		i: function intro(local) {
-    			if (current) return;
-    			transition_in(button.$$.fragment, local);
-    			current = true;
-    		},
-    		o: function outro(local) {
-    			transition_out(button.$$.fragment, local);
-    			current = false;
-    		},
-    		d: function destroy(detaching) {
-    			destroy_component(button, detaching);
+    			if (detaching) detach_dev(th);
     		}
     	};
 
@@ -2842,14 +2791,14 @@ var app = (function () {
     		block,
     		id: create_each_block_2.name,
     		type: "each",
-    		source: "(48:0) {#each days as day, i}",
+    		source: "(49:4) {#each days as day, i}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (56:4) <Button class="notavailable sm">
+    // (56:8) <Button class="notavailable sm">
     function create_default_slot(ctx) {
     	let t_value = /*time*/ ctx[9] + "";
     	let t;
@@ -2873,7 +2822,7 @@ var app = (function () {
     		block,
     		id: create_default_slot.name,
     		type: "slot",
-    		source: "(56:4) <Button class=\\\"notavailable sm\\\">",
+    		source: "(56:8) <Button class=\\\"notavailable sm\\\">",
     		ctx
     	});
 
@@ -2882,6 +2831,7 @@ var app = (function () {
 
     // (55:2) {#each days as day, j}
     function create_each_block_1(ctx) {
+    	let td;
     	let button;
     	let current;
 
@@ -2896,10 +2846,13 @@ var app = (function () {
 
     	const block = {
     		c: function create() {
+    			td = element("td");
     			create_component(button.$$.fragment);
+    			add_location(td, file$2, 55, 4, 2051);
     		},
     		m: function mount(target, anchor) {
-    			mount_component(button, target, anchor);
+    			insert_dev(target, td, anchor);
+    			mount_component(button, td, null);
     			current = true;
     		},
     		p: function update(ctx, dirty) {
@@ -2921,7 +2874,8 @@ var app = (function () {
     			current = false;
     		},
     		d: function destroy(detaching) {
-    			destroy_component(button, detaching);
+    			if (detaching) detach_dev(td);
+    			destroy_component(button);
     		}
     	};
 
@@ -2936,10 +2890,10 @@ var app = (function () {
     	return block;
     }
 
-    // (54:1) {#each times as time, i}
+    // (53:2) {#each times as time, i}
     function create_each_block(ctx) {
+    	let tr;
     	let t;
-    	let br;
     	let current;
     	let each_value_1 = /*days*/ ctx[1];
     	validate_each_argument(each_value_1);
@@ -2955,21 +2909,23 @@ var app = (function () {
 
     	const block = {
     		c: function create() {
+    			tr = element("tr");
+
     			for (let i = 0; i < each_blocks.length; i += 1) {
     				each_blocks[i].c();
     			}
 
     			t = space();
-    			br = element("br");
-    			add_location(br, file$2, 57, 2, 2099);
+    			add_location(tr, file$2, 53, 2, 2017);
     		},
     		m: function mount(target, anchor) {
+    			insert_dev(target, tr, anchor);
+
     			for (let i = 0; i < each_blocks.length; i += 1) {
-    				each_blocks[i].m(target, anchor);
+    				each_blocks[i].m(tr, null);
     			}
 
-    			insert_dev(target, t, anchor);
-    			insert_dev(target, br, anchor);
+    			append_dev(tr, t);
     			current = true;
     		},
     		p: function update(ctx, dirty) {
@@ -2988,7 +2944,7 @@ var app = (function () {
     						each_blocks[i] = create_each_block_1(child_ctx);
     						each_blocks[i].c();
     						transition_in(each_blocks[i], 1);
-    						each_blocks[i].m(t.parentNode, t);
+    						each_blocks[i].m(tr, t);
     					}
     				}
 
@@ -3020,9 +2976,8 @@ var app = (function () {
     			current = false;
     		},
     		d: function destroy(detaching) {
+    			if (detaching) detach_dev(tr);
     			destroy_each(each_blocks, detaching);
-    			if (detaching) detach_dev(t);
-    			if (detaching) detach_dev(br);
     		}
     	};
 
@@ -3030,7 +2985,7 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(54:1) {#each times as time, i}",
+    		source: "(53:2) {#each times as time, i}",
     		ctx
     	});
 
@@ -3038,11 +2993,12 @@ var app = (function () {
     }
 
     function create_fragment$2(ctx) {
-    	let div0;
+    	let div;
     	let h1;
     	let t1;
+    	let table;
+    	let tr;
     	let t2;
-    	let div1;
     	let t3;
     	let form_1;
     	let label;
@@ -3065,10 +3021,6 @@ var app = (function () {
     		each_blocks_1[i] = create_each_block_2(get_each_context_2(ctx, each_value_2, i));
     	}
 
-    	const out = i => transition_out(each_blocks_1[i], 1, 1, () => {
-    		each_blocks_1[i] = null;
-    	});
-
     	let each_value = /*times*/ ctx[2];
     	validate_each_argument(each_value);
     	let each_blocks = [];
@@ -3077,23 +3029,24 @@ var app = (function () {
     		each_blocks[i] = create_each_block(get_each_context(ctx, each_value, i));
     	}
 
-    	const out_1 = i => transition_out(each_blocks[i], 1, 1, () => {
+    	const out = i => transition_out(each_blocks[i], 1, 1, () => {
     		each_blocks[i] = null;
     	});
 
     	const block = {
     		c: function create() {
-    			div0 = element("div");
+    			div = element("div");
     			h1 = element("h1");
     			h1.textContent = "Enter Availability";
     			t1 = space();
+    			table = element("table");
+    			tr = element("tr");
 
     			for (let i = 0; i < each_blocks_1.length; i += 1) {
     				each_blocks_1[i].c();
     			}
 
     			t2 = space();
-    			div1 = element("div");
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
     				each_blocks[i].c();
@@ -3112,38 +3065,40 @@ var app = (function () {
     			t8 = space();
     			button1 = element("button");
     			button1.textContent = "Submit";
-    			add_location(h1, file$2, 44, 0, 1881);
-    			add_location(div0, file$2, 43, 0, 1875);
-    			add_location(div1, file$2, 52, 0, 1976);
+    			add_location(h1, file$2, 43, 0, 1874);
+    			add_location(div, file$2, 42, 0, 1868);
+    			add_location(tr, file$2, 47, 2, 1920);
+    			add_location(table, file$2, 46, 0, 1910);
     			attr_dev(label, "for", "aboutMe");
-    			add_location(label, file$2, 62, 1, 2140);
+    			add_location(label, file$2, 64, 1, 2167);
     			attr_dev(textarea, "id", "aboutMe");
     			attr_dev(textarea, "name", "aboutMe");
-    			add_location(textarea, file$2, 63, 1, 2182);
-    			add_location(br, file$2, 63, 37, 2218);
+    			add_location(textarea, file$2, 65, 1, 2209);
+    			add_location(br, file$2, 65, 37, 2245);
     			attr_dev(button0, "type", "button");
-    			add_location(button0, file$2, 64, 1, 2224);
+    			add_location(button0, file$2, 66, 1, 2251);
     			attr_dev(button1, "type", "submit");
-    			add_location(button1, file$2, 65, 1, 2299);
-    			add_location(form_1, file$2, 61, 0, 2123);
+    			add_location(button1, file$2, 67, 1, 2326);
+    			add_location(form_1, file$2, 63, 0, 2150);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, div0, anchor);
-    			append_dev(div0, h1);
+    			insert_dev(target, div, anchor);
+    			append_dev(div, h1);
     			insert_dev(target, t1, anchor);
+    			insert_dev(target, table, anchor);
+    			append_dev(table, tr);
 
     			for (let i = 0; i < each_blocks_1.length; i += 1) {
-    				each_blocks_1[i].m(target, anchor);
+    				each_blocks_1[i].m(tr, null);
     			}
 
-    			insert_dev(target, t2, anchor);
-    			insert_dev(target, div1, anchor);
+    			append_dev(table, t2);
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
-    				each_blocks[i].m(div1, null);
+    				each_blocks[i].m(table, null);
     			}
 
     			insert_dev(target, t3, anchor);
@@ -3178,22 +3133,18 @@ var app = (function () {
 
     					if (each_blocks_1[i]) {
     						each_blocks_1[i].p(child_ctx, dirty);
-    						transition_in(each_blocks_1[i], 1);
     					} else {
     						each_blocks_1[i] = create_each_block_2(child_ctx);
     						each_blocks_1[i].c();
-    						transition_in(each_blocks_1[i], 1);
-    						each_blocks_1[i].m(t2.parentNode, t2);
+    						each_blocks_1[i].m(tr, null);
     					}
     				}
 
-    				group_outros();
-
-    				for (i = each_value_2.length; i < each_blocks_1.length; i += 1) {
-    					out(i);
+    				for (; i < each_blocks_1.length; i += 1) {
+    					each_blocks_1[i].d(1);
     				}
 
-    				check_outros();
+    				each_blocks_1.length = each_value_2.length;
     			}
 
     			if (dirty & /*days, times*/ 6) {
@@ -3211,14 +3162,14 @@ var app = (function () {
     						each_blocks[i] = create_each_block(child_ctx);
     						each_blocks[i].c();
     						transition_in(each_blocks[i], 1);
-    						each_blocks[i].m(div1, null);
+    						each_blocks[i].m(table, null);
     					}
     				}
 
     				group_outros();
 
     				for (i = each_value.length; i < each_blocks.length; i += 1) {
-    					out_1(i);
+    					out(i);
     				}
 
     				check_outros();
@@ -3227,10 +3178,6 @@ var app = (function () {
     		i: function intro(local) {
     			if (current) return;
 
-    			for (let i = 0; i < each_value_2.length; i += 1) {
-    				transition_in(each_blocks_1[i]);
-    			}
-
     			for (let i = 0; i < each_value.length; i += 1) {
     				transition_in(each_blocks[i]);
     			}
@@ -3238,12 +3185,6 @@ var app = (function () {
     			current = true;
     		},
     		o: function outro(local) {
-    			each_blocks_1 = each_blocks_1.filter(Boolean);
-
-    			for (let i = 0; i < each_blocks_1.length; i += 1) {
-    				transition_out(each_blocks_1[i]);
-    			}
-
     			each_blocks = each_blocks.filter(Boolean);
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
@@ -3253,11 +3194,10 @@ var app = (function () {
     			current = false;
     		},
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(div0);
+    			if (detaching) detach_dev(div);
     			if (detaching) detach_dev(t1);
+    			if (detaching) detach_dev(table);
     			destroy_each(each_blocks_1, detaching);
-    			if (detaching) detach_dev(t2);
-    			if (detaching) detach_dev(div1);
     			destroy_each(each_blocks, detaching);
     			if (detaching) detach_dev(t3);
     			if (detaching) detach_dev(form_1);
@@ -3299,7 +3239,7 @@ var app = (function () {
     	] } = $$props;
 
     	let { times = [
-    		"12:00 am\&nbsp",
+    		"12:00 am",
     		"12:15 am ",
     		"12:30 am ",
     		"12:45 am ",
