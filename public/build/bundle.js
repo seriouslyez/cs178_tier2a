@@ -175,6 +175,14 @@ var app = (function () {
     function children(element) {
         return Array.from(element.childNodes);
     }
+    function set_style(node, key, value, important) {
+        if (value === null) {
+            node.style.removeProperty(key);
+        }
+        else {
+            node.style.setProperty(key, value, important ? 'important' : '');
+        }
+    }
     function toggle_class(element, name, toggle) {
         element.classList[toggle ? 'add' : 'remove'](name);
     }
@@ -559,6 +567,10 @@ var app = (function () {
             dispatch_dev('SvelteDOMRemoveAttribute', { node, attribute });
         else
             dispatch_dev('SvelteDOMSetAttribute', { node, attribute, value });
+    }
+    function prop_dev(node, property, value) {
+        node[property] = value;
+        dispatch_dev('SvelteDOMSetProperty', { node, property, value });
     }
     function set_data_dev(text, data) {
         data = '' + data;
@@ -2601,7 +2613,7 @@ var app = (function () {
     			button = element("button");
     			if (default_slot) default_slot.c();
     			set_attributes(button, button_data);
-    			toggle_class(button, "svelte-154u5d4", true);
+    			toggle_class(button, "svelte-1daaqs9", true);
     			add_location(button, file$1, 6, 1, 73);
     		},
     		l: function claim(nodes) {
@@ -2645,7 +2657,7 @@ var app = (function () {
     			}
 
     			set_attributes(button, button_data = get_spread_update(button_levels, [/*buttonProps*/ ctx[0]]));
-    			toggle_class(button, "svelte-154u5d4", true);
+    			toggle_class(button, "svelte-1daaqs9", true);
     		},
     		i: function intro(local) {
     			if (current) return;
@@ -2763,7 +2775,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (49:4) {#each days as day, i}
+    // (50:4) {#each days as day, i}
     function create_each_block_2(ctx) {
     	let th;
     	let t_value = /*day*/ ctx[12] + "";
@@ -2773,7 +2785,8 @@ var app = (function () {
     		c: function create() {
     			th = element("th");
     			t = text(t_value);
-    			add_location(th, file$2, 49, 4, 1956);
+    			set_style(th, "background", "#ADD8E6");
+    			add_location(th, file$2, 50, 4, 1997);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, th, anchor);
@@ -2791,14 +2804,14 @@ var app = (function () {
     		block,
     		id: create_each_block_2.name,
     		type: "each",
-    		source: "(49:4) {#each days as day, i}",
+    		source: "(50:4) {#each days as day, i}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (56:8) <Button class="notavailable sm">
+    // (58:44) <Button class="notavailable sm">
     function create_default_slot(ctx) {
     	let t_value = /*time*/ ctx[9] + "";
     	let t;
@@ -2822,14 +2835,14 @@ var app = (function () {
     		block,
     		id: create_default_slot.name,
     		type: "slot",
-    		source: "(56:8) <Button class=\\\"notavailable sm\\\">",
+    		source: "(58:44) <Button class=\\\"notavailable sm\\\">",
     		ctx
     	});
 
     	return block;
     }
 
-    // (55:2) {#each days as day, j}
+    // (57:2) {#each days as day, j}
     function create_each_block_1(ctx) {
     	let td;
     	let button;
@@ -2848,7 +2861,9 @@ var app = (function () {
     		c: function create() {
     			td = element("td");
     			create_component(button.$$.fragment);
-    			add_location(td, file$2, 55, 4, 2051);
+    			set_style(td, "background", "gray");
+    			set_style(td, "color", "black");
+    			add_location(td, file$2, 57, 4, 2195);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, td, anchor);
@@ -2883,17 +2898,23 @@ var app = (function () {
     		block,
     		id: create_each_block_1.name,
     		type: "each",
-    		source: "(55:2) {#each days as day, j}",
+    		source: "(57:2) {#each days as day, j}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (53:2) {#each times as time, i}
+    // (54:2) {#each times as time, i}
     function create_each_block(ctx) {
     	let tr;
-    	let t;
+    	let td;
+    	let input;
+    	let input_id_value;
+    	let input_name_value;
+    	let input_value_value;
+    	let t0;
+    	let t1;
     	let current;
     	let each_value_1 = /*days*/ ctx[1];
     	validate_each_argument(each_value_1);
@@ -2910,25 +2931,49 @@ var app = (function () {
     	const block = {
     		c: function create() {
     			tr = element("tr");
+    			td = element("td");
+    			input = element("input");
+    			t0 = space();
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
     				each_blocks[i].c();
     			}
 
-    			t = space();
-    			add_location(tr, file$2, 53, 2, 2017);
+    			t1 = space();
+    			attr_dev(input, "type", "checkbox");
+    			attr_dev(input, "id", input_id_value = /*time*/ ctx[9]);
+    			attr_dev(input, "name", input_name_value = /*time*/ ctx[9]);
+    			input.value = input_value_value = /*time*/ ctx[9];
+    			add_location(input, file$2, 55, 12, 2102);
+    			add_location(td, file$2, 55, 8, 2098);
+    			add_location(tr, file$2, 54, 2, 2085);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, tr, anchor);
+    			append_dev(tr, td);
+    			append_dev(td, input);
+    			append_dev(tr, t0);
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
     				each_blocks[i].m(tr, null);
     			}
 
-    			append_dev(tr, t);
+    			append_dev(tr, t1);
     			current = true;
     		},
     		p: function update(ctx, dirty) {
+    			if (!current || dirty & /*times*/ 4 && input_id_value !== (input_id_value = /*time*/ ctx[9])) {
+    				attr_dev(input, "id", input_id_value);
+    			}
+
+    			if (!current || dirty & /*times*/ 4 && input_name_value !== (input_name_value = /*time*/ ctx[9])) {
+    				attr_dev(input, "name", input_name_value);
+    			}
+
+    			if (!current || dirty & /*times*/ 4 && input_value_value !== (input_value_value = /*time*/ ctx[9])) {
+    				prop_dev(input, "value", input_value_value);
+    			}
+
     			if (dirty & /*times, days*/ 6) {
     				each_value_1 = /*days*/ ctx[1];
     				validate_each_argument(each_value_1);
@@ -2944,7 +2989,7 @@ var app = (function () {
     						each_blocks[i] = create_each_block_1(child_ctx);
     						each_blocks[i].c();
     						transition_in(each_blocks[i], 1);
-    						each_blocks[i].m(tr, t);
+    						each_blocks[i].m(tr, t1);
     					}
     				}
 
@@ -2985,7 +3030,7 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(53:2) {#each times as time, i}",
+    		source: "(54:2) {#each times as time, i}",
     		ctx
     	});
 
@@ -2998,16 +3043,18 @@ var app = (function () {
     	let t1;
     	let table;
     	let tr;
-    	let t2;
+    	let th;
     	let t3;
+    	let t4;
+    	let t5;
     	let form_1;
     	let label;
-    	let t5;
+    	let t7;
     	let textarea;
     	let br;
-    	let t6;
-    	let button0;
     	let t8;
+    	let button0;
+    	let t10;
     	let button1;
     	let form_action;
     	let current;
@@ -3041,45 +3088,49 @@ var app = (function () {
     			t1 = space();
     			table = element("table");
     			tr = element("tr");
+    			th = element("th");
+    			th.textContent = "Check All Days for a Time";
+    			t3 = space();
 
     			for (let i = 0; i < each_blocks_1.length; i += 1) {
     				each_blocks_1[i].c();
     			}
 
-    			t2 = space();
+    			t4 = space();
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
     				each_blocks[i].c();
     			}
 
-    			t3 = space();
+    			t5 = space();
     			form_1 = element("form");
     			label = element("label");
     			label.textContent = "Notes to host";
-    			t5 = space();
+    			t7 = space();
     			textarea = element("textarea");
     			br = element("br");
-    			t6 = space();
+    			t8 = space();
     			button0 = element("button");
     			button0.textContent = "Previous page";
-    			t8 = space();
+    			t10 = space();
     			button1 = element("button");
     			button1.textContent = "Submit";
     			add_location(h1, file$2, 43, 0, 1874);
     			add_location(div, file$2, 42, 0, 1868);
+    			add_location(th, file$2, 48, 4, 1929);
     			add_location(tr, file$2, 47, 2, 1920);
     			add_location(table, file$2, 46, 0, 1910);
     			attr_dev(label, "for", "aboutMe");
-    			add_location(label, file$2, 64, 1, 2167);
+    			add_location(label, file$2, 66, 1, 2347);
     			attr_dev(textarea, "id", "aboutMe");
     			attr_dev(textarea, "name", "aboutMe");
-    			add_location(textarea, file$2, 65, 1, 2209);
-    			add_location(br, file$2, 65, 37, 2245);
+    			add_location(textarea, file$2, 67, 1, 2389);
+    			add_location(br, file$2, 67, 37, 2425);
     			attr_dev(button0, "type", "button");
-    			add_location(button0, file$2, 66, 1, 2251);
+    			add_location(button0, file$2, 68, 1, 2431);
     			attr_dev(button1, "type", "submit");
-    			add_location(button1, file$2, 67, 1, 2326);
-    			add_location(form_1, file$2, 63, 0, 2150);
+    			add_location(button1, file$2, 69, 1, 2506);
+    			add_location(form_1, file$2, 65, 0, 2330);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -3090,26 +3141,28 @@ var app = (function () {
     			insert_dev(target, t1, anchor);
     			insert_dev(target, table, anchor);
     			append_dev(table, tr);
+    			append_dev(tr, th);
+    			append_dev(tr, t3);
 
     			for (let i = 0; i < each_blocks_1.length; i += 1) {
     				each_blocks_1[i].m(tr, null);
     			}
 
-    			append_dev(table, t2);
+    			append_dev(table, t4);
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
     				each_blocks[i].m(table, null);
     			}
 
-    			insert_dev(target, t3, anchor);
+    			insert_dev(target, t5, anchor);
     			insert_dev(target, form_1, anchor);
     			append_dev(form_1, label);
-    			append_dev(form_1, t5);
+    			append_dev(form_1, t7);
     			append_dev(form_1, textarea);
     			append_dev(form_1, br);
-    			append_dev(form_1, t6);
-    			append_dev(form_1, button0);
     			append_dev(form_1, t8);
+    			append_dev(form_1, button0);
+    			append_dev(form_1, t10);
     			append_dev(form_1, button1);
     			current = true;
 
@@ -3199,7 +3252,7 @@ var app = (function () {
     			if (detaching) detach_dev(table);
     			destroy_each(each_blocks_1, detaching);
     			destroy_each(each_blocks, detaching);
-    			if (detaching) detach_dev(t3);
+    			if (detaching) detach_dev(t5);
     			if (detaching) detach_dev(form_1);
     			mounted = false;
     			run_all(dispose);

@@ -14,7 +14,8 @@
 
 <style>
 	.notavailable{
-		color:gray;
+		background-color:blue;
+		color:black;
 		width:5%
 	}
 	.danger {

@@ -46,14 +46,16 @@
 
 <table>
   <tr>
+    <th> Check All Days for a Time </th>
     {#each days as day, i}
-  		<th>{day}</th>
+  		<th style="background:#ADD8E6">{day}</th>
 	{/each}
   </tr>
   {#each times as time, i}
   <tr>
+        <td><input type="checkbox" id={time} name={time} value={time}></td>
 		{#each days as day, j}
-		  <td><Button class="notavailable sm">{time}  </Button></td>
+		  <td style="background:gray;color:black"><Button class="notavailable sm">{time}  </Button></td>
 		{/each}
   </tr>
   {/each}
