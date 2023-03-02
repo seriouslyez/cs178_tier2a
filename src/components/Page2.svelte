@@ -3,14 +3,19 @@
 <script>
 	import { createForm } from "felte";
 	import Button from './Button.svelte';
+	import { writable } from 'svelte/store';
+	import { users, numUsers, currentUserNum, availabilities } from './stores.js';
 	
 	export let initialValues;
 	export let onSubmit;
 	export let onBack;
+	let currUser;
+
+	users.subscribe(val => {currUser = val[$currentUserNum]});
 	
 	const { form, data } = createForm({ onSubmit, initialValues })
 
-	export let days = ["Monday   ", "Tuesday  ", "Wednesday", "Thursday ", 
+	export let days = ["Monday   ", "Tuesday  ", "Wednesday ", "Thursday ", 
 					   "Friday   ", "Saturday ", "Sunday   "];
 
 	export let times = ["12:00 am", "12:15 am ", "12:30 am ", "12:45 am ",
@@ -38,15 +43,25 @@
 						"10:00 pm ", "10:15 pm ", "10:30 pm ", "10:45 pm ",
 						"11:00 pm ", "11:15 pm ", "11:30 pm ", "11:45 pm ",];
 
+	export let dt = [];
+
+	for (let i = 0; i < times.length; i++) {
+	  dt.push([]);
+	  for (let j = 0; j < days.length; j++) {
+	    dt[i].push(days[j] + times[i]);
+	  }
+	}
+
+
 </script>
 
 <div>
-<h1>Enter Availability</h1>
+<h1>Enter Availability for {currUser}</h1>
 </div>
 
 <table>
   <tr>
-    <th> Check All Days for a Time </th>
+    <th nowrap>All Days</th>
     {#each days as day, i}
   		<th style="background:#ADD8E6">{day}</th>
 	{/each}
@@ -55,7 +70,10 @@
   <tr>
         <td><input type="checkbox" id={time} name={time} value={time}></td>
 		{#each days as day, j}
-		  <td style="background:gray;color:black"><Button class="notavailable sm">{time}  </Button></td>
+		  <td nowrap style="background:gray;color:black">
+		    <Button class="notavailable sm" id="{dt[i][j]}"}>{time}  
+		    </Button>
+		  </td>
 		{/each}
   </tr>
   {/each}

@@ -1,10 +1,13 @@
 <!-- Code referenced from https://svelte.dev/repl/8eb738732cf74edd86f680c53e6ba253?version=3.44.2 -->
 
 <script>
-	import { createForm } from "felte"
+	import { createForm } from "felte";
+	import { users, numUsers } from './stores.js';
 	
 	export let initialValues;
 	export let onSubmit;
+	export let onBack;
+			                
 	
 	const { form } = createForm({ onSubmit, initialValues })
 </script>

@@ -3,15 +3,28 @@
 <script>
   import Page1 from "./components/Page1.svelte";
   import Page2 from "./components/Page2.svelte";
+  import { users, numUsers, availabilities, currentUserNum } from './components/stores.js';
+  import { writable } from 'svelte/store';
 
 
   const pages = [Page1, Page2];
+  let currUser;
+  users.subscribe(val => {currUser = val});
 
   // The current page of our form.
   let page = 0;
 
   // The state of all of our pages
   let pagesState = [];
+
+  function hasName(userStructure, targetName) {
+    for (let i = 0; i < userStructure.length; i++) {
+      if (userStructure[i] == targetName) {
+        return i;
+      }
+    }
+    return -1;
+  }
 
   // Our handlers
   function onSubmit(values) {
@@ -21,6 +34,16 @@
     } else {
       // If we're not on the last page, store our data and increase a step
       pagesState[page] = values;
+      let alreadyHere = hasName($users, values["firstName"] + values["lastName"]);
+      if (alreadyHere != -1) {
+        currentUserNum.set(alreadyHere);
+      } else {
+        numUsers.update(n => n + 1);
+        users.set($users.concat([values["firstName"] + values["lastName"]]));
+        availabilities.set($availabilities.concat([writable([])]));
+        currentUserNum.set($numUsers - 1);
+        console.log("users:", $users);
+      }
       pagesState = pagesState; // Triggering update
       page +=1;
     }
