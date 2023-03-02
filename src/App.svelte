@@ -3,7 +3,7 @@
 <script>
   import Page1 from "./components/Page1.svelte";
   import Page2 from "./components/Page2.svelte";
-  import { users, numUsers, availabilities, currentUserNum } from './components/stores.js';
+  import { users, numUsers, availabilities, currentUserNum, checks } from './components/stores.js';
   import { writable } from 'svelte/store';
 
 
@@ -30,7 +30,11 @@
   function onSubmit(values) {
     if (page === pages.length - 1) {
       // On our final page with POST our data somewhere
-      console.log('Submitted data: ', pagesState)
+      pagesState[page] = values;
+      pagesState = pagesState;
+      console.log('Submitted data: ', pagesState);
+      console.log('availabilities: ', $availabilities[$currentUserNum]);
+      page = 0;
     } else {
       // If we're not on the last page, store our data and increase a step
       pagesState[page] = values;
@@ -40,9 +44,20 @@
       } else {
         numUsers.update(n => n + 1);
         users.set($users.concat([values["firstName"] + values["lastName"]]));
-        availabilities.set($availabilities.concat([writable([])]));
+        let ca = [];
+        let ch = [];
+        for (let i = 0; i < 96; i++) {
+          ca.push([]);
+          ch.push(false);
+          for (let j = 0; j < 7; j++) {
+            ca[i].push("gray");
+          }
+        }
+        console.log(ca);
+        availabilities.set($availabilities.concat([ca]));
+        checks.set($checks.concat([ch]));
+        console.log(ch);
         currentUserNum.set($numUsers - 1);
-        console.log("users:", $users);
       }
       pagesState = pagesState; // Triggering update
       page +=1;
