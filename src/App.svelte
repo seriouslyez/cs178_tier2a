@@ -4,7 +4,7 @@
   import Page1 from "./components/Page1.svelte";
   import Page2 from "./components/Page2.svelte";
   import { users, numUsers, availabilities, currentUserNum, checks, locations, 
-  startTimes, endTimes, timerNumber, days, times, locationNames } from './components/stores.js';
+  startTimes, endTimes, timerNumber, days, times, locationNames, usersForTime } from './components/stores.js';
 
   import { writable } from 'svelte/store';
 
@@ -53,49 +53,15 @@
       console.log($endTimes[$timerNumber] - $startTimes[$timerNumber]);
       const downloadFile = () => {
          const link = document.createElement("a");
-         let content = " ";
+         let content = "Name,Start Time, End Time, Duration (Milliseconds)\n";
 
-         for (let i = 0; i < $users.length; i++) {
-           content = content + $users[i];
-           if (i != $users.length - 1) {
-             content = content + ",";
-           }
+         for (let i = 0; i < $usersForTime.length; i++) {
+           content = content + $usersForTime[i] + "," + new Date($startTimes[i]).toString() + "," + new Date($endTimes[i]).toString() + "," + ($endTimes[i] - $startTimes[i]).toString() + "\n";
          }
-         content = content + "\n";
-         for (let i = 0; i < days.length; i++) {
-           for (let j = 0; j < times.length; j++) {
-             content = content + days[i] + times[j] + ",";
-             for (let k = 0; k < $users.length; k++) {
-               content = content + convert($availabilities[k][j][i]);
-               if (k != $users.length - 1) {
-                 content = content + ","
-               }
-             }
-             content = content + "\n";
-           }
-         }
-         for (let i = 0; i < locationNames.length; i++) {
-         content = content + locationNames[i] + ",";
-           for (let j = 0; j < $users.length; j++) {
-             content = content + convert($locations[j][i]);
-             if (j != $users.length - 1) {
-               content = content + ",";
-             }
-           }
-           content = content + "\n";
-         }
-         content = content + "Completion Time (milliseconds),"
-         for (let i = 0; i < $startTimes.length; i++) {
-           content = content + ($endTimes[i] - $startTimes[i]).toString();
-           if (i != $startTimes.length - 1) {
-             content = content + ",";
-           }
-         }
-
 
          const file = new Blob([content], { type: 'text/plain' });
          link.href = URL.createObjectURL(file);
-         link.download = "availabilities.txt";
+         link.download = "timelogs.csv";
          link.click();
          URL.revokeObjectURL(link.href);
       };
@@ -106,6 +72,7 @@
       startTimes.set($startTimes.concat([startTime]));
       timerNumber.update(n => n + 1);
       pagesState[page] = values;
+      usersForTime.set($usersForTime.concat([values["firstName"] + " " + values["lastName"]]));
       let alreadyHere = hasName($users, values["firstName"] + " " + values["lastName"]);
       if (alreadyHere != -1) {
         currentUserNum.set(alreadyHere);

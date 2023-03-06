@@ -24,5 +24,6 @@ export let times = [
 						"6:00 pm  ", "6:15 pm  ", "6:30 pm  ", "6:45 pm  ",];
 export let locationNames = ["Cambridge (River)", "Cambridge (Yard)", 
                           "Cambridge (Quad)", "Allston", "Virtual"];
+export let usersForTime = writable([]);
 
 
