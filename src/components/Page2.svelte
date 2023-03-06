@@ -4,7 +4,7 @@
 	import { createForm } from "felte";
 	import Button from './Button.svelte';
 	import { writable } from 'svelte/store';
-	import { users, numUsers, currentUserNum, availabilities, checks, locations } from './stores.js';
+	import { users, numUsers, currentUserNum, availabilities, checks, locations, startTimes, endTimes, timerNumber, days, times, locationNames } from './stores.js';
 	
 	export let initialValues;
 	export let onSubmit;
@@ -21,20 +21,7 @@
 	
 	const { form, data } = createForm({ onSubmit, initialValues })
 
-	export let days = ["Monday   ", "Tuesday  ", "Wednesday ", "Thursday ", 
-					   "Friday   ", "Saturday ", "Sunday   "];
 
-	export let times = [
-						"9:00 am  ", "9:15 am  ", "9:30 am  ", "9:45 am  ",
-						"10:00 am ", "10:15 am ", "10:30 am ", "10:45 am ",
-						"11:00 am ", "11:15 am ", "11:30 am ", "11:45 am ",
-						"12:00 pm ", "12:15 pm ", "12:30 pm ", "12:45 pm ",
-						"1:00 pm  ", "1:15 pm  ", "1:30 pm  ", "1:45 pm  ",
-						"2:00 pm  ", "2:15 pm  ", "2:30 pm  ", "2:45 pm  ",
-						"3:00 pm  ", "3:15 pm  ", "3:30 pm  ", "3:45 pm  ",
-						"4:00 pm  ", "4:15 pm  ", "4:30 pm  ", "4:45 pm  ",
-						"5:00 pm  ", "5:15 pm  ", "5:30 pm  ", "5:45 pm  ",
-						"6:00 pm  ", "6:15 pm  ", "6:30 pm  ", "6:45 pm  ",];
     
 	export let dt = [];
 	export let currAvail;
@@ -47,9 +34,6 @@
 	  ut.push(times[i] + currUser);
 	}
   
-  export let locationNames = ["Cambridge (River)", "Cambridge (Yard)", 
-                          "Cambridge (Quad)", "Allston", "Virtual"];
-
 	for (let i = 0; i < times.length; i++) {
 	    dt.push([]);
 	    for (let j = 0; j < days.length; j++) {

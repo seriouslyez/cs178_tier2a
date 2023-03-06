@@ -14,8 +14,8 @@
 
 <form use:form>
 	<label for=firstName>First name</label>
-	<input id=firstName name=firstName>
+	<input id=firstName name=firstName value = "">
 	<label for=lastName>Last name</label>
-	<input id=lastName name=lastName><br>
+	<input id=lastName name=lastName value = ""><br>
 	<button type=submit>Next page</button>
 </form>
