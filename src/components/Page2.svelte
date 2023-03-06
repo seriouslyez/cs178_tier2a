@@ -96,7 +96,7 @@
 <div class="jumbotron">
 	<h1 class="display-4">Enter Availability for {currUser}</h1>
 	<hr class="my-4">
-	<p class="lead">Select once for "Available" and twice for "If need be".</p>
+	<p class="lead"><span class="bolded">Select once for "Available" and twice for "If need be".</span></p>
 	<p>Note: all times in Eastern Standard Time.</p>
   </div>
 
@@ -266,6 +266,9 @@ body{
   font-size: 0.9rem;
   letter-spacing: 0.05rem;
   padding: 0.75rem 1rem;
+}
+.bolded { 
+	font-weight: bold; 
 }
 </style>
 
