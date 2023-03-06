@@ -3,16 +3,23 @@
 <script>
 	import { createForm } from "felte";
 	import { users, numUsers } from './stores.js';
-	
 	export let initialValues;
 	export let onSubmit;
 	export let onBack;
-			                
-	
+			            
 	const { form } = createForm({ onSubmit, initialValues })
+
+	function handleSuccess(event) {
+		const { response, ...context } = event.detail;
+
+		response.reset;
+		
+	}
+
+	
 </script>
 
-<form use:form>
+<form use:form method='post' on:feltesuccess="{handleSuccess}">
 	<label for=firstName>First name</label>
 	<input id=firstName name=firstName value = "">
 	<label for=lastName>Last name</label>

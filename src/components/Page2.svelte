@@ -34,6 +34,12 @@
 	  ut.push(times[i] + currUser);
 	}
   
+<<<<<<< HEAD
+=======
+  export let locationNames = ["Cambridge (River)", "Cambridge (Yard)", 
+                          "Cambridge (Quad)", "Allston", "Virtual"];
+
+>>>>>>> 77d2cf2 (add location data)
 	for (let i = 0; i < times.length; i++) {
 	    dt.push([]);
 	    for (let j = 0; j < days.length; j++) {
@@ -124,6 +130,11 @@
 	<button id={location} style="background:{locs[i]};color:black;border:solid red 2px" type="button" class="notavailable sm" on:click={() => changeLocColor(location, i)}>{locationNames[i]}  
 			    </button><br><br>
 	{/each}
+<<<<<<< HEAD
 	<button type=button on:click={() => onBack($data)}>Previous page</button>
 	<button type=submit>Submit</button>
+=======
+	<input type=button value="Back" on:click={() => onBack($data)}/>
+	<input type=submit value="Submit" />
+>>>>>>> 77d2cf2 (add location data)
 </form>
