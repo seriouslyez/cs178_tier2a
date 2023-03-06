@@ -2460,7 +2460,9 @@ var app = (function () {
     	let input1;
     	let br;
     	let t5;
-    	let button;
+    	let input2;
+    	let t6;
+    	let input3;
     	let form_action;
     	let mounted;
     	let dispose;
@@ -2479,24 +2481,29 @@ var app = (function () {
     			input1 = element("input");
     			br = element("br");
     			t5 = space();
-    			button = element("button");
-    			button.textContent = "Next page";
+    			input2 = element("input");
+    			t6 = space();
+    			input3 = element("input");
     			attr_dev(label0, "for", "firstName");
-    			add_location(label0, file, 15, 1, 376);
+    			add_location(label0, file, 14, 1, 370);
     			attr_dev(input0, "id", "firstName");
     			attr_dev(input0, "name", "firstName");
     			input0.value = "";
-    			add_location(input0, file, 16, 1, 417);
+    			add_location(input0, file, 15, 1, 411);
     			attr_dev(label1, "for", "lastName");
-    			add_location(label1, file, 17, 1, 465);
+    			add_location(label1, file, 16, 1, 459);
     			attr_dev(input1, "id", "lastName");
     			attr_dev(input1, "name", "lastName");
     			input1.value = "";
-    			add_location(input1, file, 18, 1, 504);
-    			add_location(br, file, 18, 45, 548);
-    			attr_dev(button, "type", "submit");
-    			add_location(button, file, 19, 1, 554);
-    			add_location(form_1, file, 14, 0, 359);
+    			add_location(input1, file, 17, 1, 498);
+    			add_location(br, file, 17, 45, 542);
+    			attr_dev(input2, "type", "reset");
+    			input2.value = "Reset";
+    			add_location(input2, file, 18, 1, 548);
+    			attr_dev(input3, "type", "submit");
+    			input3.value = "Submit";
+    			add_location(input3, file, 19, 1, 583);
+    			add_location(form_1, file, 13, 0, 353);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -2512,7 +2519,9 @@ var app = (function () {
     			append_dev(form_1, input1);
     			append_dev(form_1, br);
     			append_dev(form_1, t5);
-    			append_dev(form_1, button);
+    			append_dev(form_1, input2);
+    			append_dev(form_1, t6);
+    			append_dev(form_1, input3);
 
     			if (!mounted) {
     				dispose = action_destroyer(form_action = /*form*/ ctx[0].call(null, form_1));
@@ -3139,9 +3148,9 @@ var app = (function () {
     	let br1;
     	let t11;
     	let t12;
-    	let button0;
-    	let t14;
-    	let button1;
+    	let input0;
+    	let t13;
+    	let input1;
     	let form_action;
     	let mounted;
     	let dispose;
@@ -3209,11 +3218,9 @@ var app = (function () {
     			}
 
     			t12 = space();
-    			button0 = element("button");
-    			button0.textContent = "Previous page";
-    			t14 = space();
-    			button1 = element("button");
-    			button1.textContent = "Submit";
+    			input0 = element("input");
+    			t13 = space();
+    			input1 = element("input");
     			add_location(h1, file$2, 96, 0, 2605);
     			add_location(h2, file$2, 97, 0, 2648);
     			add_location(div, file$2, 95, 0, 2599);
@@ -3227,10 +3234,12 @@ var app = (function () {
     			set_style(label, "font-size", "1.5em");
     			add_location(label, file$2, 121, 1, 3342);
     			add_location(br1, file$2, 121, 90, 3431);
-    			attr_dev(button0, "type", "button");
-    			add_location(button0, file$2, 126, 1, 3698);
-    			attr_dev(button1, "type", "submit");
-    			add_location(button1, file$2, 127, 1, 3773);
+    			attr_dev(input0, "type", "button");
+    			input0.value = "Back";
+    			add_location(input0, file$2, 126, 1, 3698);
+    			attr_dev(input1, "type", "submit");
+    			input1.value = "Submit";
+    			add_location(input1, file$2, 127, 1, 3764);
     			add_location(form_1, file$2, 100, 0, 2707);
     		},
     		l: function claim(nodes) {
@@ -3272,13 +3281,13 @@ var app = (function () {
     			}
 
     			append_dev(form_1, t12);
-    			append_dev(form_1, button0);
-    			append_dev(form_1, t14);
-    			append_dev(form_1, button1);
+    			append_dev(form_1, input0);
+    			append_dev(form_1, t13);
+    			append_dev(form_1, input1);
 
     			if (!mounted) {
     				dispose = [
-    					listen_dev(button0, "click", /*click_handler_3*/ ctx[17], false, false, false),
+    					listen_dev(input0, "click", /*click_handler_3*/ ctx[17], false, false, false),
     					action_destroyer(form_action = /*form*/ ctx[7].call(null, form_1))
     				];
 

@@ -8,21 +8,14 @@
 	export let onBack;
 			            
 	const { form } = createForm({ onSubmit, initialValues })
-
-	function handleSuccess(event) {
-		const { response, ...context } = event.detail;
-
-		response.reset;
-		
-	}
-
 	
 </script>
 
-<form use:form method='post' on:feltesuccess="{handleSuccess}">
+<form use:form>
 	<label for=firstName>First name</label>
 	<input id=firstName name=firstName value = "">
 	<label for=lastName>Last name</label>
 	<input id=lastName name=lastName value = ""><br>
-	<button type=submit>Next page</button>
+	<input type=reset value="Reset"/>
+	<input type=submit value="Submit"/>
 </form>
