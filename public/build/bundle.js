@@ -2450,78 +2450,123 @@ var app = (function () {
     const file = "src/components/Page1.svelte";
 
     function create_fragment(ctx) {
-    	let form_1;
-    	let label0;
+    	let body;
+    	let div8;
+    	let div7;
+    	let div6;
+    	let div5;
+    	let div4;
+    	let h5;
     	let t1;
+    	let form_1;
+    	let div0;
     	let input0;
     	let t2;
-    	let label1;
-    	let t4;
+    	let div1;
     	let input1;
-    	let br;
+    	let t3;
+    	let div2;
+    	let button0;
     	let t5;
-    	let input2;
-    	let t6;
-    	let input3;
+    	let div3;
+    	let button1;
     	let form_action;
     	let mounted;
     	let dispose;
 
     	const block = {
     		c: function create() {
-    			form_1 = element("form");
-    			label0 = element("label");
-    			label0.textContent = "First name";
+    			body = element("body");
+    			div8 = element("div");
+    			div7 = element("div");
+    			div6 = element("div");
+    			div5 = element("div");
+    			div4 = element("div");
+    			h5 = element("h5");
+    			h5.textContent = "What's your availability?";
     			t1 = space();
+    			form_1 = element("form");
+    			div0 = element("div");
     			input0 = element("input");
     			t2 = space();
-    			label1 = element("label");
-    			label1.textContent = "Last name";
-    			t4 = space();
+    			div1 = element("div");
     			input1 = element("input");
-    			br = element("br");
+    			t3 = space();
+    			div2 = element("div");
+    			button0 = element("button");
+    			button0.textContent = "Reset";
     			t5 = space();
-    			input2 = element("input");
-    			t6 = space();
-    			input3 = element("input");
-    			attr_dev(label0, "for", "firstName");
-    			add_location(label0, file, 14, 1, 370);
+    			div3 = element("div");
+    			button1 = element("button");
+    			button1.textContent = "Submit";
+    			attr_dev(h5, "class", "card-title text-center mb-5 fw-light fs-5");
+    			add_location(h5, file, 19, 5, 554);
+    			attr_dev(input0, "type", "text");
+    			attr_dev(input0, "class", "form-control");
     			attr_dev(input0, "id", "firstName");
+    			attr_dev(input0, "placeholder", "First Name");
     			attr_dev(input0, "name", "firstName");
     			input0.value = "";
-    			add_location(input0, file, 15, 1, 411);
-    			attr_dev(label1, "for", "lastName");
-    			add_location(label1, file, 16, 1, 459);
+    			add_location(input0, file, 22, 6, 703);
+    			attr_dev(div0, "class", "form-floating mb-3");
+    			add_location(div0, file, 21, 4, 664);
+    			attr_dev(input1, "type", "text");
+    			attr_dev(input1, "class", "form-control");
     			attr_dev(input1, "id", "lastName");
+    			attr_dev(input1, "placeholder", "Last Name");
     			attr_dev(input1, "name", "lastName");
     			input1.value = "";
-    			add_location(input1, file, 17, 1, 498);
-    			add_location(br, file, 17, 45, 542);
-    			attr_dev(input2, "type", "reset");
-    			input2.value = "Reset";
-    			add_location(input2, file, 18, 1, 548);
-    			attr_dev(input3, "type", "submit");
-    			input3.value = "Submit";
-    			add_location(input3, file, 19, 1, 583);
-    			add_location(form_1, file, 13, 0, 353);
+    			add_location(input1, file, 25, 6, 866);
+    			attr_dev(div1, "class", "form-floating mb-3");
+    			add_location(div1, file, 24, 4, 827);
+    			attr_dev(button0, "class", "btn btn-primary btn-login text-uppercase fw-bold svelte-1mstmo5");
+    			attr_dev(button0, "type", "reset");
+    			add_location(button0, file, 29, 5, 1021);
+    			attr_dev(div2, "class", "d-grid my-3");
+    			add_location(div2, file, 28, 4, 990);
+    			attr_dev(button1, "class", "btn btn-primary btn-login text-uppercase fw-bold svelte-1mstmo5");
+    			attr_dev(button1, "type", "submit");
+    			add_location(button1, file, 33, 6, 1171);
+    			attr_dev(div3, "class", "d-grid my-3");
+    			add_location(div3, file, 32, 4, 1139);
+    			add_location(form_1, file, 20, 5, 644);
+    			attr_dev(div4, "class", "card-body p-4 p-sm-5");
+    			add_location(div4, file, 18, 3, 514);
+    			attr_dev(div5, "class", "card border-0 shadow rounded-3 my-5");
+    			add_location(div5, file, 17, 4, 461);
+    			attr_dev(div6, "class", "col-sm-9 col-md-7 col-lg-5 mx-auto");
+    			add_location(div6, file, 16, 2, 408);
+    			attr_dev(div7, "class", "row");
+    			add_location(div7, file, 15, 3, 388);
+    			attr_dev(div8, "class", "container");
+    			add_location(div8, file, 14, 1, 361);
+    			attr_dev(body, "class", "svelte-1mstmo5");
+    			add_location(body, file, 13, 0, 353);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, form_1, anchor);
-    			append_dev(form_1, label0);
-    			append_dev(form_1, t1);
-    			append_dev(form_1, input0);
+    			insert_dev(target, body, anchor);
+    			append_dev(body, div8);
+    			append_dev(div8, div7);
+    			append_dev(div7, div6);
+    			append_dev(div6, div5);
+    			append_dev(div5, div4);
+    			append_dev(div4, h5);
+    			append_dev(div4, t1);
+    			append_dev(div4, form_1);
+    			append_dev(form_1, div0);
+    			append_dev(div0, input0);
     			append_dev(form_1, t2);
-    			append_dev(form_1, label1);
-    			append_dev(form_1, t4);
-    			append_dev(form_1, input1);
-    			append_dev(form_1, br);
+    			append_dev(form_1, div1);
+    			append_dev(div1, input1);
+    			append_dev(form_1, t3);
+    			append_dev(form_1, div2);
+    			append_dev(div2, button0);
     			append_dev(form_1, t5);
-    			append_dev(form_1, input2);
-    			append_dev(form_1, t6);
-    			append_dev(form_1, input3);
+    			append_dev(form_1, div3);
+    			append_dev(div3, button1);
 
     			if (!mounted) {
     				dispose = action_destroyer(form_action = /*form*/ ctx[0].call(null, form_1));
@@ -2532,7 +2577,7 @@ var app = (function () {
     		i: noop,
     		o: noop,
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(form_1);
+    			if (detaching) detach_dev(body);
     			mounted = false;
     			dispose();
     		}

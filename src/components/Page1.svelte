@@ -11,11 +11,47 @@
 	
 </script>
 
-<form use:form>
-	<label for=firstName>First name</label>
-	<input id=firstName name=firstName value = "">
-	<label for=lastName>Last name</label>
-	<input id=lastName name=lastName value = ""><br>
-	<input type=reset value="Reset"/>
-	<input type=submit value="Submit"/>
-</form>
+<body>
+	<div class="container">
+	  <div class="row">
+		<div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+		  <div class="card border-0 shadow rounded-3 my-5">
+			<div class="card-body p-4 p-sm-5">
+			  <h5 class="card-title text-center mb-5 fw-light fs-5">What's your availability?</h5>
+			  <form use:form>
+				<div class="form-floating mb-3">
+				  <input type="text" class="form-control" id="firstName" placeholder="First Name" name="firstName" value = "">
+				</div>
+				<div class="form-floating mb-3">
+				  <input type="text" class="form-control" id="lastName" placeholder="Last Name" name=lastName value = "">
+				</div>
+				
+				<div class="d-grid my-3">
+					<button class="btn btn-primary btn-login text-uppercase fw-bold" type="reset">Reset
+					  </button>
+				  </div>
+				<div class="d-grid my-3">
+				  <button class="btn btn-primary btn-login text-uppercase fw-bold" type="submit">Submit
+					</button>
+				</div>
+				
+			  </form>
+			</div>
+		  </div>
+		</div>
+	  </div>
+	</div>
+  </body>
+
+  <style>
+	body {
+  background: #007bff;
+  background: linear-gradient(to right, #0062E6, #33AEFF);
+}
+
+.btn-login {
+  font-size: 0.9rem;
+  letter-spacing: 0.05rem;
+  padding: 0.75rem 1rem;
+}
+</style>
