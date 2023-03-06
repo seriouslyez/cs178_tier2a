@@ -75,7 +75,7 @@
 	}
 
 	function clickCheckbox(row) {
-	  console.log("hello");
+	  console.log("checkbox clicked at ", row);
       if (document.getElementById(ut[row]).checked) {
         for (let j = 0; j < days.length; j++) {
           changeThisColor(dt[row][j], row, j, "green");
@@ -93,37 +93,180 @@
 
 </script>
 
-<div>
-<h1>Enter Availability for {currUser}</h1>
-<h2>Note: all times in Eastern Standard Time.</h2>
-</div>
+<div class="jumbotron">
+	<h1 class="display-4">Enter Availability for {currUser}</h1>
+	<hr class="my-4">
+	<p class="lead">Select once for "Available" and twice for "If need be".</p>
+	<p>Note: all times in Eastern Standard Time.</p>
+  </div>
 
-<form use:form>
-    <table>
-	  <tr>
-	    <th nowrap>All Days</th>
-	    {#each days as day, i}
-	  		<th style="background:#ADD8E6">{day}</th>
+<div class="container">
+	<form use:form>
+		<label for=aboutMe style="font-size:1.5em">Select preferred location(s):</label><br>
+		{#each locationNames as location, i}
+		<div class="d-grid my-3">
+			<button id={location} style="background:{locs[i]};color:black;border:blue 2px;" class="btn btn-primary text-uppercase fw-bold btn-login" type="button" on:click={() => changeLocColor(location, i)}>{locationNames[i]}
+				</button>
+		</div>
 		{/each}
-	  </tr>
-	  {#each times as time, i}
-	  <tr id={i}>
-	        <td><input type="checkbox" id={ut[i]} name={time} value={time} on:click={() => clickCheckbox(i)}></td>
-			{#each days as day, j}
-			  <td nowrap style="background:{currAvail[i][j]};color:black" id={dt[i][j]}>
-			    <button style="width:100%" type="button" class="notavailable sm" on:click={() => changeThisColor(dt[i][j], i, j, "auto")}>{time}  
-			    </button>
-			  </td>
-			{/each}
-	  </tr>
-	  {/each}
-	</table>
-	<br>
-	<label for=aboutMe style="font-weight:bold;font-size:1.5em">Preferred Location(s)</label><br>
-	{#each locationNames as location, i}
-	<button id={location} style="background:{locs[i]};color:black;border:solid red 2px" type="button" class="notavailable sm" on:click={() => changeLocColor(location, i)}>{locationNames[i]}  
-			    </button><br><br>
-	{/each}
-	<input type=button value="Back" on:click={() => onBack($data)}/>
-	<input type=submit value="Submit" />
-</form>
+		<div class="table-responsive">
+			<table class="table table-bordered text-center">
+				<thead>
+					<tr class="bg-light-gray">
+						<th class="text-uppercase">Time
+						</th>
+						<th class="text-uppercase">Monday</th>
+						<th class="text-uppercase">Tuesday</th>
+						<th class="text-uppercase">Wednesday</th>
+						<th class="text-uppercase">Thursday</th>
+						<th class="text-uppercase">Friday</th>
+						<th class="text-uppercase">Saturday</th>
+						<th class="text-uppercase">Sunday</th>
+					</tr>
+					{#each times as time, i}
+					<tr id={i}>
+						<td><input type="checkbox" id={ut[i]} name={time} value={time} on:click={() => clickCheckbox(i)}></td>
+						{#each days as day, j}
+						  <td nowrap style="background:{currAvail[i][j]};color:black" id={dt[i][j]}>
+							<button style="width:100%" type="button" class="notavailable sm btn btn-primary text-uppercase fw-bold" on:click={() => changeThisColor(dt[i][j], i, j, "auto")}>{time}  
+							</button>
+						  </td>
+						{/each}
+				  	</tr>
+				  	{/each}
+				</thead>
+			</table>
+		</div>
+		<div class="d-grid my-3">
+			<button class="btn btn-primary btn-login text-uppercase fw-bold" type="button" value="Back" on:click={() => onBack($data)}>Back
+				</button>
+		</div>
+		<div class="d-grid my-3">
+			<button class="btn btn-primary btn-login text-uppercase fw-bold" type="submit" value="Submit">Submit
+			  </button>
+		</div>
+	</form>
+</div>
+			
+
+<style>
+body{
+    margin-top:20px;
+}
+.bg-light-gray {
+    background-color: #f7f7f7;
+}
+.table-bordered thead td, .table-bordered thead th {
+    border-bottom-width: 2px;
+}
+.table thead th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #dee2e6;
+}
+.table-bordered td, .table-bordered th {
+    border: 1px solid #dee2e6;
+}
+
+
+.bg-sky.box-shadow {
+    box-shadow: 0px 5px 0px 0px #00a2a7
+}
+
+.bg-orange.box-shadow {
+    box-shadow: 0px 5px 0px 0px #af4305
+}
+
+.bg-green.box-shadow {
+    box-shadow: 0px 5px 0px 0px #4ca520
+}
+
+.bg-yellow.box-shadow {
+    box-shadow: 0px 5px 0px 0px #dcbf02
+}
+
+.bg-pink.box-shadow {
+    box-shadow: 0px 5px 0px 0px #e82d8b
+}
+
+.bg-purple.box-shadow {
+    box-shadow: 0px 5px 0px 0px #8343e8
+}
+
+.bg-lightred.box-shadow {
+    box-shadow: 0px 5px 0px 0px #d84213
+}
+
+
+.bg-sky {
+    background-color: #02c2c7
+}
+
+.bg-orange {
+    background-color: #e95601
+}
+
+.bg-green {
+    background-color: #5bbd2a
+}
+
+.bg-yellow {
+    background-color: #f0d001
+}
+
+.bg-pink {
+    background-color: #ff48a4
+}
+
+.bg-purple {
+    background-color: #9d60ff
+}
+
+.bg-lightred {
+    background-color: #ff5722
+}
+
+.padding-15px-lr {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.padding-5px-tb {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.margin-10px-bottom {
+    margin-bottom: 10px;
+}
+.border-radius-5 {
+    border-radius: 5px;
+}
+
+.margin-10px-top {
+    margin-top: 10px;
+}
+.font-size14 {
+    font-size: 14px;
+}
+
+.text-light-gray {
+    color: #d6d5d5;
+}
+.font-size13 {
+    font-size: 13px;
+}
+
+.table-bordered td, .table-bordered th {
+    border: 1px solid #dee2e6;
+}
+.table td, .table th {
+    padding: .75rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+}
+.btn-login {
+  font-size: 0.9rem;
+  letter-spacing: 0.05rem;
+  padding: 0.75rem 1rem;
+}
+</style>
+
+

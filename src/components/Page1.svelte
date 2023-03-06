@@ -27,13 +27,14 @@
 				</div>
 				
 				<div class="d-grid my-3">
-					<button class="btn btn-primary btn-login text-uppercase fw-bold" type="reset">Reset
-					  </button>
-				  </div>
-				<div class="d-grid my-3">
 				  <button class="btn btn-primary btn-login text-uppercase fw-bold" type="submit">Submit
 					</button>
 				</div>
+
+				<!-- <div class="d-grid my-3">
+					<button class="btn btn-primary btn-login text-uppercase fw-bold" type="reset">Reset
+					  </button>
+				</div> -->
 				
 			  </form>
 			</div>

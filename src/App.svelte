@@ -47,6 +47,7 @@
       console.log('Submitted data: ', pagesState);
       console.log('availabilities: ', $availabilities[$currentUserNum]);
       page = 0;
+      
       let endTime = Date.now();
       endTimes.set($endTimes.concat([endTime]));
       console.log($endTimes[$timerNumber] - $startTimes[$timerNumber]);
