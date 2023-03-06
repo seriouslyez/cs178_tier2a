@@ -7,7 +7,7 @@
 	export let onSubmit;
 	export let onBack;
 			            
-	const { form } = createForm({ onSubmit, initialValues })
+	const { form } = createForm({ onSubmit, initialValues: {firstName: '', lastName: ''}})
 	
 </script>
 
