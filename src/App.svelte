@@ -3,7 +3,7 @@
 <script>
   import Page1 from "./components/Page1.svelte";
   import Page2 from "./components/Page2.svelte";
-  import { users, numUsers, availabilities, currentUserNum, checks } from './components/stores.js';
+  import { users, numUsers, availabilities, currentUserNum, checks, locations } from './components/stores.js';
   import { writable } from 'svelte/store';
 
 
@@ -38,21 +38,22 @@
     } else {
       // If we're not on the last page, store our data and increase a step
       pagesState[page] = values;
-      let alreadyHere = hasName($users, values["firstName"] + values["lastName"]);
+      let alreadyHere = hasName($users, values["firstName"] + " " + values["lastName"]);
       if (alreadyHere != -1) {
         currentUserNum.set(alreadyHere);
       } else {
         numUsers.update(n => n + 1);
-        users.set($users.concat([values["firstName"] + values["lastName"]]));
+        users.set($users.concat([values["firstName"] + " " + values["lastName"]]));
         let ca = [];
         let ch = [];
-        for (let i = 0; i < 96; i++) {
+        for (let i = 0; i < 40; i++) {
           ca.push([]);
           ch.push(false);
           for (let j = 0; j < 7; j++) {
             ca[i].push("gray");
           }
         }
+        locations.set($locations.concat([["gray", "gray", "gray", "gray", "gray"]]));
         console.log(ca);
         availabilities.set($availabilities.concat([ca]));
         checks.set($checks.concat([ch]));
