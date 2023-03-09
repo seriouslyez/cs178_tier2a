@@ -4,7 +4,7 @@
 	import { createForm } from "felte";
 	import Button from './Button.svelte';
 	import { writable } from 'svelte/store';
-	import { users, numUsers, currentUserNum, availabilities, checks, locations, startTimes, endTimes, timerNumber, days, times, locationNames } from './stores.js';
+	import { users, numUsers, currentUserNum, availabilities, checks, locations, startTimes, endTimes, timerNumber, days, times, locationNames, vchecks } from './stores.js';
 	
 	export let initialValues;
 	export let onSubmit;
@@ -33,13 +33,18 @@
 	for (let i = 0; i < times.length; i++) {
 	  ut.push(times[i] + currUser);
 	}
+
+	export let ud = [];
+	for (let i = 0; i < days.length; i++) {
+	  ud.push(days[i] + currUser);
+	}
   
 	for (let i = 0; i < times.length; i++) {
 	    dt.push([]);
 	    for (let j = 0; j < days.length; j++) {
 	      dt[i].push(days[j] + times[i]);
 	    }
-	  }
+	}
 
 	function changeColor(color) {
 	  if (color == "gray") {
@@ -59,6 +64,9 @@
 		if (currColor == "green") {
 		  boxes[i] = false;
 		  $checks[$currentUserNum][i] = boxes[i];
+		  $vchecks[$currentUserNum][j] = false;
+		  document.getElementById(ud[j]).checked = false;
+		  document.getElementById(ut[i]).checked = false;
 		}
 	  } else {
 	    document.getElementById(id).style.background = auto;
@@ -90,6 +98,20 @@
       $checks[$currentUserNum][row] = boxes[row];
 	}
 
+	function clickVCheckbox(column) {
+	  if (document.getElementById(ud[column]).checked) {
+        for (let j = 0; j < times.length; j++) {
+          changeThisColor(dt[j][column], j, column, "green");
+        }
+        $vchecks[$currentUserNum][column] = false;
+	  } else {
+	    for (let j = 0; j < times.length; j++) {
+	      changeThisColor(dt[j][column], j, column, "gray");
+	    }
+	    $vchecks[$currentUserNum][column] = true;
+	  }
+	}
+
 
 </script>
 
@@ -112,16 +134,22 @@
 		<div class="table-responsive">
 			<table class="table table-bordered text-center">
 				<thead>
+				    <tr> 
+				      <th></th>
+				      {#each days as day, i}
+				      <th><input type="checkbox" id={ud[i]} name={day} value={day} on:click={() => clickVCheckbox(i)}></th>
+				      {/each}
+				    </tr>
 					<tr class="bg-light-gray">
-						<th class="text-uppercase">Time
-						</th>
-						<th class="text-uppercase">Monday</th>
-						<th class="text-uppercase">Tuesday</th>
-						<th class="text-uppercase">Wednesday</th>
-						<th class="text-uppercase">Thursday</th>
-						<th class="text-uppercase">Friday</th>
-						<th class="text-uppercase">Saturday</th>
-						<th class="text-uppercase">Sunday</th>
+						<td class="text-uppercase">Time
+						</td>
+						<td class="text-uppercase">Monday</td>
+						<td class="text-uppercase">Tuesday</td>
+						<td class="text-uppercase">Wednesday</td>
+						<td class="text-uppercase">Thursday</td>
+						<td class="text-uppercase">Friday</td>
+						<td class="text-uppercase">Saturday</td>
+						<td class="text-uppercase">Sunday</td>
 					</tr>
 					{#each times as time, i}
 					<tr id={i}>

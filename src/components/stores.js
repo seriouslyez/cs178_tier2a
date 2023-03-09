@@ -25,5 +25,6 @@ export let times = [
 export let locationNames = ["Cambridge (River)", "Cambridge (Yard)", 
                           "Cambridge (Quad)", "Allston", "Virtual"];
 export let usersForTime = writable([]);
+export let vchecks = writable([]);
 
 

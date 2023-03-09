@@ -4,7 +4,7 @@
   import Page1 from "./components/Page1.svelte";
   import Page2 from "./components/Page2.svelte";
   import { users, numUsers, availabilities, currentUserNum, checks, locations, 
-  startTimes, endTimes, timerNumber, days, times, locationNames, usersForTime } from './components/stores.js';
+  startTimes, endTimes, timerNumber, days, times, locationNames, usersForTime, vchecks } from './components/stores.js';
 
   import { writable } from 'svelte/store';
 
@@ -81,18 +81,18 @@
         users.set($users.concat([values["firstName"] + " " + values["lastName"]]));
         let ca = [];
         let ch = [];
-        for (let i = 0; i < 40; i++) {
+        let vch = [];
+        for (let i = 0; i < times.length; i++) {
           ca.push([]);
           ch.push(false);
-          for (let j = 0; j < 7; j++) {
+          for (let j = 0; j < days.length; j++) {
             ca[i].push("gray");
           }
         }
         locations.set($locations.concat([["gray", "gray", "gray", "gray", "gray"]]));
-        console.log(ca);
         availabilities.set($availabilities.concat([ca]));
         checks.set($checks.concat([ch]));
-        console.log(ch);
+        vchecks.set($checks.concat([["gray", "gray", "gray", "gray", "gray", "gray", "gray"]]));
         currentUserNum.set($numUsers - 1);
       }
       pagesState = pagesState; // Triggering update
