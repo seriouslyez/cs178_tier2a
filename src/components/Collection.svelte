@@ -2,7 +2,6 @@
 
 <script>
 	import { createForm } from "felte";
-	import Button from './Button.svelte';
 	import { writable } from 'svelte/store';
 	import { users, numUsers, currentUserNum, availabilities, checks, locations, startTimes, endTimes, timerNumber, days, times, locationNames, vchecks } from './stores.js';
 	
@@ -170,7 +169,7 @@
 						{#each days as day, j}
 						  <!-- change color on user click -->
 						  <td nowrap style="background:{currAvail[i][j]};color:black" id={dt[i][j]}>
-							<button style="width:100%" type="button" class="notavailable sm btn btn-primary text-uppercase fw-bold" on:click={() => changeThisColor(dt[i][j], i, j, "auto")}>{time}  
+							<button style="width:100%" type="button" class="btn btn-primary text-uppercase fw-bold" on:click={() => changeThisColor(dt[i][j], i, j, "auto")}>{time}  
 							</button>
 						  </td>
 						{/each}
@@ -192,9 +191,7 @@
 			
 
 <style>
-body{
-    margin-top:20px;
-}
+
 .bg-light-gray {
     background-color: #f7f7f7;
 }
@@ -209,100 +206,6 @@ body{
     border: 1px solid #dee2e6;
 }
 
-
-.bg-sky.box-shadow {
-    box-shadow: 0px 5px 0px 0px #00a2a7
-}
-
-.bg-orange.box-shadow {
-    box-shadow: 0px 5px 0px 0px #af4305
-}
-
-.bg-green.box-shadow {
-    box-shadow: 0px 5px 0px 0px #4ca520
-}
-
-.bg-yellow.box-shadow {
-    box-shadow: 0px 5px 0px 0px #dcbf02
-}
-
-.bg-pink.box-shadow {
-    box-shadow: 0px 5px 0px 0px #e82d8b
-}
-
-.bg-purple.box-shadow {
-    box-shadow: 0px 5px 0px 0px #8343e8
-}
-
-.bg-lightred.box-shadow {
-    box-shadow: 0px 5px 0px 0px #d84213
-}
-
-
-.bg-sky {
-    background-color: #02c2c7
-}
-
-.bg-orange {
-    background-color: #e95601
-}
-
-.bg-green {
-    background-color: #5bbd2a
-}
-
-.bg-yellow {
-    background-color: #f0d001
-}
-
-.bg-pink {
-    background-color: #ff48a4
-}
-
-.bg-purple {
-    background-color: #9d60ff
-}
-
-.bg-lightred {
-    background-color: #ff5722
-}
-
-.freeze {
-	position: sticky;
-	top: 0;
-	height: 50px;
-	overflow: scroll
-}
-
-.padding-15px-lr {
-    padding-left: 15px;
-    padding-right: 15px;
-}
-.padding-5px-tb {
-    padding-top: 5px;
-    padding-bottom: 5px;
-}
-.margin-10px-bottom {
-    margin-bottom: 10px;
-}
-.border-radius-5 {
-    border-radius: 5px;
-}
-
-.margin-10px-top {
-    margin-top: 10px;
-}
-.font-size14 {
-    font-size: 14px;
-}
-
-.text-light-gray {
-    color: #d6d5d5;
-}
-.font-size13 {
-    font-size: 13px;
-}
-
 .table-bordered td, .table-bordered th {
     border: 1px solid #dee2e6;
 }
@@ -311,6 +214,7 @@ body{
     vertical-align: top;
     border-top: 1px solid #dee2e6;
 }
+
 .btn-login {
   font-size: 0.9rem;
   letter-spacing: 0.05rem;

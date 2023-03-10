@@ -4,12 +4,6 @@ var app = (function () {
     'use strict';
 
     function noop() { }
-    function assign(tar, src) {
-        // @ts-ignore
-        for (const k in src)
-            tar[k] = src[k];
-        return tar;
-    }
     function add_location(element, file, line, column, char) {
         element.__svelte_meta = {
             loc: { file, line, column, char }
@@ -47,67 +41,6 @@ var app = (function () {
     }
     function component_subscribe(component, store, callback) {
         component.$$.on_destroy.push(subscribe(store, callback));
-    }
-    function create_slot(definition, ctx, $$scope, fn) {
-        if (definition) {
-            const slot_ctx = get_slot_context(definition, ctx, $$scope, fn);
-            return definition[0](slot_ctx);
-        }
-    }
-    function get_slot_context(definition, ctx, $$scope, fn) {
-        return definition[1] && fn
-            ? assign($$scope.ctx.slice(), definition[1](fn(ctx)))
-            : $$scope.ctx;
-    }
-    function get_slot_changes(definition, $$scope, dirty, fn) {
-        if (definition[2] && fn) {
-            const lets = definition[2](fn(dirty));
-            if ($$scope.dirty === undefined) {
-                return lets;
-            }
-            if (typeof lets === 'object') {
-                const merged = [];
-                const len = Math.max($$scope.dirty.length, lets.length);
-                for (let i = 0; i < len; i += 1) {
-                    merged[i] = $$scope.dirty[i] | lets[i];
-                }
-                return merged;
-            }
-            return $$scope.dirty | lets;
-        }
-        return $$scope.dirty;
-    }
-    function update_slot_base(slot, slot_definition, ctx, $$scope, slot_changes, get_slot_context_fn) {
-        if (slot_changes) {
-            const slot_context = get_slot_context(slot_definition, ctx, $$scope, get_slot_context_fn);
-            slot.p(slot_context, slot_changes);
-        }
-    }
-    function get_all_dirty_from_scope($$scope) {
-        if ($$scope.ctx.length > 32) {
-            const dirty = [];
-            const length = $$scope.ctx.length / 32;
-            for (let i = 0; i < length; i++) {
-                dirty[i] = -1;
-            }
-            return dirty;
-        }
-        return -1;
-    }
-    function exclude_internal_props(props) {
-        const result = {};
-        for (const k in props)
-            if (k[0] !== '$')
-                result[k] = props[k];
-        return result;
-    }
-    function compute_rest_props(props, keys) {
-        const rest = {};
-        keys = new Set(keys);
-        for (const k in props)
-            if (!keys.has(k) && k[0] !== '$')
-                rest[k] = props[k];
-        return rest;
     }
     function set_store_value(store, ret, value) {
         store.set(value);
@@ -155,27 +88,6 @@ var app = (function () {
         else if (node.getAttribute(attribute) !== value)
             node.setAttribute(attribute, value);
     }
-    function set_attributes(node, attributes) {
-        // @ts-ignore
-        const descriptors = Object.getOwnPropertyDescriptors(node.__proto__);
-        for (const key in attributes) {
-            if (attributes[key] == null) {
-                node.removeAttribute(key);
-            }
-            else if (key === 'style') {
-                node.style.cssText = attributes[key];
-            }
-            else if (key === '__value') {
-                node.value = node[key] = attributes[key];
-            }
-            else if (descriptors[key] && descriptors[key].set) {
-                node[key] = attributes[key];
-            }
-            else {
-                attr(node, key, attributes[key]);
-            }
-        }
-    }
     function children(element) {
         return Array.from(element.childNodes);
     }
@@ -186,9 +98,6 @@ var app = (function () {
         else {
             node.style.setProperty(key, value, important ? 'important' : '');
         }
-    }
-    function toggle_class(element, name, toggle) {
-        element.classList[toggle ? 'add' : 'remove'](name);
     }
     function custom_event(type, detail, { bubbles = false, cancelable = false } = {}) {
         const e = document.createEvent('CustomEvent');
@@ -215,16 +124,6 @@ var app = (function () {
      */
     function onDestroy(fn) {
         get_current_component().$$.on_destroy.push(fn);
-    }
-    // TODO figure out if we still want to support
-    // shorthand events, or if we want to implement
-    // a real bubbling mechanism
-    function bubble(component, event) {
-        const callbacks = component.$$.callbacks[event.type];
-        if (callbacks) {
-            // @ts-ignore
-            callbacks.slice().forEach(fn => fn.call(this, event));
-        }
     }
 
     const dirty_components = [];
@@ -368,40 +267,6 @@ var app = (function () {
         : typeof globalThis !== 'undefined'
             ? globalThis
             : global);
-
-    function get_spread_update(levels, updates) {
-        const update = {};
-        const to_null_out = {};
-        const accounted_for = { $$scope: 1 };
-        let i = levels.length;
-        while (i--) {
-            const o = levels[i];
-            const n = updates[i];
-            if (n) {
-                for (const key in o) {
-                    if (!(key in n))
-                        to_null_out[key] = 1;
-                }
-                for (const key in n) {
-                    if (!accounted_for[key]) {
-                        update[key] = n[key];
-                        accounted_for[key] = 1;
-                    }
-                }
-                levels[i] = n;
-            }
-            else {
-                for (const key in o) {
-                    accounted_for[key] = 1;
-                }
-            }
-        }
-        for (const key in to_null_out) {
-            if (!(key in update))
-                update[key] = undefined;
-        }
-        return update;
-    }
     function create_component(block) {
         block && block.c();
     }
@@ -2448,27 +2313,31 @@ var app = (function () {
     let usersForTime = writable([]);
     let vchecks = writable([]);
 
-    /* src/components/Page1.svelte generated by Svelte v3.55.1 */
-    const file = "src/components/Page1.svelte";
+    /* src/components/Login.svelte generated by Svelte v3.55.1 */
+    const file = "src/components/Login.svelte";
 
     function create_fragment(ctx) {
     	let body;
+    	let div9;
+    	let div8;
     	let div7;
     	let div6;
-    	let div5;
-    	let div4;
-    	let div3;
-    	let h5;
-    	let t1;
-    	let form_1;
     	let div0;
+    	let h1;
+    	let t1;
+    	let div5;
+    	let form_1;
+    	let div1;
     	let input0;
     	let t2;
-    	let div1;
+    	let div2;
     	let input1;
     	let t3;
-    	let div2;
-    	let button;
+    	let div3;
+    	let button0;
+    	let t5;
+    	let div4;
+    	let button1;
     	let form_action;
     	let mounted;
     	let dispose;
@@ -2476,87 +2345,108 @@ var app = (function () {
     	const block = {
     		c: function create() {
     			body = element("body");
+    			div9 = element("div");
+    			div8 = element("div");
     			div7 = element("div");
     			div6 = element("div");
-    			div5 = element("div");
-    			div4 = element("div");
-    			div3 = element("div");
-    			h5 = element("h5");
-    			h5.textContent = "What's your availability?";
-    			t1 = space();
-    			form_1 = element("form");
     			div0 = element("div");
+    			h1 = element("h1");
+    			h1.textContent = "What's your availability?";
+    			t1 = space();
+    			div5 = element("div");
+    			form_1 = element("form");
+    			div1 = element("div");
     			input0 = element("input");
     			t2 = space();
-    			div1 = element("div");
+    			div2 = element("div");
     			input1 = element("input");
     			t3 = space();
-    			div2 = element("div");
-    			button = element("button");
-    			button.textContent = "Submit";
-    			attr_dev(h5, "class", "card-title text-center mb-5 fw-light fs-5");
-    			add_location(h5, file, 19, 5, 584);
+    			div3 = element("div");
+    			button0 = element("button");
+    			button0.textContent = "Submit";
+    			t5 = space();
+    			div4 = element("div");
+    			button1 = element("button");
+    			button1.textContent = "View Summary";
+    			attr_dev(h1, "class", "display-4");
+    			add_location(h1, file, 19, 4, 583);
+    			attr_dev(div0, "class", "jumbotron");
+    			add_location(div0, file, 18, 3, 555);
     			attr_dev(input0, "type", "text");
     			attr_dev(input0, "class", "form-control");
     			attr_dev(input0, "id", "firstName");
     			attr_dev(input0, "placeholder", "First Name");
     			attr_dev(input0, "name", "firstName");
     			input0.value = "";
-    			add_location(input0, file, 22, 6, 733);
-    			attr_dev(div0, "class", "form-floating mb-3");
-    			add_location(div0, file, 21, 4, 694);
+    			add_location(input0, file, 25, 6, 849);
+    			attr_dev(div1, "class", "form-floating mb-3");
+    			add_location(div1, file, 24, 4, 810);
     			attr_dev(input1, "type", "text");
     			attr_dev(input1, "class", "form-control");
     			attr_dev(input1, "id", "lastName");
     			attr_dev(input1, "placeholder", "Last Name");
     			attr_dev(input1, "name", "lastName");
     			input1.value = "";
-    			add_location(input1, file, 25, 6, 896);
-    			attr_dev(div1, "class", "form-floating mb-3");
-    			add_location(div1, file, 24, 4, 857);
-    			attr_dev(button, "class", "btn btn-primary btn-login text-uppercase fw-bold svelte-1mstmo5");
-    			attr_dev(button, "type", "submit");
-    			add_location(button, file, 29, 6, 1052);
-    			attr_dev(div2, "class", "d-grid my-3");
-    			add_location(div2, file, 28, 4, 1020);
-    			add_location(form_1, file, 20, 5, 674);
-    			attr_dev(div3, "class", "card-body p-4 p-sm-5");
-    			add_location(div3, file, 18, 3, 544);
-    			attr_dev(div4, "class", "card border-0 shadow rounded-3 my-5");
-    			add_location(div4, file, 17, 4, 491);
-    			attr_dev(div5, "class", "col-sm-9 col-md-7 col-lg-5 mx-auto");
-    			add_location(div5, file, 16, 2, 438);
-    			attr_dev(div6, "class", "row");
-    			add_location(div6, file, 15, 3, 418);
-    			attr_dev(div7, "class", "container");
-    			add_location(div7, file, 14, 1, 391);
+    			add_location(input1, file, 28, 6, 1012);
+    			attr_dev(div2, "class", "form-floating mb-3");
+    			add_location(div2, file, 27, 4, 973);
+    			attr_dev(button0, "class", "btn btn-primary btn-login text-uppercase fw-bold svelte-1mstmo5");
+    			attr_dev(button0, "type", "submit");
+    			add_location(button0, file, 32, 6, 1168);
+    			attr_dev(div3, "class", "d-grid my-3");
+    			add_location(div3, file, 31, 4, 1136);
+    			attr_dev(button1, "class", "btn btn-primary btn-login text-uppercase fw-bold svelte-1mstmo5");
+    			attr_dev(button1, "type", "button");
+    			button1.value = "Summary";
+    			add_location(button1, file, 37, 5, 1316);
+    			attr_dev(div4, "class", "d-grid my-3");
+    			add_location(div4, file, 36, 4, 1285);
+    			add_location(form_1, file, 23, 5, 790);
+    			attr_dev(div5, "class", "card-body p-4 p-sm-5");
+    			add_location(div5, file, 21, 3, 651);
+    			attr_dev(div6, "class", "card border-0 shadow rounded-3 my-5");
+    			add_location(div6, file, 17, 4, 502);
+    			attr_dev(div7, "class", "col-sm-9 col-md-7 col-lg-5 mx-auto");
+    			add_location(div7, file, 16, 2, 449);
+    			attr_dev(div8, "class", "row");
+    			add_location(div8, file, 15, 3, 429);
+    			attr_dev(div9, "class", "container");
+    			add_location(div9, file, 14, 1, 402);
     			attr_dev(body, "class", "svelte-1mstmo5");
-    			add_location(body, file, 13, 0, 383);
+    			add_location(body, file, 13, 0, 394);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, body, anchor);
-    			append_dev(body, div7);
+    			append_dev(body, div9);
+    			append_dev(div9, div8);
+    			append_dev(div8, div7);
     			append_dev(div7, div6);
+    			append_dev(div6, div0);
+    			append_dev(div0, h1);
+    			append_dev(div6, t1);
     			append_dev(div6, div5);
-    			append_dev(div5, div4);
-    			append_dev(div4, div3);
-    			append_dev(div3, h5);
-    			append_dev(div3, t1);
-    			append_dev(div3, form_1);
-    			append_dev(form_1, div0);
-    			append_dev(div0, input0);
-    			append_dev(form_1, t2);
+    			append_dev(div5, form_1);
     			append_dev(form_1, div1);
-    			append_dev(div1, input1);
-    			append_dev(form_1, t3);
+    			append_dev(div1, input0);
+    			append_dev(form_1, t2);
     			append_dev(form_1, div2);
-    			append_dev(div2, button);
+    			append_dev(div2, input1);
+    			append_dev(form_1, t3);
+    			append_dev(form_1, div3);
+    			append_dev(div3, button0);
+    			append_dev(form_1, t5);
+    			append_dev(form_1, div4);
+    			append_dev(div4, button1);
 
     			if (!mounted) {
-    				dispose = action_destroyer(form_action = /*form*/ ctx[0].call(null, form_1));
+    				dispose = [
+    					listen_dev(button1, "click", /*click_handler*/ ctx[5], false, false, false),
+    					action_destroyer(form_action = /*form*/ ctx[2].call(null, form_1))
+    				];
+
     				mounted = true;
     			}
     		},
@@ -2566,7 +2456,7 @@ var app = (function () {
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(body);
     			mounted = false;
-    			dispose();
+    			run_all(dispose);
     		}
     	};
 
@@ -2582,270 +2472,101 @@ var app = (function () {
     }
 
     function instance($$self, $$props, $$invalidate) {
+    	let $data;
     	let { $$slots: slots = {}, $$scope } = $$props;
-    	validate_slots('Page1', slots, []);
-    	let { initialValues } = $$props;
+    	validate_slots('Login', slots, []);
     	let { onSubmit } = $$props;
-    	let { onBack } = $$props;
+    	let { onSummary } = $$props;
 
-    	const { form } = createForm$1({
+    	const { form, data } = createForm$1({
     		onSubmit,
     		initialValues: { firstName: '', lastName: '' }
     	});
 
+    	validate_store(data, 'data');
+    	component_subscribe($$self, data, value => $$invalidate(1, $data = value));
+
     	$$self.$$.on_mount.push(function () {
-    		if (initialValues === undefined && !('initialValues' in $$props || $$self.$$.bound[$$self.$$.props['initialValues']])) {
-    			console.warn("<Page1> was created without expected prop 'initialValues'");
-    		}
-
     		if (onSubmit === undefined && !('onSubmit' in $$props || $$self.$$.bound[$$self.$$.props['onSubmit']])) {
-    			console.warn("<Page1> was created without expected prop 'onSubmit'");
+    			console.warn("<Login> was created without expected prop 'onSubmit'");
     		}
 
-    		if (onBack === undefined && !('onBack' in $$props || $$self.$$.bound[$$self.$$.props['onBack']])) {
-    			console.warn("<Page1> was created without expected prop 'onBack'");
+    		if (onSummary === undefined && !('onSummary' in $$props || $$self.$$.bound[$$self.$$.props['onSummary']])) {
+    			console.warn("<Login> was created without expected prop 'onSummary'");
     		}
     	});
 
-    	const writable_props = ['initialValues', 'onSubmit', 'onBack'];
+    	const writable_props = ['onSubmit', 'onSummary'];
 
     	Object.keys($$props).forEach(key => {
-    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== '$$' && key !== 'slot') console.warn(`<Page1> was created with unknown prop '${key}'`);
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== '$$' && key !== 'slot') console.warn(`<Login> was created with unknown prop '${key}'`);
     	});
 
+    	const click_handler = () => onSummary($data);
+
     	$$self.$$set = $$props => {
-    		if ('initialValues' in $$props) $$invalidate(1, initialValues = $$props.initialValues);
-    		if ('onSubmit' in $$props) $$invalidate(2, onSubmit = $$props.onSubmit);
-    		if ('onBack' in $$props) $$invalidate(3, onBack = $$props.onBack);
+    		if ('onSubmit' in $$props) $$invalidate(4, onSubmit = $$props.onSubmit);
+    		if ('onSummary' in $$props) $$invalidate(0, onSummary = $$props.onSummary);
     	};
 
     	$$self.$capture_state = () => ({
     		createForm: createForm$1,
     		users,
     		numUsers,
-    		initialValues,
     		onSubmit,
-    		onBack,
-    		form
+    		onSummary,
+    		form,
+    		data,
+    		$data
     	});
 
     	$$self.$inject_state = $$props => {
-    		if ('initialValues' in $$props) $$invalidate(1, initialValues = $$props.initialValues);
-    		if ('onSubmit' in $$props) $$invalidate(2, onSubmit = $$props.onSubmit);
-    		if ('onBack' in $$props) $$invalidate(3, onBack = $$props.onBack);
+    		if ('onSubmit' in $$props) $$invalidate(4, onSubmit = $$props.onSubmit);
+    		if ('onSummary' in $$props) $$invalidate(0, onSummary = $$props.onSummary);
     	};
 
     	if ($$props && "$$inject" in $$props) {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [form, initialValues, onSubmit, onBack];
+    	return [onSummary, $data, form, data, onSubmit, click_handler];
     }
 
-    class Page1 extends SvelteComponentDev {
+    class Login extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance, create_fragment, safe_not_equal, { initialValues: 1, onSubmit: 2, onBack: 3 });
+    		init(this, options, instance, create_fragment, safe_not_equal, { onSubmit: 4, onSummary: 0 });
 
     		dispatch_dev("SvelteRegisterComponent", {
     			component: this,
-    			tagName: "Page1",
+    			tagName: "Login",
     			options,
     			id: create_fragment.name
     		});
     	}
 
-    	get initialValues() {
-    		throw new Error("<Page1>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
-    	}
-
-    	set initialValues(value) {
-    		throw new Error("<Page1>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
-    	}
-
     	get onSubmit() {
-    		throw new Error("<Page1>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    		throw new Error("<Login>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
     	set onSubmit(value) {
-    		throw new Error("<Page1>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    		throw new Error("<Login>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
-    	get onBack() {
-    		throw new Error("<Page1>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	get onSummary() {
+    		throw new Error("<Login>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
-    	set onBack(value) {
-    		throw new Error("<Page1>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
-    	}
-    }
-
-    /* src/components/Button.svelte generated by Svelte v3.55.1 */
-
-    const file$1 = "src/components/Button.svelte";
-
-    function create_fragment$1(ctx) {
-    	let button;
-    	let current;
-    	let mounted;
-    	let dispose;
-    	const default_slot_template = /*#slots*/ ctx[2].default;
-    	const default_slot = create_slot(default_slot_template, ctx, /*$$scope*/ ctx[1], null);
-    	let button_levels = [/*buttonProps*/ ctx[0]];
-    	let button_data = {};
-
-    	for (let i = 0; i < button_levels.length; i += 1) {
-    		button_data = assign(button_data, button_levels[i]);
-    	}
-
-    	const block = {
-    		c: function create() {
-    			button = element("button");
-    			if (default_slot) default_slot.c();
-    			set_attributes(button, button_data);
-    			toggle_class(button, "svelte-1daaqs9", true);
-    			add_location(button, file$1, 6, 1, 73);
-    		},
-    		l: function claim(nodes) {
-    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
-    		},
-    		m: function mount(target, anchor) {
-    			insert_dev(target, button, anchor);
-
-    			if (default_slot) {
-    				default_slot.m(button, null);
-    			}
-
-    			if (button.autofocus) button.focus();
-    			current = true;
-
-    			if (!mounted) {
-    				dispose = [
-    					listen_dev(button, "click", /*click_handler*/ ctx[3], false, false, false),
-    					listen_dev(button, "mouseover", /*mouseover_handler*/ ctx[4], false, false, false),
-    					listen_dev(button, "mouseenter", /*mouseenter_handler*/ ctx[5], false, false, false),
-    					listen_dev(button, "mouseleave", /*mouseleave_handler*/ ctx[6], false, false, false)
-    				];
-
-    				mounted = true;
-    			}
-    		},
-    		p: function update(ctx, [dirty]) {
-    			if (default_slot) {
-    				if (default_slot.p && (!current || dirty & /*$$scope*/ 2)) {
-    					update_slot_base(
-    						default_slot,
-    						default_slot_template,
-    						ctx,
-    						/*$$scope*/ ctx[1],
-    						!current
-    						? get_all_dirty_from_scope(/*$$scope*/ ctx[1])
-    						: get_slot_changes(default_slot_template, /*$$scope*/ ctx[1], dirty, null),
-    						null
-    					);
-    				}
-    			}
-
-    			set_attributes(button, button_data = get_spread_update(button_levels, [/*buttonProps*/ ctx[0]]));
-    			toggle_class(button, "svelte-1daaqs9", true);
-    		},
-    		i: function intro(local) {
-    			if (current) return;
-    			transition_in(default_slot, local);
-    			current = true;
-    		},
-    		o: function outro(local) {
-    			transition_out(default_slot, local);
-    			current = false;
-    		},
-    		d: function destroy(detaching) {
-    			if (detaching) detach_dev(button);
-    			if (default_slot) default_slot.d(detaching);
-    			mounted = false;
-    			run_all(dispose);
-    		}
-    	};
-
-    	dispatch_dev("SvelteRegisterBlock", {
-    		block,
-    		id: create_fragment$1.name,
-    		type: "component",
-    		source: "",
-    		ctx
-    	});
-
-    	return block;
-    }
-
-    function instance$1($$self, $$props, $$invalidate) {
-    	const omit_props_names = [];
-    	let $$restProps = compute_rest_props($$props, omit_props_names);
-    	let { $$slots: slots = {}, $$scope } = $$props;
-    	validate_slots('Button', slots, ['default']);
-    	let buttonProps = { class: [$$restProps.class] };
-
-    	function click_handler(event) {
-    		bubble.call(this, $$self, event);
-    	}
-
-    	function mouseover_handler(event) {
-    		bubble.call(this, $$self, event);
-    	}
-
-    	function mouseenter_handler(event) {
-    		bubble.call(this, $$self, event);
-    	}
-
-    	function mouseleave_handler(event) {
-    		bubble.call(this, $$self, event);
-    	}
-
-    	$$self.$$set = $$new_props => {
-    		$$props = assign(assign({}, $$props), exclude_internal_props($$new_props));
-    		$$invalidate(7, $$restProps = compute_rest_props($$props, omit_props_names));
-    		if ('$$scope' in $$new_props) $$invalidate(1, $$scope = $$new_props.$$scope);
-    	};
-
-    	$$self.$capture_state = () => ({ buttonProps });
-
-    	$$self.$inject_state = $$new_props => {
-    		if ('buttonProps' in $$props) $$invalidate(0, buttonProps = $$new_props.buttonProps);
-    	};
-
-    	if ($$props && "$$inject" in $$props) {
-    		$$self.$inject_state($$props.$$inject);
-    	}
-
-    	return [
-    		buttonProps,
-    		$$scope,
-    		slots,
-    		click_handler,
-    		mouseover_handler,
-    		mouseenter_handler,
-    		mouseleave_handler
-    	];
-    }
-
-    class Button extends SvelteComponentDev {
-    	constructor(options) {
-    		super(options);
-    		init(this, options, instance$1, create_fragment$1, safe_not_equal, {});
-
-    		dispatch_dev("SvelteRegisterComponent", {
-    			component: this,
-    			tagName: "Button",
-    			options,
-    			id: create_fragment$1.name
-    		});
+    	set onSummary(value) {
+    		throw new Error("<Login>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
     }
 
-    /* src/components/Page2.svelte generated by Svelte v3.55.1 */
+    /* src/components/Collection.svelte generated by Svelte v3.55.1 */
 
     const { console: console_1 } = globals;
 
-    const file$2 = "src/components/Page2.svelte";
+    const file$1 = "src/components/Collection.svelte";
 
     function get_each_context(ctx, list, i) {
     	const child_ctx = ctx.slice();
@@ -2875,7 +2596,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (128:2) {#each locationNames as location, i}
+    // (127:2) {#each locationNames as location, i}
     function create_each_block_3(ctx) {
     	let div;
     	let button;
@@ -2898,11 +2619,15 @@ var app = (function () {
     			set_style(button, "background", /*locs*/ ctx[6][/*i*/ ctx[30]]);
     			set_style(button, "color", "black");
     			set_style(button, "border", "blue 2px");
+<<<<<<< HEAD
     			attr_dev(button, "class", "btn btn-primary text-uppercase fw-bold btn-login svelte-15uyx7j");
+=======
+    			attr_dev(button, "class", "btn btn-primary text-uppercase fw-bold btn-login svelte-z6mvqc");
+>>>>>>> aabdf36 (fixes and deletions)
     			attr_dev(button, "type", "button");
-    			add_location(button, file$2, 129, 3, 3778);
+    			add_location(button, file$1, 128, 3, 3739);
     			attr_dev(div, "class", "d-grid my-3");
-    			add_location(div, file$2, 128, 2, 3749);
+    			add_location(div, file$1, 127, 2, 3710);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -2932,14 +2657,14 @@ var app = (function () {
     		block,
     		id: create_each_block_3.name,
     		type: "each",
-    		source: "(128:2) {#each locationNames as location, i}",
+    		source: "(127:2) {#each locationNames as location, i}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (139:10) {#each days as day, i}
+    // (138:10) {#each days as day, i}
     function create_each_block_2(ctx) {
     	let th;
     	let input;
@@ -2961,9 +2686,15 @@ var app = (function () {
     			attr_dev(input, "id", input_id_value = /*ud*/ ctx[4][/*i*/ ctx[30]]);
     			attr_dev(input, "name", input_name_value = /*day*/ ctx[31]);
     			input.value = input_value_value = /*day*/ ctx[31];
+<<<<<<< HEAD
     			add_location(input, file$2, 139, 14, 4204);
     			attr_dev(th, "class", "svelte-15uyx7j");
     			add_location(th, file$2, 139, 10, 4200);
+=======
+    			add_location(input, file$1, 138, 14, 4165);
+    			attr_dev(th, "class", "svelte-z6mvqc");
+    			add_location(th, file$1, 138, 10, 4161);
+>>>>>>> aabdf36 (fixes and deletions)
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, th, anchor);
@@ -2992,14 +2723,14 @@ var app = (function () {
     		block,
     		id: create_each_block_2.name,
     		type: "each",
-    		source: "(139:10) {#each days as day, i}",
+    		source: "(138:10) {#each days as day, i}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (157:6) {#each days as day, j}
+    // (156:6) {#each days as day, j}
     function create_each_block_1(ctx) {
     	let td;
     	let button;
@@ -3020,14 +2751,24 @@ var app = (function () {
     			t = text(t_value);
     			set_style(button, "width", "100%");
     			attr_dev(button, "type", "button");
+<<<<<<< HEAD
     			attr_dev(button, "class", "notavailable sm btn btn-primary text-uppercase fw-bold");
     			add_location(button, file$2, 158, 7, 5081);
+=======
+    			attr_dev(button, "class", "btn btn-primary text-uppercase fw-bold");
+    			add_location(button, file$1, 157, 7, 4986);
+>>>>>>> aabdf36 (fixes and deletions)
     			attr_dev(td, "nowrap", "");
     			set_style(td, "background", /*currAvail*/ ctx[0][/*i*/ ctx[30]][/*j*/ ctx[33]]);
     			set_style(td, "color", "black");
     			attr_dev(td, "id", td_id_value = /*dt*/ ctx[2][/*i*/ ctx[30]][/*j*/ ctx[33]]);
+<<<<<<< HEAD
     			attr_dev(td, "class", "svelte-15uyx7j");
     			add_location(td, file$2, 157, 8, 4999);
+=======
+    			attr_dev(td, "class", "svelte-z6mvqc");
+    			add_location(td, file$1, 156, 8, 4904);
+>>>>>>> aabdf36 (fixes and deletions)
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, td, anchor);
@@ -3061,14 +2802,14 @@ var app = (function () {
     		block,
     		id: create_each_block_1.name,
     		type: "each",
-    		source: "(157:6) {#each days as day, j}",
+    		source: "(156:6) {#each days as day, j}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (154:5) {#each times as time, i}
+    // (153:5) {#each times as time, i}
     function create_each_block(ctx) {
     	let tr;
     	let td;
@@ -3110,11 +2851,19 @@ var app = (function () {
     			attr_dev(input, "id", input_id_value = /*ut*/ ctx[3][/*i*/ ctx[30]]);
     			attr_dev(input, "name", input_name_value = /*time*/ ctx[28]);
     			input.value = input_value_value = /*time*/ ctx[28];
+<<<<<<< HEAD
     			add_location(input, file$2, 155, 10, 4863);
     			attr_dev(td, "class", "svelte-15uyx7j");
     			add_location(td, file$2, 155, 6, 4859);
     			attr_dev(tr, "id", tr_id_value = /*i*/ ctx[30]);
     			add_location(tr, file$2, 154, 5, 4841);
+=======
+    			add_location(input, file$1, 154, 10, 4768);
+    			attr_dev(td, "class", "svelte-z6mvqc");
+    			add_location(td, file$1, 154, 6, 4764);
+    			attr_dev(tr, "id", tr_id_value = /*i*/ ctx[30]);
+    			add_location(tr, file$1, 153, 5, 4746);
+>>>>>>> aabdf36 (fixes and deletions)
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, tr, anchor);
@@ -3176,14 +2925,14 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(154:5) {#each times as time, i}",
+    		source: "(153:5) {#each times as time, i}",
     		ctx
     	});
 
     	return block;
     }
 
-    function create_fragment$2(ctx) {
+    function create_fragment$1(ctx) {
     	let div0;
     	let h1;
     	let t0;
@@ -3338,18 +3087,25 @@ var app = (function () {
     			button1 = element("button");
     			button1.textContent = "Submit";
     			attr_dev(h1, "class", "display-4");
-    			add_location(h1, file$2, 118, 1, 3335);
+    			add_location(h1, file$1, 117, 1, 3296);
     			attr_dev(hr, "class", "my-4");
+<<<<<<< HEAD
     			add_location(hr, file$2, 119, 1, 3397);
     			attr_dev(span, "class", "bolded svelte-15uyx7j");
     			add_location(span, file$2, 120, 17, 3432);
+=======
+    			add_location(hr, file$1, 118, 1, 3358);
+    			attr_dev(span, "class", "bolded svelte-z6mvqc");
+    			add_location(span, file$1, 119, 17, 3393);
+>>>>>>> aabdf36 (fixes and deletions)
     			attr_dev(p0, "class", "lead");
-    			add_location(p0, file$2, 120, 1, 3416);
-    			add_location(p1, file$2, 121, 1, 3521);
+    			add_location(p0, file$1, 119, 1, 3377);
+    			add_location(p1, file$1, 120, 1, 3482);
     			attr_dev(div0, "class", "jumbotron");
-    			add_location(div0, file$2, 117, 0, 3310);
+    			add_location(div0, file$1, 116, 0, 3271);
     			attr_dev(label, "for", "aboutMe");
     			set_style(label, "font-size", "1.5em");
+<<<<<<< HEAD
     			add_location(label, file$2, 126, 2, 3623);
     			add_location(br, file$2, 126, 82, 3703);
     			attr_dev(th, "class", "svelte-15uyx7j");
@@ -3391,8 +3147,51 @@ var app = (function () {
     			attr_dev(div3, "class", "d-grid my-3");
     			add_location(div3, file$2, 171, 2, 5542);
     			add_location(form_1, file$2, 125, 1, 3605);
+=======
+    			add_location(label, file$1, 125, 2, 3584);
+    			add_location(br, file$1, 125, 82, 3664);
+    			attr_dev(th, "class", "svelte-z6mvqc");
+    			add_location(th, file$1, 136, 10, 4108);
+    			add_location(tr0, file$1, 135, 8, 4092);
+    			attr_dev(td0, "class", "text-uppercase svelte-z6mvqc");
+    			add_location(td0, file$1, 142, 6, 4333);
+    			attr_dev(td1, "class", "text-uppercase svelte-z6mvqc");
+    			add_location(td1, file$1, 144, 6, 4383);
+    			attr_dev(td2, "class", "text-uppercase svelte-z6mvqc");
+    			add_location(td2, file$1, 145, 6, 4428);
+    			attr_dev(td3, "class", "text-uppercase svelte-z6mvqc");
+    			add_location(td3, file$1, 146, 6, 4474);
+    			attr_dev(td4, "class", "text-uppercase svelte-z6mvqc");
+    			add_location(td4, file$1, 147, 6, 4522);
+    			attr_dev(td5, "class", "text-uppercase svelte-z6mvqc");
+    			add_location(td5, file$1, 148, 6, 4569);
+    			attr_dev(td6, "class", "text-uppercase svelte-z6mvqc");
+    			add_location(td6, file$1, 149, 6, 4614);
+    			attr_dev(td7, "class", "text-uppercase svelte-z6mvqc");
+    			add_location(td7, file$1, 150, 6, 4661);
+    			attr_dev(tr1, "class", "bg-light-gray svelte-z6mvqc");
+    			add_location(tr1, file$1, 141, 5, 4300);
+    			add_location(thead, file$1, 134, 4, 4076);
+    			attr_dev(table, "class", "table table-bordered text-center svelte-z6mvqc");
+    			add_location(table, file$1, 133, 3, 4023);
+    			attr_dev(div1, "class", "table-responsive");
+    			add_location(div1, file$1, 132, 2, 3989);
+    			attr_dev(button0, "class", "btn btn-primary btn-login text-uppercase fw-bold svelte-z6mvqc");
+    			attr_dev(button0, "type", "button");
+    			button0.value = "Back";
+    			add_location(button0, file$1, 167, 3, 5278);
+    			attr_dev(div2, "class", "d-grid my-3");
+    			add_location(div2, file$1, 166, 2, 5249);
+    			attr_dev(button1, "class", "btn btn-primary btn-login text-uppercase fw-bold svelte-z6mvqc");
+    			attr_dev(button1, "type", "submit");
+    			button1.value = "Submit";
+    			add_location(button1, file$1, 171, 3, 5460);
+    			attr_dev(div3, "class", "d-grid my-3");
+    			add_location(div3, file$1, 170, 2, 5431);
+    			add_location(form_1, file$1, 124, 1, 3566);
+>>>>>>> aabdf36 (fixes and deletions)
     			attr_dev(div4, "class", "container");
-    			add_location(div4, file$2, 124, 0, 3580);
+    			add_location(div4, file$1, 123, 0, 3541);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -3562,7 +3361,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_fragment$2.name,
+    		id: create_fragment$1.name,
     		type: "component",
     		source: "",
     		ctx
@@ -3583,7 +3382,7 @@ var app = (function () {
     	return "gray";
     }
 
-    function instance$2($$self, $$props, $$invalidate) {
+    function instance$1($$self, $$props, $$invalidate) {
     	let $currentUserNum;
     	let $vchecks;
     	let $checks;
@@ -3601,7 +3400,7 @@ var app = (function () {
     	validate_store(availabilities, 'availabilities');
     	component_subscribe($$self, availabilities, $$value => $$invalidate(26, $availabilities = $$value));
     	let { $$slots: slots = {}, $$scope } = $$props;
-    	validate_slots('Page2', slots, []);
+    	validate_slots('Collection', slots, []);
     	let { initialValues } = $$props;
     	let { onSubmit } = $$props;
     	let { onBack } = $$props;
@@ -3717,26 +3516,26 @@ var app = (function () {
 
     	$$self.$$.on_mount.push(function () {
     		if (initialValues === undefined && !('initialValues' in $$props || $$self.$$.bound[$$self.$$.props['initialValues']])) {
-    			console_1.warn("<Page2> was created without expected prop 'initialValues'");
+    			console_1.warn("<Collection> was created without expected prop 'initialValues'");
     		}
 
     		if (onSubmit === undefined && !('onSubmit' in $$props || $$self.$$.bound[$$self.$$.props['onSubmit']])) {
-    			console_1.warn("<Page2> was created without expected prop 'onSubmit'");
+    			console_1.warn("<Collection> was created without expected prop 'onSubmit'");
     		}
 
     		if (onBack === undefined && !('onBack' in $$props || $$self.$$.bound[$$self.$$.props['onBack']])) {
-    			console_1.warn("<Page2> was created without expected prop 'onBack'");
+    			console_1.warn("<Collection> was created without expected prop 'onBack'");
     		}
 
     		if (currAvail === undefined && !('currAvail' in $$props || $$self.$$.bound[$$self.$$.props['currAvail']])) {
-    			console_1.warn("<Page2> was created without expected prop 'currAvail'");
+    			console_1.warn("<Collection> was created without expected prop 'currAvail'");
     		}
     	});
 
     	const writable_props = ['initialValues', 'onSubmit', 'onBack', 'dt', 'currAvail', 'ut', 'ud'];
 
     	Object.keys($$props).forEach(key => {
-    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== '$$' && key !== 'slot') console_1.warn(`<Page2> was created with unknown prop '${key}'`);
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== '$$' && key !== 'slot') console_1.warn(`<Collection> was created with unknown prop '${key}'`);
     	});
 
     	const click_handler = (location, i) => changeLocColor(location, i);
@@ -3757,7 +3556,6 @@ var app = (function () {
 
     	$$self.$capture_state = () => ({
     		createForm: createForm$1,
-    		Button,
     		writable,
     		users,
     		numUsers,
@@ -3841,15 +3639,15 @@ var app = (function () {
     	];
     }
 
-    class Page2 extends SvelteComponentDev {
+    class Collection extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
 
     		init(
     			this,
     			options,
-    			instance$2,
-    			create_fragment$2,
+    			instance$1,
+    			create_fragment$1,
     			safe_not_equal,
     			{
     				initialValues: 14,
@@ -3866,66 +3664,331 @@ var app = (function () {
 
     		dispatch_dev("SvelteRegisterComponent", {
     			component: this,
-    			tagName: "Page2",
+    			tagName: "Collection",
+    			options,
+    			id: create_fragment$1.name
+    		});
+    	}
+
+    	get initialValues() {
+    		throw new Error("<Collection>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set initialValues(value) {
+    		throw new Error("<Collection>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get onSubmit() {
+    		throw new Error("<Collection>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set onSubmit(value) {
+    		throw new Error("<Collection>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get onBack() {
+    		throw new Error("<Collection>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set onBack(value) {
+    		throw new Error("<Collection>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get dt() {
+    		throw new Error("<Collection>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set dt(value) {
+    		throw new Error("<Collection>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get currAvail() {
+    		throw new Error("<Collection>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set currAvail(value) {
+    		throw new Error("<Collection>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get ut() {
+    		throw new Error("<Collection>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set ut(value) {
+    		throw new Error("<Collection>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get ud() {
+    		throw new Error("<Collection>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set ud(value) {
+    		throw new Error("<Collection>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+    }
+
+    /* src/components/Summary.svelte generated by Svelte v3.55.1 */
+
+    const file$2 = "src/components/Summary.svelte";
+
+    function create_fragment$2(ctx) {
+    	let body;
+    	let div0;
+    	let h1;
+    	let t1;
+    	let div1;
+    	let button;
+    	let mounted;
+    	let dispose;
+
+    	const block = {
+    		c: function create() {
+    			body = element("body");
+    			div0 = element("div");
+    			h1 = element("h1");
+    			h1.textContent = "Availability Summary";
+    			t1 = space();
+    			div1 = element("div");
+    			button = element("button");
+    			button.textContent = "Back";
+    			attr_dev(h1, "class", "display-4");
+    			add_location(h1, file$2, 45, 8, 1099);
+    			attr_dev(div0, "class", "jumbotron");
+    			add_location(div0, file$2, 44, 4, 1067);
+    			attr_dev(button, "class", "btn btn-primary btn-login text-uppercase fw-bold");
+    			attr_dev(button, "type", "button");
+    			button.value = "Back";
+    			add_location(button, file$2, 49, 8, 1207);
+    			attr_dev(div1, "class", "d-grid my-3");
+    			add_location(div1, file$2, 48, 4, 1173);
+    			add_location(body, file$2, 43, 0, 1056);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, body, anchor);
+    			append_dev(body, div0);
+    			append_dev(div0, h1);
+    			append_dev(body, t1);
+    			append_dev(body, div1);
+    			append_dev(div1, button);
+
+    			if (!mounted) {
+    				dispose = listen_dev(button, "click", /*click_handler*/ ctx[7], false, false, false);
+    				mounted = true;
+    			}
+    		},
+    		p: noop,
+    		i: noop,
+    		o: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(body);
+    			mounted = false;
+    			dispose();
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment$2.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function instance$2($$self, $$props, $$invalidate) {
+    	let $currentUserNum;
+    	let $data;
+    	validate_store(currentUserNum, 'currentUserNum');
+    	component_subscribe($$self, currentUserNum, $$value => $$invalidate(11, $currentUserNum = $$value));
+    	let { $$slots: slots = {}, $$scope } = $$props;
+    	validate_slots('Summary', slots, []);
+    	let { onBack } = $$props;
+    	let currUser;
+    	let boxes;
+    	let locs;
+
+    	checks.subscribe(val => {
+    		boxes = val[$currentUserNum];
+    	});
+
+    	users.subscribe(val => {
+    		currUser = val[$currentUserNum];
+    	});
+
+    	locations.subscribe(val => {
+    		locs = val[$currentUserNum];
+    	});
+
+    	const { form, data } = createForm$1({});
+    	validate_store(data, 'data');
+    	component_subscribe($$self, data, value => $$invalidate(1, $data = value));
+    	let { dt = [] } = $$props;
+    	let { currAvail } = $$props;
+    	let putItBackTogether = [];
+
+    	availabilities.subscribe(val => {
+    		$$invalidate(3, currAvail = val[$currentUserNum]);
+    	});
+
+    	let { ut = [] } = $$props;
+
+    	for (let i = 0; i < times.length; i++) {
+    		ut.push(times[i] + currUser);
+    	}
+
+    	let { ud = [] } = $$props;
+
+    	for (let i = 0; i < days.length; i++) {
+    		ud.push(days[i] + currUser);
+    	}
+
+    	for (let i = 0; i < times.length; i++) {
+    		dt.push([]);
+
+    		for (let j = 0; j < days.length; j++) {
+    			dt[i].push(days[j] + times[i]);
+    		}
+    	}
+
+    	$$self.$$.on_mount.push(function () {
+    		if (onBack === undefined && !('onBack' in $$props || $$self.$$.bound[$$self.$$.props['onBack']])) {
+    			console.warn("<Summary> was created without expected prop 'onBack'");
+    		}
+
+    		if (currAvail === undefined && !('currAvail' in $$props || $$self.$$.bound[$$self.$$.props['currAvail']])) {
+    			console.warn("<Summary> was created without expected prop 'currAvail'");
+    		}
+    	});
+
+    	const writable_props = ['onBack', 'dt', 'currAvail', 'ut', 'ud'];
+
+    	Object.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== '$$' && key !== 'slot') console.warn(`<Summary> was created with unknown prop '${key}'`);
+    	});
+
+    	const click_handler = () => onBack($data);
+
+    	$$self.$$set = $$props => {
+    		if ('onBack' in $$props) $$invalidate(0, onBack = $$props.onBack);
+    		if ('dt' in $$props) $$invalidate(4, dt = $$props.dt);
+    		if ('currAvail' in $$props) $$invalidate(3, currAvail = $$props.currAvail);
+    		if ('ut' in $$props) $$invalidate(5, ut = $$props.ut);
+    		if ('ud' in $$props) $$invalidate(6, ud = $$props.ud);
+    	};
+
+    	$$self.$capture_state = () => ({
+    		createForm: createForm$1,
+    		writable,
+    		users,
+    		numUsers,
+    		currentUserNum,
+    		availabilities,
+    		checks,
+    		locations,
+    		startTimes,
+    		endTimes,
+    		timerNumber,
+    		days,
+    		times,
+    		locationNames,
+    		vchecks,
+    		onBack,
+    		currUser,
+    		boxes,
+    		locs,
+    		form,
+    		data,
+    		dt,
+    		currAvail,
+    		putItBackTogether,
+    		ut,
+    		ud,
+    		$currentUserNum,
+    		$data
+    	});
+
+    	$$self.$inject_state = $$props => {
+    		if ('onBack' in $$props) $$invalidate(0, onBack = $$props.onBack);
+    		if ('currUser' in $$props) currUser = $$props.currUser;
+    		if ('boxes' in $$props) boxes = $$props.boxes;
+    		if ('locs' in $$props) locs = $$props.locs;
+    		if ('dt' in $$props) $$invalidate(4, dt = $$props.dt);
+    		if ('currAvail' in $$props) $$invalidate(3, currAvail = $$props.currAvail);
+    		if ('putItBackTogether' in $$props) putItBackTogether = $$props.putItBackTogether;
+    		if ('ut' in $$props) $$invalidate(5, ut = $$props.ut);
+    		if ('ud' in $$props) $$invalidate(6, ud = $$props.ud);
+    	};
+
+    	if ($$props && "$$inject" in $$props) {
+    		$$self.$inject_state($$props.$$inject);
+    	}
+
+    	return [onBack, $data, data, currAvail, dt, ut, ud, click_handler];
+    }
+
+    class Summary extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+
+    		init(this, options, instance$2, create_fragment$2, safe_not_equal, {
+    			onBack: 0,
+    			dt: 4,
+    			currAvail: 3,
+    			ut: 5,
+    			ud: 6
+    		});
+
+    		dispatch_dev("SvelteRegisterComponent", {
+    			component: this,
+    			tagName: "Summary",
     			options,
     			id: create_fragment$2.name
     		});
     	}
 
-    	get initialValues() {
-    		throw new Error("<Page2>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
-    	}
-
-    	set initialValues(value) {
-    		throw new Error("<Page2>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
-    	}
-
-    	get onSubmit() {
-    		throw new Error("<Page2>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
-    	}
-
-    	set onSubmit(value) {
-    		throw new Error("<Page2>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
-    	}
-
     	get onBack() {
-    		throw new Error("<Page2>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    		throw new Error("<Summary>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
     	set onBack(value) {
-    		throw new Error("<Page2>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    		throw new Error("<Summary>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
     	get dt() {
-    		throw new Error("<Page2>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    		throw new Error("<Summary>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
     	set dt(value) {
-    		throw new Error("<Page2>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    		throw new Error("<Summary>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
     	get currAvail() {
-    		throw new Error("<Page2>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    		throw new Error("<Summary>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
     	set currAvail(value) {
-    		throw new Error("<Page2>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    		throw new Error("<Summary>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
     	get ut() {
-    		throw new Error("<Page2>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    		throw new Error("<Summary>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
     	set ut(value) {
-    		throw new Error("<Page2>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    		throw new Error("<Summary>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
     	get ud() {
-    		throw new Error("<Page2>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    		throw new Error("<Summary>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
     	set ud(value) {
-    		throw new Error("<Page2>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    		throw new Error("<Summary>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
     }
 
@@ -3944,6 +4007,7 @@ var app = (function () {
     			props: {
     				onSubmit: /*onSubmit*/ ctx[3],
     				onBack: /*onBack*/ ctx[4],
+    				onSummary: /*onSummary*/ ctx[5],
     				initialValues: /*pagesState*/ ctx[1][/*page*/ ctx[0]]
     			},
     			$$inline: true
@@ -4055,28 +4119,28 @@ var app = (function () {
     	let $timerNumber;
     	let $currentUserNum;
     	validate_store(numUsers, 'numUsers');
-    	component_subscribe($$self, numUsers, $$value => $$invalidate(5, $numUsers = $$value));
+    	component_subscribe($$self, numUsers, $$value => $$invalidate(6, $numUsers = $$value));
     	validate_store(checks, 'checks');
-    	component_subscribe($$self, checks, $$value => $$invalidate(6, $checks = $$value));
+    	component_subscribe($$self, checks, $$value => $$invalidate(7, $checks = $$value));
     	validate_store(availabilities, 'availabilities');
-    	component_subscribe($$self, availabilities, $$value => $$invalidate(7, $availabilities = $$value));
+    	component_subscribe($$self, availabilities, $$value => $$invalidate(8, $availabilities = $$value));
     	validate_store(locations, 'locations');
-    	component_subscribe($$self, locations, $$value => $$invalidate(8, $locations = $$value));
+    	component_subscribe($$self, locations, $$value => $$invalidate(9, $locations = $$value));
     	validate_store(users, 'users');
-    	component_subscribe($$self, users, $$value => $$invalidate(9, $users = $$value));
+    	component_subscribe($$self, users, $$value => $$invalidate(10, $users = $$value));
     	validate_store(usersForTime, 'usersForTime');
-    	component_subscribe($$self, usersForTime, $$value => $$invalidate(10, $usersForTime = $$value));
+    	component_subscribe($$self, usersForTime, $$value => $$invalidate(11, $usersForTime = $$value));
     	validate_store(startTimes, 'startTimes');
-    	component_subscribe($$self, startTimes, $$value => $$invalidate(11, $startTimes = $$value));
+    	component_subscribe($$self, startTimes, $$value => $$invalidate(12, $startTimes = $$value));
     	validate_store(endTimes, 'endTimes');
-    	component_subscribe($$self, endTimes, $$value => $$invalidate(12, $endTimes = $$value));
+    	component_subscribe($$self, endTimes, $$value => $$invalidate(13, $endTimes = $$value));
     	validate_store(timerNumber, 'timerNumber');
-    	component_subscribe($$self, timerNumber, $$value => $$invalidate(13, $timerNumber = $$value));
+    	component_subscribe($$self, timerNumber, $$value => $$invalidate(14, $timerNumber = $$value));
     	validate_store(currentUserNum, 'currentUserNum');
-    	component_subscribe($$self, currentUserNum, $$value => $$invalidate(14, $currentUserNum = $$value));
+    	component_subscribe($$self, currentUserNum, $$value => $$invalidate(15, $currentUserNum = $$value));
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots('App', slots, []);
-    	const pages = [Page1, Page2];
+    	const pages = [Login, Collection, Summary];
     	let currUser;
 
     	startTimes.subscribe(val => {
@@ -4091,7 +4155,7 @@ var app = (function () {
 
     	// Our handlers
     	function onSubmit(values) {
-    		if (page === pages.length - 1) {
+    		if (page === 1) {
     			// On our final page with POST our data somewhere
     			$$invalidate(1, pagesState[page] = values, pagesState);
 
@@ -4159,10 +4223,23 @@ var app = (function () {
     	}
 
     	function onBack(values) {
-    		if (page === 0) return;
-    		$$invalidate(1, pagesState[page] = values, pagesState);
-    		$$invalidate(1, pagesState); // Triggering update
-    		$$invalidate(0, page -= 1);
+    		if (page === 0) return; else if (page === 1) {
+    			$$invalidate(1, pagesState[page] = values, pagesState);
+    			$$invalidate(1, pagesState); // Triggering update
+    			$$invalidate(0, page -= 1);
+    		} else {
+    			//pagesState[page] = values;
+    			$$invalidate(1, pagesState);
+
+    			$$invalidate(0, page = 0);
+    		}
+    	}
+
+    	function onSummary(values) {
+    		if (page === 0) {
+    			//pagesState = pagesState;
+    			$$invalidate(0, page = 2);
+    		}
     	}
 
     	const writable_props = [];
@@ -4172,8 +4249,9 @@ var app = (function () {
     	});
 
     	$$self.$capture_state = () => ({
-    		Page1,
-    		Page2,
+    		Login,
+    		Collection,
+    		Summary,
     		users,
     		numUsers,
     		availabilities,
@@ -4197,6 +4275,7 @@ var app = (function () {
     		convert,
     		onSubmit,
     		onBack,
+    		onSummary,
     		$numUsers,
     		$checks,
     		$availabilities,
@@ -4219,7 +4298,7 @@ var app = (function () {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [page, pagesState, pages, onSubmit, onBack];
+    	return [page, pagesState, pages, onSubmit, onBack, onSummary];
     }
 
     class App extends SvelteComponentDev {

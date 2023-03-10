@@ -4,13 +4,16 @@
   // PL concept: #component
   import Page1 from "./components/Page1.svelte";
   import Page2 from "./components/Page2.svelte";
+  import Login from "./components/Login.svelte";
+  import Collection from "./components/Collection.svelte";
+  import Summary from "./components/Summary.svelte";
   import { users, numUsers, availabilities, currentUserNum, checks, locations, 
   startTimes, endTimes, timerNumber, days, times, locationNames, usersForTime, vchecks } from './components/stores.js';
 
   import { writable } from 'svelte/store';
 
 
-  const pages = [Page1, Page2];
+  const pages = [Login, Collection, Summary];
   let currUser;
   startTimes.subscribe(val => {});
 
@@ -45,7 +48,7 @@
 
   // Our handlers
   function onSubmit(values) {
-    if (page === pages.length - 1) {
+    if (page === 1) {
       // On our final page with POST our data somewhere
       pagesState[page] = values;
       pagesState = pagesState;
@@ -112,9 +115,22 @@
 
   function onBack(values) {
     if (page === 0) return;
-		pagesState[page] = values;
-    pagesState = pagesState; // Triggering update
-    page -= 1;
+    else if (page === 1) {
+		  pagesState[page] = values;
+      pagesState = pagesState; // Triggering update
+      page -= 1;
+    } else {
+      //pagesState[page] = values;
+      pagesState = pagesState;
+      page = 0;
+    }
+  }
+
+  function onSummary(values) {
+    if (page === 0) {
+      //pagesState = pagesState;
+      page = 2;
+    }
   }
 </script>
 
@@ -123,5 +139,6 @@
   this={pages[page]}
   {onSubmit}
   {onBack}
+  {onSummary}
   initialValues={pagesState[page]}
   />
