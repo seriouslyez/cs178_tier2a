@@ -2,8 +2,6 @@
 
 <script>
   // PL concept: #component
-  import Page1 from "./components/Page1.svelte";
-  import Page2 from "./components/Page2.svelte";
   import Login from "./components/Login.svelte";
   import Collection from "./components/Collection.svelte";
   import Summary from "./components/Summary.svelte";

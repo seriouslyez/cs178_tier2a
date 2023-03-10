@@ -2286,6 +2286,7 @@ var app = (function () {
         return rest;
     }
 
+    // concept: log in by name
     let users = writable([]);
     let numUsers = writable(0);
     let currentUserNum = writable(-1);
@@ -2295,6 +2296,7 @@ var app = (function () {
     let startTimes = writable([]);
     let endTimes = writable([]);
     let timerNumber = writable(-1);
+    // concept: eligible times and days - 7 days of week, 15 min increments, 9-19 ET
     let days = ["Monday   ", "Tuesday  ", "Wednesday ", "Thursday ", 
     					   "Friday   ", "Saturday ", "Sunday   "];
     let times = [
@@ -2308,6 +2310,7 @@ var app = (function () {
     						"4:00 pm  ", "4:15 pm  ", "4:30 pm  ", "4:45 pm  ",
     						"5:00 pm  ", "5:15 pm  ", "5:30 pm  ", "5:45 pm  ",
     						"6:00 pm  ", "6:15 pm  ", "6:30 pm  ", "6:45 pm  ",];
+    // concept: location, availability conditioned on location
     let locationNames = ["Cambridge (River)", "Cambridge (Yard)", 
                               "Cambridge (Quad)", "Allston", "Virtual"];
     let usersForTime = writable([]);
@@ -2378,29 +2381,29 @@ var app = (function () {
     			attr_dev(input0, "placeholder", "First Name");
     			attr_dev(input0, "name", "firstName");
     			input0.value = "";
-    			add_location(input0, file, 25, 6, 849);
+    			add_location(input0, file, 26, 6, 886);
     			attr_dev(div1, "class", "form-floating mb-3");
-    			add_location(div1, file, 24, 4, 810);
+    			add_location(div1, file, 25, 4, 847);
     			attr_dev(input1, "type", "text");
     			attr_dev(input1, "class", "form-control");
     			attr_dev(input1, "id", "lastName");
     			attr_dev(input1, "placeholder", "Last Name");
     			attr_dev(input1, "name", "lastName");
     			input1.value = "";
-    			add_location(input1, file, 28, 6, 1012);
+    			add_location(input1, file, 29, 6, 1049);
     			attr_dev(div2, "class", "form-floating mb-3");
-    			add_location(div2, file, 27, 4, 973);
+    			add_location(div2, file, 28, 4, 1010);
     			attr_dev(button0, "class", "btn btn-primary btn-login text-uppercase fw-bold svelte-1mstmo5");
     			attr_dev(button0, "type", "submit");
-    			add_location(button0, file, 32, 6, 1168);
+    			add_location(button0, file, 33, 6, 1205);
     			attr_dev(div3, "class", "d-grid my-3");
-    			add_location(div3, file, 31, 4, 1136);
+    			add_location(div3, file, 32, 4, 1173);
     			attr_dev(button1, "class", "btn btn-primary btn-login text-uppercase fw-bold svelte-1mstmo5");
     			attr_dev(button1, "type", "button");
     			button1.value = "Summary";
-    			add_location(button1, file, 37, 5, 1316);
+    			add_location(button1, file, 38, 5, 1353);
     			attr_dev(div4, "class", "d-grid my-3");
-    			add_location(div4, file, 36, 4, 1285);
+    			add_location(div4, file, 37, 4, 1322);
     			add_location(form_1, file, 23, 5, 790);
     			attr_dev(div5, "class", "card-body p-4 p-sm-5");
     			add_location(div5, file, 21, 3, 651);
@@ -2570,44 +2573,44 @@ var app = (function () {
 
     function get_each_context(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[28] = list[i];
-    	child_ctx[30] = i;
+    	child_ctx[27] = list[i];
+    	child_ctx[29] = i;
     	return child_ctx;
     }
 
     function get_each_context_1(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[31] = list[i];
-    	child_ctx[33] = i;
+    	child_ctx[30] = list[i];
+    	child_ctx[32] = i;
     	return child_ctx;
     }
 
     function get_each_context_2(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[31] = list[i];
-    	child_ctx[30] = i;
+    	child_ctx[30] = list[i];
+    	child_ctx[29] = i;
     	return child_ctx;
     }
 
     function get_each_context_3(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[35] = list[i];
-    	child_ctx[30] = i;
+    	child_ctx[34] = list[i];
+    	child_ctx[29] = i;
     	return child_ctx;
     }
 
-    // (127:2) {#each locationNames as location, i}
+    // (139:2) {#each locationNames as location, i}
     function create_each_block_3(ctx) {
     	let div;
     	let button;
-    	let t_value = locationNames[/*i*/ ctx[30]] + "";
+    	let t_value = locationNames[/*i*/ ctx[29]] + "";
     	let t;
     	let button_id_value;
     	let mounted;
     	let dispose;
 
     	function click_handler() {
-    		return /*click_handler*/ ctx[16](/*location*/ ctx[35], /*i*/ ctx[30]);
+    		return /*click_handler*/ ctx[16](/*location*/ ctx[34], /*i*/ ctx[29]);
     	}
 
     	const block = {
@@ -2615,19 +2618,15 @@ var app = (function () {
     			div = element("div");
     			button = element("button");
     			t = text(t_value);
-    			attr_dev(button, "id", button_id_value = /*location*/ ctx[35]);
-    			set_style(button, "background", /*locs*/ ctx[6][/*i*/ ctx[30]]);
+    			attr_dev(button, "id", button_id_value = /*location*/ ctx[34]);
+    			set_style(button, "background", /*locs*/ ctx[6][/*i*/ ctx[29]]);
     			set_style(button, "color", "black");
     			set_style(button, "border", "blue 2px");
-<<<<<<< HEAD
-    			attr_dev(button, "class", "btn btn-primary text-uppercase fw-bold btn-login svelte-15uyx7j");
-=======
     			attr_dev(button, "class", "btn btn-primary text-uppercase fw-bold btn-login svelte-z6mvqc");
->>>>>>> aabdf36 (fixes and deletions)
     			attr_dev(button, "type", "button");
-    			add_location(button, file$1, 128, 3, 3739);
+    			add_location(button, file$1, 140, 3, 4642);
     			attr_dev(div, "class", "d-grid my-3");
-    			add_location(div, file$1, 127, 2, 3710);
+    			add_location(div, file$1, 139, 2, 4613);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -2643,7 +2642,7 @@ var app = (function () {
     			ctx = new_ctx;
 
     			if (dirty[0] & /*locs*/ 64) {
-    				set_style(button, "background", /*locs*/ ctx[6][/*i*/ ctx[30]]);
+    				set_style(button, "background", /*locs*/ ctx[6][/*i*/ ctx[29]]);
     			}
     		},
     		d: function destroy(detaching) {
@@ -2657,14 +2656,14 @@ var app = (function () {
     		block,
     		id: create_each_block_3.name,
     		type: "each",
-    		source: "(127:2) {#each locationNames as location, i}",
+    		source: "(139:2) {#each locationNames as location, i}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (138:10) {#each days as day, i}
+    // (151:10) {#each days as day, i}
     function create_each_block_2(ctx) {
     	let th;
     	let input;
@@ -2675,7 +2674,7 @@ var app = (function () {
     	let dispose;
 
     	function click_handler_1() {
-    		return /*click_handler_1*/ ctx[17](/*i*/ ctx[30]);
+    		return /*click_handler_1*/ ctx[17](/*i*/ ctx[29]);
     	}
 
     	const block = {
@@ -2683,18 +2682,12 @@ var app = (function () {
     			th = element("th");
     			input = element("input");
     			attr_dev(input, "type", "checkbox");
-    			attr_dev(input, "id", input_id_value = /*ud*/ ctx[4][/*i*/ ctx[30]]);
-    			attr_dev(input, "name", input_name_value = /*day*/ ctx[31]);
-    			input.value = input_value_value = /*day*/ ctx[31];
-<<<<<<< HEAD
-    			add_location(input, file$2, 139, 14, 4204);
-    			attr_dev(th, "class", "svelte-15uyx7j");
-    			add_location(th, file$2, 139, 10, 4200);
-=======
-    			add_location(input, file$1, 138, 14, 4165);
+    			attr_dev(input, "id", input_id_value = /*ud*/ ctx[4][/*i*/ ctx[29]]);
+    			attr_dev(input, "name", input_name_value = /*day*/ ctx[30]);
+    			input.value = input_value_value = /*day*/ ctx[30];
+    			add_location(input, file$1, 151, 14, 5156);
     			attr_dev(th, "class", "svelte-z6mvqc");
-    			add_location(th, file$1, 138, 10, 4161);
->>>>>>> aabdf36 (fixes and deletions)
+    			add_location(th, file$1, 151, 10, 5152);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, th, anchor);
@@ -2708,7 +2701,7 @@ var app = (function () {
     		p: function update(new_ctx, dirty) {
     			ctx = new_ctx;
 
-    			if (dirty[0] & /*ud*/ 16 && input_id_value !== (input_id_value = /*ud*/ ctx[4][/*i*/ ctx[30]])) {
+    			if (dirty[0] & /*ud*/ 16 && input_id_value !== (input_id_value = /*ud*/ ctx[4][/*i*/ ctx[29]])) {
     				attr_dev(input, "id", input_id_value);
     			}
     		},
@@ -2723,25 +2716,25 @@ var app = (function () {
     		block,
     		id: create_each_block_2.name,
     		type: "each",
-    		source: "(138:10) {#each days as day, i}",
+    		source: "(151:10) {#each days as day, i}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (156:6) {#each days as day, j}
+    // (169:6) {#each days as day, j}
     function create_each_block_1(ctx) {
     	let td;
     	let button;
-    	let t_value = /*time*/ ctx[28] + "";
+    	let t_value = /*time*/ ctx[27] + "";
     	let t;
     	let td_id_value;
     	let mounted;
     	let dispose;
 
     	function click_handler_3() {
-    		return /*click_handler_3*/ ctx[19](/*i*/ ctx[30], /*j*/ ctx[33]);
+    		return /*click_handler_3*/ ctx[19](/*i*/ ctx[29], /*j*/ ctx[32]);
     	}
 
     	const block = {
@@ -2751,24 +2744,14 @@ var app = (function () {
     			t = text(t_value);
     			set_style(button, "width", "100%");
     			attr_dev(button, "type", "button");
-<<<<<<< HEAD
-    			attr_dev(button, "class", "notavailable sm btn btn-primary text-uppercase fw-bold");
-    			add_location(button, file$2, 158, 7, 5081);
-=======
     			attr_dev(button, "class", "btn btn-primary text-uppercase fw-bold");
-    			add_location(button, file$1, 157, 7, 4986);
->>>>>>> aabdf36 (fixes and deletions)
+    			add_location(button, file$1, 171, 7, 6077);
     			attr_dev(td, "nowrap", "");
-    			set_style(td, "background", /*currAvail*/ ctx[0][/*i*/ ctx[30]][/*j*/ ctx[33]]);
+    			set_style(td, "background", /*currAvail*/ ctx[0][/*i*/ ctx[29]][/*j*/ ctx[32]]);
     			set_style(td, "color", "black");
-    			attr_dev(td, "id", td_id_value = /*dt*/ ctx[2][/*i*/ ctx[30]][/*j*/ ctx[33]]);
-<<<<<<< HEAD
-    			attr_dev(td, "class", "svelte-15uyx7j");
-    			add_location(td, file$2, 157, 8, 4999);
-=======
+    			attr_dev(td, "id", td_id_value = /*dt*/ ctx[2][/*i*/ ctx[29]][/*j*/ ctx[32]]);
     			attr_dev(td, "class", "svelte-z6mvqc");
-    			add_location(td, file$1, 156, 8, 4904);
->>>>>>> aabdf36 (fixes and deletions)
+    			add_location(td, file$1, 170, 8, 5995);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, td, anchor);
@@ -2784,10 +2767,10 @@ var app = (function () {
     			ctx = new_ctx;
 
     			if (dirty[0] & /*currAvail*/ 1) {
-    				set_style(td, "background", /*currAvail*/ ctx[0][/*i*/ ctx[30]][/*j*/ ctx[33]]);
+    				set_style(td, "background", /*currAvail*/ ctx[0][/*i*/ ctx[29]][/*j*/ ctx[32]]);
     			}
 
-    			if (dirty[0] & /*dt*/ 4 && td_id_value !== (td_id_value = /*dt*/ ctx[2][/*i*/ ctx[30]][/*j*/ ctx[33]])) {
+    			if (dirty[0] & /*dt*/ 4 && td_id_value !== (td_id_value = /*dt*/ ctx[2][/*i*/ ctx[29]][/*j*/ ctx[32]])) {
     				attr_dev(td, "id", td_id_value);
     			}
     		},
@@ -2802,14 +2785,14 @@ var app = (function () {
     		block,
     		id: create_each_block_1.name,
     		type: "each",
-    		source: "(156:6) {#each days as day, j}",
+    		source: "(169:6) {#each days as day, j}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (153:5) {#each times as time, i}
+    // (166:5) {#each times as time, i}
     function create_each_block(ctx) {
     	let tr;
     	let td;
@@ -2824,7 +2807,7 @@ var app = (function () {
     	let dispose;
 
     	function click_handler_2() {
-    		return /*click_handler_2*/ ctx[18](/*i*/ ctx[30]);
+    		return /*click_handler_2*/ ctx[18](/*i*/ ctx[29]);
     	}
 
     	let each_value_1 = days;
@@ -2848,22 +2831,14 @@ var app = (function () {
 
     			t1 = space();
     			attr_dev(input, "type", "checkbox");
-    			attr_dev(input, "id", input_id_value = /*ut*/ ctx[3][/*i*/ ctx[30]]);
-    			attr_dev(input, "name", input_name_value = /*time*/ ctx[28]);
-    			input.value = input_value_value = /*time*/ ctx[28];
-<<<<<<< HEAD
-    			add_location(input, file$2, 155, 10, 4863);
-    			attr_dev(td, "class", "svelte-15uyx7j");
-    			add_location(td, file$2, 155, 6, 4859);
-    			attr_dev(tr, "id", tr_id_value = /*i*/ ctx[30]);
-    			add_location(tr, file$2, 154, 5, 4841);
-=======
-    			add_location(input, file$1, 154, 10, 4768);
+    			attr_dev(input, "id", input_id_value = /*ut*/ ctx[3][/*i*/ ctx[29]]);
+    			attr_dev(input, "name", input_name_value = /*time*/ ctx[27]);
+    			input.value = input_value_value = /*time*/ ctx[27];
+    			add_location(input, file$1, 167, 10, 5815);
     			attr_dev(td, "class", "svelte-z6mvqc");
-    			add_location(td, file$1, 154, 6, 4764);
-    			attr_dev(tr, "id", tr_id_value = /*i*/ ctx[30]);
-    			add_location(tr, file$1, 153, 5, 4746);
->>>>>>> aabdf36 (fixes and deletions)
+    			add_location(td, file$1, 167, 6, 5811);
+    			attr_dev(tr, "id", tr_id_value = /*i*/ ctx[29]);
+    			add_location(tr, file$1, 166, 5, 5793);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, tr, anchor);
@@ -2885,7 +2860,7 @@ var app = (function () {
     		p: function update(new_ctx, dirty) {
     			ctx = new_ctx;
 
-    			if (dirty[0] & /*ut*/ 8 && input_id_value !== (input_id_value = /*ut*/ ctx[3][/*i*/ ctx[30]])) {
+    			if (dirty[0] & /*ut*/ 8 && input_id_value !== (input_id_value = /*ut*/ ctx[3][/*i*/ ctx[29]])) {
     				attr_dev(input, "id", input_id_value);
     			}
 
@@ -2925,7 +2900,7 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(153:5) {#each times as time, i}",
+    		source: "(166:5) {#each times as time, i}",
     		ctx
     	});
 
@@ -3087,111 +3062,61 @@ var app = (function () {
     			button1 = element("button");
     			button1.textContent = "Submit";
     			attr_dev(h1, "class", "display-4");
-    			add_location(h1, file$1, 117, 1, 3296);
+    			add_location(h1, file$1, 129, 1, 4199);
     			attr_dev(hr, "class", "my-4");
-<<<<<<< HEAD
-    			add_location(hr, file$2, 119, 1, 3397);
-    			attr_dev(span, "class", "bolded svelte-15uyx7j");
-    			add_location(span, file$2, 120, 17, 3432);
-=======
-    			add_location(hr, file$1, 118, 1, 3358);
+    			add_location(hr, file$1, 130, 1, 4261);
     			attr_dev(span, "class", "bolded svelte-z6mvqc");
-    			add_location(span, file$1, 119, 17, 3393);
->>>>>>> aabdf36 (fixes and deletions)
+    			add_location(span, file$1, 131, 17, 4296);
     			attr_dev(p0, "class", "lead");
-    			add_location(p0, file$1, 119, 1, 3377);
-    			add_location(p1, file$1, 120, 1, 3482);
+    			add_location(p0, file$1, 131, 1, 4280);
+    			add_location(p1, file$1, 132, 1, 4385);
     			attr_dev(div0, "class", "jumbotron");
-    			add_location(div0, file$1, 116, 0, 3271);
+    			add_location(div0, file$1, 128, 0, 4174);
     			attr_dev(label, "for", "aboutMe");
     			set_style(label, "font-size", "1.5em");
-<<<<<<< HEAD
-    			add_location(label, file$2, 126, 2, 3623);
-    			add_location(br, file$2, 126, 82, 3703);
-    			attr_dev(th, "class", "svelte-15uyx7j");
-    			add_location(th, file$2, 137, 10, 4147);
-    			add_location(tr0, file$2, 136, 8, 4131);
-    			attr_dev(td0, "class", "text-uppercase freeze svelte-15uyx7j");
-    			add_location(td0, file$2, 143, 6, 4372);
-    			attr_dev(td1, "class", "text-uppercase freeze svelte-15uyx7j");
-    			add_location(td1, file$2, 145, 6, 4429);
-    			attr_dev(td2, "class", "text-uppercase freeze svelte-15uyx7j");
-    			add_location(td2, file$2, 146, 6, 4481);
-    			attr_dev(td3, "class", "text-uppercase freeze svelte-15uyx7j");
-    			add_location(td3, file$2, 147, 6, 4534);
-    			attr_dev(td4, "class", "text-uppercase freeze svelte-15uyx7j");
-    			add_location(td4, file$2, 148, 6, 4589);
-    			attr_dev(td5, "class", "text-uppercase freeze svelte-15uyx7j");
-    			add_location(td5, file$2, 149, 6, 4643);
-    			attr_dev(td6, "class", "text-uppercase freeze svelte-15uyx7j");
-    			add_location(td6, file$2, 150, 6, 4695);
-    			attr_dev(td7, "class", "text-uppercase freeze svelte-15uyx7j");
-    			add_location(td7, file$2, 151, 6, 4749);
-    			attr_dev(tr1, "class", "bg-light-gray svelte-15uyx7j");
-    			add_location(tr1, file$2, 142, 5, 4339);
-    			add_location(thead, file$2, 135, 4, 4115);
-    			attr_dev(table, "class", "table table-bordered text-center svelte-15uyx7j");
-    			add_location(table, file$2, 134, 3, 4062);
-    			attr_dev(div1, "class", "table-responsive");
-    			add_location(div1, file$2, 133, 2, 4028);
-    			attr_dev(button0, "class", "btn btn-primary btn-login text-uppercase fw-bold svelte-15uyx7j");
-    			attr_dev(button0, "type", "button");
-    			button0.value = "Back";
-    			add_location(button0, file$2, 168, 3, 5389);
-    			attr_dev(div2, "class", "d-grid my-3");
-    			add_location(div2, file$2, 167, 2, 5360);
-    			attr_dev(button1, "class", "btn btn-primary btn-login text-uppercase fw-bold svelte-15uyx7j");
-    			attr_dev(button1, "type", "submit");
-    			button1.value = "Submit";
-    			add_location(button1, file$2, 172, 3, 5571);
-    			attr_dev(div3, "class", "d-grid my-3");
-    			add_location(div3, file$2, 171, 2, 5542);
-    			add_location(form_1, file$2, 125, 1, 3605);
-=======
-    			add_location(label, file$1, 125, 2, 3584);
-    			add_location(br, file$1, 125, 82, 3664);
+    			add_location(label, file$1, 137, 2, 4487);
+    			add_location(br, file$1, 137, 82, 4567);
     			attr_dev(th, "class", "svelte-z6mvqc");
-    			add_location(th, file$1, 136, 10, 4108);
-    			add_location(tr0, file$1, 135, 8, 4092);
-    			attr_dev(td0, "class", "text-uppercase svelte-z6mvqc");
-    			add_location(td0, file$1, 142, 6, 4333);
-    			attr_dev(td1, "class", "text-uppercase svelte-z6mvqc");
-    			add_location(td1, file$1, 144, 6, 4383);
-    			attr_dev(td2, "class", "text-uppercase svelte-z6mvqc");
-    			add_location(td2, file$1, 145, 6, 4428);
-    			attr_dev(td3, "class", "text-uppercase svelte-z6mvqc");
-    			add_location(td3, file$1, 146, 6, 4474);
-    			attr_dev(td4, "class", "text-uppercase svelte-z6mvqc");
-    			add_location(td4, file$1, 147, 6, 4522);
-    			attr_dev(td5, "class", "text-uppercase svelte-z6mvqc");
-    			add_location(td5, file$1, 148, 6, 4569);
-    			attr_dev(td6, "class", "text-uppercase svelte-z6mvqc");
-    			add_location(td6, file$1, 149, 6, 4614);
-    			attr_dev(td7, "class", "text-uppercase svelte-z6mvqc");
-    			add_location(td7, file$1, 150, 6, 4661);
+    			add_location(th, file$1, 149, 10, 5099);
+    			add_location(tr0, file$1, 148, 8, 5083);
+    			attr_dev(td0, "class", "text-uppercase freeze svelte-z6mvqc");
+    			add_location(td0, file$1, 155, 6, 5324);
+    			attr_dev(td1, "class", "text-uppercase freeze svelte-z6mvqc");
+    			add_location(td1, file$1, 157, 6, 5381);
+    			attr_dev(td2, "class", "text-uppercase freeze svelte-z6mvqc");
+    			add_location(td2, file$1, 158, 6, 5433);
+    			attr_dev(td3, "class", "text-uppercase freeze svelte-z6mvqc");
+    			add_location(td3, file$1, 159, 6, 5486);
+    			attr_dev(td4, "class", "text-uppercase freeze svelte-z6mvqc");
+    			add_location(td4, file$1, 160, 6, 5541);
+    			attr_dev(td5, "class", "text-uppercase freeze svelte-z6mvqc");
+    			add_location(td5, file$1, 161, 6, 5595);
+    			attr_dev(td6, "class", "text-uppercase freeze svelte-z6mvqc");
+    			add_location(td6, file$1, 162, 6, 5647);
+    			attr_dev(td7, "class", "text-uppercase freeze svelte-z6mvqc");
+    			add_location(td7, file$1, 163, 6, 5701);
     			attr_dev(tr1, "class", "bg-light-gray svelte-z6mvqc");
-    			add_location(tr1, file$1, 141, 5, 4300);
-    			add_location(thead, file$1, 134, 4, 4076);
+    			add_location(tr1, file$1, 154, 5, 5291);
+    			add_location(thead, file$1, 147, 4, 5067);
     			attr_dev(table, "class", "table table-bordered text-center svelte-z6mvqc");
-    			add_location(table, file$1, 133, 3, 4023);
+    			add_location(table, file$1, 146, 3, 5014);
     			attr_dev(div1, "class", "table-responsive");
-    			add_location(div1, file$1, 132, 2, 3989);
+    			add_location(div1, file$1, 144, 2, 4892);
     			attr_dev(button0, "class", "btn btn-primary btn-login text-uppercase fw-bold svelte-z6mvqc");
     			attr_dev(button0, "type", "button");
     			button0.value = "Back";
-    			add_location(button0, file$1, 167, 3, 5278);
+    			add_location(button0, file$1, 181, 3, 6369);
     			attr_dev(div2, "class", "d-grid my-3");
-    			add_location(div2, file$1, 166, 2, 5249);
+    			add_location(div2, file$1, 180, 2, 6340);
     			attr_dev(button1, "class", "btn btn-primary btn-login text-uppercase fw-bold svelte-z6mvqc");
     			attr_dev(button1, "type", "submit");
     			button1.value = "Submit";
-    			add_location(button1, file$1, 171, 3, 5460);
+    			add_location(button1, file$1, 185, 3, 6551);
     			attr_dev(div3, "class", "d-grid my-3");
-    			add_location(div3, file$1, 170, 2, 5431);
-    			add_location(form_1, file$1, 124, 1, 3566);
->>>>>>> aabdf36 (fixes and deletions)
+    			add_location(div3, file$1, 184, 2, 6522);
+    			add_location(form_1, file$1, 136, 1, 4469);
     			attr_dev(div4, "class", "container");
-    			add_location(div4, file$1, 123, 0, 3541);
+    			add_location(div4, file$1, 135, 0, 4444);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -3408,6 +3333,7 @@ var app = (function () {
     	let boxes;
     	let locs;
 
+    	// PL concept: writable stores, reactive values #reactive
     	checks.subscribe(val => {
     		boxes = val[$currentUserNum];
     	});
@@ -3425,7 +3351,6 @@ var app = (function () {
     	component_subscribe($$self, data, value => $$invalidate(7, $data = value));
     	let { dt = [] } = $$props;
     	let { currAvail } = $$props;
-    	let putItBackTogether = [];
 
     	availabilities.subscribe(val => {
     		$$invalidate(0, currAvail = val[$currentUserNum]);
@@ -3451,7 +3376,11 @@ var app = (function () {
     		}
     	}
 
+    	// rotate the color of a specific cell, or, if called from checkbox,
+    	// change to a fixed color
+    	// concepts: availability preference, logic-based rendering
     	function changeThisColor(id, i, j, auto) {
+    		// if just clicking one box
     		if (auto == "auto") {
     			let currColor = document.getElementById(id).style.background;
     			document.getElementById(id).style.background = changeColor(currColor);
@@ -3464,13 +3393,18 @@ var app = (function () {
     				document.getElementById(ut[i]).checked = false;
     			}
     		} else {
+    			// if calling from a checkbox
     			document.getElementById(id).style.background = auto;
     		}
 
+    		// update writable stores with new user data
     		$$invalidate(0, currAvail[i][j] = document.getElementById(id).style.background, currAvail);
+
     		set_store_value(availabilities, $availabilities[$currentUserNum][i][j] = currAvail[i][j], $availabilities);
     	}
 
+    	// change color for a location preference
+    	// concept: location, availability conditioned on location
     	function changeLocColor(id, i) {
     		let currColor = document.getElementById(id).style.background;
     		document.getElementById(id).style.background = changeColor(currColor);
@@ -3478,6 +3412,10 @@ var app = (function () {
     		set_store_value(locations, $locations[$currentUserNum][i] = locs[i], $locations);
     	}
 
+    	// click a horizontal checkbox indicating availability for all 7 days
+    	// for one time slot
+    	// concept: logic-based rendering, binary availability
+    	// can only toggle between all green & all gray
     	function clickCheckbox(row) {
     		console.log("checkbox clicked at ", row);
 
@@ -3498,6 +3436,8 @@ var app = (function () {
     		set_store_value(checks, $checks[$currentUserNum][row] = boxes[row], $checks);
     	}
 
+    	// same as above, but for vertical checkboxes, indicating availability
+    	// for all times on one day
     	function clickVCheckbox(column) {
     		if (document.getElementById(ud[column]).checked) {
     			for (let j = 0; j < times.length; j++) {
@@ -3580,7 +3520,6 @@ var app = (function () {
     		data,
     		dt,
     		currAvail,
-    		putItBackTogether,
     		ut,
     		ud,
     		changeColor,
@@ -3605,7 +3544,6 @@ var app = (function () {
     		if ('locs' in $$props) $$invalidate(6, locs = $$props.locs);
     		if ('dt' in $$props) $$invalidate(2, dt = $$props.dt);
     		if ('currAvail' in $$props) $$invalidate(0, currAvail = $$props.currAvail);
-    		if ('putItBackTogether' in $$props) putItBackTogether = $$props.putItBackTogether;
     		if ('ut' in $$props) $$invalidate(3, ut = $$props.ut);
     		if ('ud' in $$props) $$invalidate(4, ud = $$props.ud);
     	};
@@ -4095,6 +4033,8 @@ var app = (function () {
     	return -1;
     }
 
+    // convert final availabilities from color to indicator
+    // concept: preference over binary availability
     function convert(color) {
     	if (color == "gray") {
     		return "not available";
@@ -4117,7 +4057,6 @@ var app = (function () {
     	let $startTimes;
     	let $endTimes;
     	let $timerNumber;
-    	let $currentUserNum;
     	validate_store(numUsers, 'numUsers');
     	component_subscribe($$self, numUsers, $$value => $$invalidate(6, $numUsers = $$value));
     	validate_store(checks, 'checks');
@@ -4136,8 +4075,6 @@ var app = (function () {
     	component_subscribe($$self, endTimes, $$value => $$invalidate(13, $endTimes = $$value));
     	validate_store(timerNumber, 'timerNumber');
     	component_subscribe($$self, timerNumber, $$value => $$invalidate(14, $timerNumber = $$value));
-    	validate_store(currentUserNum, 'currentUserNum');
-    	component_subscribe($$self, currentUserNum, $$value => $$invalidate(15, $currentUserNum = $$value));
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots('App', slots, []);
     	const pages = [Login, Collection, Summary];
@@ -4160,10 +4097,11 @@ var app = (function () {
     			$$invalidate(1, pagesState[page] = values, pagesState);
 
     			$$invalidate(1, pagesState);
-    			console.log('Submitted data: ', pagesState);
-    			console.log('availabilities: ', $availabilities[$currentUserNum]);
     			$$invalidate(0, page = 0);
+
+    			// timer for in-class competition
     			let endTime = Date.now();
+
     			endTimes.set($endTimes.concat([endTime]));
     			console.log($endTimes[$timerNumber] - $startTimes[$timerNumber]);
 
@@ -4185,6 +4123,7 @@ var app = (function () {
     			downloadFile();
     		} else {
     			// If we're not on the last page, store our data and increase a step
+    			// timing for in-class competition
     			let startTime = Date.now();
 
     			startTimes.set($startTimes.concat([startTime]));
@@ -4194,9 +4133,12 @@ var app = (function () {
     			let alreadyHere = hasName($users, values["firstName"] + " " + values["lastName"]);
 
     			if (alreadyHere != -1) {
+    				// allow existing users to edit their responses by paging to their entry in stored data
     				currentUserNum.set(alreadyHere);
     			} else {
+    				// create new user - concept: login
     				numUsers.update(n => n + 1);
+
     				users.set($users.concat([values["firstName"] + " " + values["lastName"]]));
     				let ca = [];
     				let ch = [];
@@ -4210,9 +4152,15 @@ var app = (function () {
     					}
     				}
 
+    				// concept: default availability = unavailable, location preferences
     				locations.set($locations.concat([["gray", "gray", "gray", "gray", "gray"]]));
+
     				availabilities.set($availabilities.concat([ca]));
+
+    				// store checkbox data to allow faster selection
+    				// concept: logic-based rendering of times
     				checks.set($checks.concat([ch]));
+
     				vchecks.set($checks.concat([["gray", "gray", "gray", "gray", "gray", "gray", "gray"]]));
     				currentUserNum.set($numUsers - 1);
     			}
@@ -4284,8 +4232,7 @@ var app = (function () {
     		$usersForTime,
     		$startTimes,
     		$endTimes,
-    		$timerNumber,
-    		$currentUserNum
+    		$timerNumber
     	});
 
     	$$self.$inject_state = $$props => {
