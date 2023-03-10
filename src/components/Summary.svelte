@@ -5,12 +5,14 @@
 	
 	export let onBack;
 
-	
+	// summary structures
 		let availSums = [];
 		let needSums = []
 
 		let availLocs = [0, 0, 0, 0, 0];
 		let needLocs = [0, 0, 0, 0, 0];
+	
+	// create summaries only if there is at least one user
 	if ($numUsers > 0) {	
 		for (let i = 0; i < times.length; i++) {
 			availSums.push([]);
@@ -42,6 +44,8 @@
 			}
 		}
 	}
+
+	// functions to toggle available vs if need be summaries
 	let screen = 0;
 
 	function setAvail() {

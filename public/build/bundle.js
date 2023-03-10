@@ -3690,7 +3690,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (170:1) {:else}
+    // (174:1) {:else}
     function create_else_block_4(ctx) {
     	let p;
     	let span;
@@ -3701,9 +3701,9 @@ var app = (function () {
     			span = element("span");
     			span.textContent = "Summary Unavailable: Please enter availability first.";
     			attr_dev(span, "class", "bolded room svelte-1mul8vl");
-    			add_location(span, file$2, 170, 17, 4534);
+    			add_location(span, file$2, 174, 17, 4672);
     			attr_dev(p, "class", "lead");
-    			add_location(p, file$2, 170, 1, 4518);
+    			add_location(p, file$2, 174, 1, 4656);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, p, anchor);
@@ -3719,14 +3719,14 @@ var app = (function () {
     		block,
     		id: create_else_block_4.name,
     		type: "else",
-    		source: "(170:1) {:else}",
+    		source: "(174:1) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (70:1) {#if $users.length >= 1 }
+    // (74:1) {#if $users.length >= 1 }
     function create_if_block(ctx) {
     	let div0;
     	let p0;
@@ -3858,51 +3858,51 @@ var app = (function () {
     			}
 
     			attr_dev(p0, "class", "lead room svelte-1mul8vl");
-    			add_location(p0, file$2, 71, 2, 1525);
+    			add_location(p0, file$2, 75, 2, 1663);
     			attr_dev(p1, "class", "room bolded svelte-1mul8vl");
-    			add_location(p1, file$2, 72, 2, 1614);
-    			add_location(div0, file$2, 70, 1, 1517);
+    			add_location(p1, file$2, 76, 2, 1752);
+    			add_location(div0, file$2, 74, 1, 1655);
     			attr_dev(button0, "class", "btn btn-primary btn-login text-uppercase fw-bold room svelte-1mul8vl");
     			attr_dev(button0, "type", "button");
     			button0.value = "avail";
-    			add_location(button0, file$2, 75, 8, 1768);
+    			add_location(button0, file$2, 79, 8, 1906);
     			attr_dev(button1, "class", "btn btn-primary btn-login text-uppercase fw-bold less svelte-1mul8vl");
     			attr_dev(button1, "type", "button");
     			button1.value = "need";
-    			add_location(button1, file$2, 78, 8, 1950);
+    			add_location(button1, file$2, 82, 8, 2088);
     			attr_dev(div1, "class", "d-grid my-3");
-    			add_location(div1, file$2, 74, 1, 1734);
+    			add_location(div1, file$2, 78, 1, 1872);
     			attr_dev(tr0, "class", "bg-light-gray");
-    			add_location(tr0, file$2, 86, 4, 2337);
-    			add_location(tr1, file$2, 91, 4, 2476);
-    			add_location(thead0, file$2, 85, 3, 2325);
+    			add_location(tr0, file$2, 90, 4, 2475);
+    			add_location(tr1, file$2, 95, 4, 2614);
+    			add_location(thead0, file$2, 89, 3, 2463);
     			attr_dev(table0, "class", "table table-bordered text-center");
-    			add_location(table0, file$2, 84, 2, 2273);
+    			add_location(table0, file$2, 88, 2, 2411);
     			attr_dev(div2, "class", "table-responsive");
-    			add_location(div2, file$2, 82, 1, 2156);
+    			add_location(div2, file$2, 86, 1, 2294);
     			attr_dev(td0, "class", "text-uppercase freeze");
-    			add_location(td0, file$2, 126, 5, 3354);
+    			add_location(td0, file$2, 130, 5, 3492);
     			attr_dev(td1, "class", "text-uppercase freeze");
-    			add_location(td1, file$2, 128, 5, 3409);
+    			add_location(td1, file$2, 132, 5, 3547);
     			attr_dev(td2, "class", "text-uppercase freeze");
-    			add_location(td2, file$2, 129, 5, 3460);
+    			add_location(td2, file$2, 133, 5, 3598);
     			attr_dev(td3, "class", "text-uppercase freeze");
-    			add_location(td3, file$2, 130, 5, 3512);
+    			add_location(td3, file$2, 134, 5, 3650);
     			attr_dev(td4, "class", "text-uppercase freeze");
-    			add_location(td4, file$2, 131, 5, 3566);
+    			add_location(td4, file$2, 135, 5, 3704);
     			attr_dev(td5, "class", "text-uppercase freeze");
-    			add_location(td5, file$2, 132, 5, 3619);
+    			add_location(td5, file$2, 136, 5, 3757);
     			attr_dev(td6, "class", "text-uppercase freeze");
-    			add_location(td6, file$2, 133, 5, 3670);
+    			add_location(td6, file$2, 137, 5, 3808);
     			attr_dev(td7, "class", "text-uppercase freeze");
-    			add_location(td7, file$2, 134, 5, 3723);
+    			add_location(td7, file$2, 138, 5, 3861);
     			attr_dev(tr2, "class", "bg-light-gray");
-    			add_location(tr2, file$2, 125, 4, 3322);
-    			add_location(thead1, file$2, 124, 3, 3310);
+    			add_location(tr2, file$2, 129, 4, 3460);
+    			add_location(thead1, file$2, 128, 3, 3448);
     			attr_dev(table1, "class", "table table-bordered text-center");
-    			add_location(table1, file$2, 123, 2, 3258);
+    			add_location(table1, file$2, 127, 2, 3396);
     			attr_dev(div3, "class", "table-responsive");
-    			add_location(div3, file$2, 121, 1, 3141);
+    			add_location(div3, file$2, 125, 1, 3279);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div0, anchor);
@@ -4059,14 +4059,14 @@ var app = (function () {
     		block,
     		id: create_if_block.name,
     		type: "if",
-    		source: "(70:1) {#if $users.length >= 1 }",
+    		source: "(74:1) {#if $users.length >= 1 }",
     		ctx
     	});
 
     	return block;
     }
 
-    // (88:5) {#each locationNames as ln, i}
+    // (92:5) {#each locationNames as ln, i}
     function create_each_block_3$1(ctx) {
     	let td;
     	let t_value = /*ln*/ ctx[21] + "";
@@ -4077,7 +4077,7 @@ var app = (function () {
     			td = element("td");
     			t = text(t_value);
     			attr_dev(td, "class", "text-uppercase freeze");
-    			add_location(td, file$2, 88, 5, 2405);
+    			add_location(td, file$2, 92, 5, 2543);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, td, anchor);
@@ -4093,14 +4093,14 @@ var app = (function () {
     		block,
     		id: create_each_block_3$1.name,
     		type: "each",
-    		source: "(88:5) {#each locationNames as ln, i}",
+    		source: "(92:5) {#each locationNames as ln, i}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (110:6) {:else}
+    // (114:6) {:else}
     function create_else_block_3(ctx) {
     	let td;
     	let t0_value = /*needLocs*/ ctx[4][/*i*/ ctx[17]] + "";
@@ -4115,7 +4115,7 @@ var app = (function () {
     			attr_dev(td, "nowrap", "");
     			set_style(td, "background", "#F5F5F5");
     			set_style(td, "color", "black");
-    			add_location(td, file$2, 110, 6, 2948);
+    			add_location(td, file$2, 114, 6, 3086);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, td, anchor);
@@ -4134,14 +4134,14 @@ var app = (function () {
     		block,
     		id: create_else_block_3.name,
     		type: "else",
-    		source: "(110:6) {:else}",
+    		source: "(114:6) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (106:6) {#if needLocs[i] > 0}
+    // (110:6) {#if needLocs[i] > 0}
     function create_if_block_6(ctx) {
     	let td;
     	let t0_value = /*needLocs*/ ctx[4][/*i*/ ctx[17]] + "";
@@ -4156,7 +4156,7 @@ var app = (function () {
     			attr_dev(td, "nowrap", "");
     			set_style(td, "background", "#FFFACD");
     			set_style(td, "color", "black");
-    			add_location(td, file$2, 106, 8, 2840);
+    			add_location(td, file$2, 110, 8, 2978);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, td, anchor);
@@ -4175,14 +4175,14 @@ var app = (function () {
     		block,
     		id: create_if_block_6.name,
     		type: "if",
-    		source: "(106:6) {#if needLocs[i] > 0}",
+    		source: "(110:6) {#if needLocs[i] > 0}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (94:5) {#if screen == 0}
+    // (98:5) {#if screen == 0}
     function create_if_block_4(ctx) {
     	let if_block_anchor;
 
@@ -4226,14 +4226,14 @@ var app = (function () {
     		block,
     		id: create_if_block_4.name,
     		type: "if",
-    		source: "(94:5) {#if screen == 0}",
+    		source: "(98:5) {#if screen == 0}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (100:8) {:else}
+    // (104:8) {:else}
     function create_else_block_2(ctx) {
     	let td;
     	let t0_value = /*availLocs*/ ctx[3][/*i*/ ctx[17]] + "";
@@ -4248,7 +4248,7 @@ var app = (function () {
     			attr_dev(td, "nowrap", "");
     			set_style(td, "background", "#F5F5F5");
     			set_style(td, "color", "black");
-    			add_location(td, file$2, 100, 6, 2689);
+    			add_location(td, file$2, 104, 6, 2827);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, td, anchor);
@@ -4267,14 +4267,14 @@ var app = (function () {
     		block,
     		id: create_else_block_2.name,
     		type: "else",
-    		source: "(100:8) {:else}",
+    		source: "(104:8) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (95:6) {#if availLocs[i] > 0}
+    // (99:6) {#if availLocs[i] > 0}
     function create_if_block_5(ctx) {
     	let td;
     	let t0_value = /*availLocs*/ ctx[3][/*i*/ ctx[17]] + "";
@@ -4289,7 +4289,7 @@ var app = (function () {
     			attr_dev(td, "nowrap", "");
     			set_style(td, "background", "#FFFACD");
     			set_style(td, "color", "black");
-    			add_location(td, file$2, 96, 8, 2578);
+    			add_location(td, file$2, 100, 8, 2716);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, td, anchor);
@@ -4308,14 +4308,14 @@ var app = (function () {
     		block,
     		id: create_if_block_5.name,
     		type: "if",
-    		source: "(95:6) {#if availLocs[i] > 0}",
+    		source: "(99:6) {#if availLocs[i] > 0}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (93:5) {#each locationNames as ln, i}
+    // (97:5) {#each locationNames as ln, i}
     function create_each_block_2$1(ctx) {
     	let if_block_anchor;
 
@@ -4360,14 +4360,14 @@ var app = (function () {
     		block,
     		id: create_each_block_2$1.name,
     		type: "each",
-    		source: "(93:5) {#each locationNames as ln, i}",
+    		source: "(97:5) {#each locationNames as ln, i}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (158:6) {:else}
+    // (162:6) {:else}
     function create_else_block_1(ctx) {
     	let td;
     	let t_value = /*needSums*/ ctx[2][/*i*/ ctx[17]][/*j*/ ctx[20]] + "";
@@ -4380,7 +4380,7 @@ var app = (function () {
     			attr_dev(td, "nowrap", "");
     			set_style(td, "background", "#F5F5F5");
     			set_style(td, "color", "black");
-    			add_location(td, file$2, 158, 6, 4322);
+    			add_location(td, file$2, 162, 6, 4460);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, td, anchor);
@@ -4398,14 +4398,14 @@ var app = (function () {
     		block,
     		id: create_else_block_1.name,
     		type: "else",
-    		source: "(158:6) {:else}",
+    		source: "(162:6) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (154:6) {#if needSums[i][j] > 0}
+    // (158:6) {#if needSums[i][j] > 0}
     function create_if_block_3(ctx) {
     	let td;
     	let t_value = /*needSums*/ ctx[2][/*i*/ ctx[17]][/*j*/ ctx[20]] + "";
@@ -4418,7 +4418,7 @@ var app = (function () {
     			attr_dev(td, "nowrap", "");
     			set_style(td, "background", "#FFFACD");
     			set_style(td, "color", "black");
-    			add_location(td, file$2, 154, 8, 4211);
+    			add_location(td, file$2, 158, 8, 4349);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, td, anchor);
@@ -4436,14 +4436,14 @@ var app = (function () {
     		block,
     		id: create_if_block_3.name,
     		type: "if",
-    		source: "(154:6) {#if needSums[i][j] > 0}",
+    		source: "(158:6) {#if needSums[i][j] > 0}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (142:5) {#if screen == 0}
+    // (146:5) {#if screen == 0}
     function create_if_block_1(ctx) {
     	let if_block_anchor;
 
@@ -4487,14 +4487,14 @@ var app = (function () {
     		block,
     		id: create_if_block_1.name,
     		type: "if",
-    		source: "(142:5) {#if screen == 0}",
+    		source: "(146:5) {#if screen == 0}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (148:8) {:else}
+    // (152:8) {:else}
     function create_else_block(ctx) {
     	let td;
     	let t_value = /*availSums*/ ctx[1][/*i*/ ctx[17]][/*j*/ ctx[20]] + "";
@@ -4507,7 +4507,7 @@ var app = (function () {
     			attr_dev(td, "nowrap", "");
     			set_style(td, "background", "#F5F5F5");
     			set_style(td, "color", "black");
-    			add_location(td, file$2, 148, 6, 4052);
+    			add_location(td, file$2, 152, 6, 4190);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, td, anchor);
@@ -4525,14 +4525,14 @@ var app = (function () {
     		block,
     		id: create_else_block.name,
     		type: "else",
-    		source: "(148:8) {:else}",
+    		source: "(152:8) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (143:6) {#if availSums[i][j] > 0}
+    // (147:6) {#if availSums[i][j] > 0}
     function create_if_block_2(ctx) {
     	let td;
     	let t_value = /*availSums*/ ctx[1][/*i*/ ctx[17]][/*j*/ ctx[20]] + "";
@@ -4545,7 +4545,7 @@ var app = (function () {
     			attr_dev(td, "nowrap", "");
     			set_style(td, "background", "#FFFACD");
     			set_style(td, "color", "black");
-    			add_location(td, file$2, 144, 8, 3938);
+    			add_location(td, file$2, 148, 8, 4076);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, td, anchor);
@@ -4563,14 +4563,14 @@ var app = (function () {
     		block,
     		id: create_if_block_2.name,
     		type: "if",
-    		source: "(143:6) {#if availSums[i][j] > 0}",
+    		source: "(147:6) {#if availSums[i][j] > 0}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (140:5) {#each days as day, j}
+    // (144:5) {#each days as day, j}
     function create_each_block_1$1(ctx) {
     	let if_block_anchor;
 
@@ -4615,14 +4615,14 @@ var app = (function () {
     		block,
     		id: create_each_block_1$1.name,
     		type: "each",
-    		source: "(140:5) {#each days as day, j}",
+    		source: "(144:5) {#each days as day, j}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (137:4) {#each times as time, i}
+    // (141:4) {#each times as time, i}
     function create_each_block$1(ctx) {
     	let tr;
     	let td;
@@ -4651,9 +4651,9 @@ var app = (function () {
     			}
 
     			t2 = space();
-    			add_location(td, file$2, 138, 5, 3829);
+    			add_location(td, file$2, 142, 5, 3967);
     			attr_dev(tr, "id", tr_id_value = /*i*/ ctx[17]);
-    			add_location(tr, file$2, 137, 4, 3812);
+    			add_location(tr, file$2, 141, 4, 3950);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, tr, anchor);
@@ -4702,7 +4702,7 @@ var app = (function () {
     		block,
     		id: create_each_block$1.name,
     		type: "each",
-    		source: "(137:4) {#each times as time, i}",
+    		source: "(141:4) {#each times as time, i}",
     		ctx
     	});
 
@@ -4743,17 +4743,17 @@ var app = (function () {
     			button = element("button");
     			button.textContent = "Back";
     			attr_dev(h1, "class", "display-4");
-    			add_location(h1, file$2, 66, 8, 1423);
+    			add_location(h1, file$2, 70, 8, 1561);
     			attr_dev(div0, "class", "jumbotron");
-    			add_location(div0, file$2, 65, 4, 1391);
-    			add_location(div1, file$2, 68, 1, 1483);
+    			add_location(div0, file$2, 69, 4, 1529);
+    			add_location(div1, file$2, 72, 1, 1621);
     			attr_dev(button, "class", "btn btn-primary btn-login text-uppercase fw-bold room svelte-1mul8vl");
     			attr_dev(button, "type", "button");
     			button.value = "Back";
-    			add_location(button, file$2, 174, 8, 4678);
+    			add_location(button, file$2, 178, 8, 4816);
     			attr_dev(div2, "class", "d-grid my-3");
-    			add_location(div2, file$2, 173, 4, 4644);
-    			add_location(body, file$2, 64, 0, 1380);
+    			add_location(div2, file$2, 177, 4, 4782);
+    			add_location(body, file$2, 68, 0, 1518);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -4824,11 +4824,15 @@ var app = (function () {
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots('Summary', slots, []);
     	let { onBack } = $$props;
+
+    	// summary structures
     	let availSums = [];
+
     	let needSums = [];
     	let availLocs = [0, 0, 0, 0, 0];
     	let needLocs = [0, 0, 0, 0, 0];
 
+    	// create summaries only if there is at least one user
     	if ($numUsers > 0) {
     		for (let i = 0; i < times.length; i++) {
     			availSums.push([]);
@@ -4863,6 +4867,7 @@ var app = (function () {
     		}
     	}
 
+    	// functions to toggle available vs if need be summaries
     	let screen = 0;
 
     	function setAvail() {
