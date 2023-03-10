@@ -70,7 +70,8 @@
          link.click();
          URL.revokeObjectURL(link.href);
       };
-      downloadFile();
+      // uncomment the below to download time logs
+      // downloadFile();
     } else {
       // If we're not on the last page, store our data and increase a step
       // timing for in-class competition
