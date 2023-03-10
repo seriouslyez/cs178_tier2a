@@ -58,7 +58,7 @@
       console.log($endTimes[$timerNumber] - $startTimes[$timerNumber]);
       const downloadFile = () => {
          const link = document.createElement("a");
-         let content = "Name,Start Time, End Time, Duration (Milliseconds)\n";
+         let content = "Name, Start Time, End Time, Duration (Milliseconds)\n";
 
          for (let i = 0; i < $usersForTime.length; i++) {
            content = content + $usersForTime[i] + "," + new Date($startTimes[i]).toString() + "," + new Date($endTimes[i]).toString() + "," + ($endTimes[i] - $startTimes[i]).toString() + "\n";

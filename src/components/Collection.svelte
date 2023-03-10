@@ -136,12 +136,15 @@
 <div class="container">
 	<form use:form>
 		<label for=aboutMe style="font-size:1.5em">Select preferred location(s):</label><br>
-		{#each locationNames as location, i}
 		<div class="d-grid my-3">
-			<button id={location} style="background:{locs[i]};color:black;border:blue 2px;" class="btn btn-primary text-uppercase fw-bold btn-login" type="button" on:click={() => changeLocColor(location, i)}>{locationNames[i]}
-				</button>
-		</div>
+		{#each locationNames as location, i}
+		
+			<button id={location} style="background:{locs[i]};color:black;border:blue 2px;" class="btn btn-primary btn-login text-uppercase fw-bold btn-loc" type="button" on:click={() => changeLocColor(location, i)}>{locationNames[i]}   
+				</button>    
 		{/each}
+
+		</div>
+		
 		<div class="table-responsive">
 		    <!-- display all days and times in a 2D grid - concept: logic-based rendering -->
 			<table class="table table-bordered text-center">
@@ -181,8 +184,7 @@
 		<div class="d-grid my-3">
 			<button class="btn btn-primary btn-login text-uppercase fw-bold" type="button" value="Back" on:click={() => onBack($data)}>Back
 				</button>
-		</div>
-		<div class="d-grid my-3">
+				
 			<button class="btn btn-primary btn-login text-uppercase fw-bold" type="submit" value="Submit">Submit
 			  </button>
 		</div>
@@ -222,6 +224,9 @@
 }
 .bolded { 
 	font-weight: bold; 
+}
+.btn-loc {
+	margin-right: 5px;
 }
 </style>
 

@@ -33,9 +33,7 @@
 				<div class="d-grid my-3">
 				  <button class="btn btn-primary btn-login text-uppercase fw-bold" type="submit">Submit
 					</button>
-				</div>
-
-				<div class="d-grid my-3">
+				
 					<button class="btn btn-primary btn-login text-uppercase fw-bold" type="button" value="Summary" on:click={() => onSummary($data)}>View Summary
 						</button>
 					</div>
