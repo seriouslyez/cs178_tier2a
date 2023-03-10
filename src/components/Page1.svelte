@@ -19,6 +19,7 @@
 			<div class="card-body p-4 p-sm-5">
 			  <h5 class="card-title text-center mb-5 fw-light fs-5">What's your availability?</h5>
 			  <form use:form>
+			  <!-- concept: login by name -->
 				<div class="form-floating mb-3">
 				  <input type="text" class="form-control" id="firstName" placeholder="First Name" name="firstName" value = "">
 				</div>

@@ -1,6 +1,7 @@
 <!-- Code referenced from https://svelte.dev/repl/8eb738732cf74edd86f680c53e6ba253?version=3.44.2 -->
 
 <script>
+  // PL concept: #component
   import Page1 from "./components/Page1.svelte";
   import Page2 from "./components/Page2.svelte";
   import { users, numUsers, availabilities, currentUserNum, checks, locations, 
@@ -11,7 +12,7 @@
 
   const pages = [Page1, Page2];
   let currUser;
-  startTimes.subscribe(val => {})
+  startTimes.subscribe(val => {});
 
   // The current page of our form.
   let page = 0;
@@ -19,6 +20,8 @@
   // The state of all of our pages
   let pagesState = [];
 
+  // helper function to iterate to an existing user
+  // concept: login with name
   function hasName(userStructure, targetName) {
     for (let i = 0; i < userStructure.length; i++) {
       if (userStructure[i] == targetName) {
@@ -28,6 +31,8 @@
     return -1;
   }
 
+  // convert final availabilities from color to indicator
+  // concept: preference over binary availability
   function convert(color) {
     if (color == "gray") {
       return "not available";
@@ -44,10 +49,9 @@
       // On our final page with POST our data somewhere
       pagesState[page] = values;
       pagesState = pagesState;
-      console.log('Submitted data: ', pagesState);
-      console.log('availabilities: ', $availabilities[$currentUserNum]);
       page = 0;
       
+      // timer for in-class competition
       let endTime = Date.now();
       endTimes.set($endTimes.concat([endTime]));
       console.log($endTimes[$timerNumber] - $startTimes[$timerNumber]);
@@ -68,6 +72,7 @@
       downloadFile();
     } else {
       // If we're not on the last page, store our data and increase a step
+      // timing for in-class competition
       let startTime = Date.now();
       startTimes.set($startTimes.concat([startTime]));
       timerNumber.update(n => n + 1);
@@ -75,8 +80,10 @@
       usersForTime.set($usersForTime.concat([values["firstName"] + " " + values["lastName"]]));
       let alreadyHere = hasName($users, values["firstName"] + " " + values["lastName"]);
       if (alreadyHere != -1) {
+        // allow existing users to edit their responses by paging to their entry in stored data
         currentUserNum.set(alreadyHere);
       } else {
+        // create new user - concept: login
         numUsers.update(n => n + 1);
         users.set($users.concat([values["firstName"] + " " + values["lastName"]]));
         let ca = [];
@@ -89,8 +96,11 @@
             ca[i].push("gray");
           }
         }
+        // concept: default availability = unavailable, location preferences
         locations.set($locations.concat([["gray", "gray", "gray", "gray", "gray"]]));
         availabilities.set($availabilities.concat([ca]));
+        // store checkbox data to allow faster selection
+        // concept: logic-based rendering of times
         checks.set($checks.concat([ch]));
         vchecks.set($checks.concat([["gray", "gray", "gray", "gray", "gray", "gray", "gray"]]));
         currentUserNum.set($numUsers - 1);

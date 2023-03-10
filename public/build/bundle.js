@@ -2898,7 +2898,7 @@ var app = (function () {
     			set_style(button, "background", /*locs*/ ctx[6][/*i*/ ctx[30]]);
     			set_style(button, "color", "black");
     			set_style(button, "border", "blue 2px");
-    			attr_dev(button, "class", "btn btn-primary text-uppercase fw-bold btn-login svelte-1emn6uh");
+    			attr_dev(button, "class", "btn btn-primary text-uppercase fw-bold btn-login svelte-15uyx7j");
     			attr_dev(button, "type", "button");
     			add_location(button, file$2, 129, 3, 3778);
     			attr_dev(div, "class", "d-grid my-3");
@@ -2962,7 +2962,7 @@ var app = (function () {
     			attr_dev(input, "name", input_name_value = /*day*/ ctx[31]);
     			input.value = input_value_value = /*day*/ ctx[31];
     			add_location(input, file$2, 139, 14, 4204);
-    			attr_dev(th, "class", "svelte-1emn6uh");
+    			attr_dev(th, "class", "svelte-15uyx7j");
     			add_location(th, file$2, 139, 10, 4200);
     		},
     		m: function mount(target, anchor) {
@@ -3021,13 +3021,13 @@ var app = (function () {
     			set_style(button, "width", "100%");
     			attr_dev(button, "type", "button");
     			attr_dev(button, "class", "notavailable sm btn btn-primary text-uppercase fw-bold");
-    			add_location(button, file$2, 158, 7, 5025);
+    			add_location(button, file$2, 158, 7, 5081);
     			attr_dev(td, "nowrap", "");
     			set_style(td, "background", /*currAvail*/ ctx[0][/*i*/ ctx[30]][/*j*/ ctx[33]]);
     			set_style(td, "color", "black");
     			attr_dev(td, "id", td_id_value = /*dt*/ ctx[2][/*i*/ ctx[30]][/*j*/ ctx[33]]);
-    			attr_dev(td, "class", "svelte-1emn6uh");
-    			add_location(td, file$2, 157, 8, 4943);
+    			attr_dev(td, "class", "svelte-15uyx7j");
+    			add_location(td, file$2, 157, 8, 4999);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, td, anchor);
@@ -3110,11 +3110,11 @@ var app = (function () {
     			attr_dev(input, "id", input_id_value = /*ut*/ ctx[3][/*i*/ ctx[30]]);
     			attr_dev(input, "name", input_name_value = /*time*/ ctx[28]);
     			input.value = input_value_value = /*time*/ ctx[28];
-    			add_location(input, file$2, 155, 10, 4807);
-    			attr_dev(td, "class", "svelte-1emn6uh");
-    			add_location(td, file$2, 155, 6, 4803);
+    			add_location(input, file$2, 155, 10, 4863);
+    			attr_dev(td, "class", "svelte-15uyx7j");
+    			add_location(td, file$2, 155, 6, 4859);
     			attr_dev(tr, "id", tr_id_value = /*i*/ ctx[30]);
-    			add_location(tr, file$2, 154, 5, 4785);
+    			add_location(tr, file$2, 154, 5, 4841);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, tr, anchor);
@@ -3341,7 +3341,7 @@ var app = (function () {
     			add_location(h1, file$2, 118, 1, 3335);
     			attr_dev(hr, "class", "my-4");
     			add_location(hr, file$2, 119, 1, 3397);
-    			attr_dev(span, "class", "bolded svelte-1emn6uh");
+    			attr_dev(span, "class", "bolded svelte-15uyx7j");
     			add_location(span, file$2, 120, 17, 3432);
     			attr_dev(p0, "class", "lead");
     			add_location(p0, file$2, 120, 1, 3416);
@@ -3352,44 +3352,44 @@ var app = (function () {
     			set_style(label, "font-size", "1.5em");
     			add_location(label, file$2, 126, 2, 3623);
     			add_location(br, file$2, 126, 82, 3703);
-    			attr_dev(th, "class", "svelte-1emn6uh");
+    			attr_dev(th, "class", "svelte-15uyx7j");
     			add_location(th, file$2, 137, 10, 4147);
     			add_location(tr0, file$2, 136, 8, 4131);
-    			attr_dev(td0, "class", "text-uppercase svelte-1emn6uh");
+    			attr_dev(td0, "class", "text-uppercase freeze svelte-15uyx7j");
     			add_location(td0, file$2, 143, 6, 4372);
-    			attr_dev(td1, "class", "text-uppercase svelte-1emn6uh");
-    			add_location(td1, file$2, 145, 6, 4422);
-    			attr_dev(td2, "class", "text-uppercase svelte-1emn6uh");
-    			add_location(td2, file$2, 146, 6, 4467);
-    			attr_dev(td3, "class", "text-uppercase svelte-1emn6uh");
-    			add_location(td3, file$2, 147, 6, 4513);
-    			attr_dev(td4, "class", "text-uppercase svelte-1emn6uh");
-    			add_location(td4, file$2, 148, 6, 4561);
-    			attr_dev(td5, "class", "text-uppercase svelte-1emn6uh");
-    			add_location(td5, file$2, 149, 6, 4608);
-    			attr_dev(td6, "class", "text-uppercase svelte-1emn6uh");
-    			add_location(td6, file$2, 150, 6, 4653);
-    			attr_dev(td7, "class", "text-uppercase svelte-1emn6uh");
-    			add_location(td7, file$2, 151, 6, 4700);
-    			attr_dev(tr1, "class", "bg-light-gray svelte-1emn6uh");
+    			attr_dev(td1, "class", "text-uppercase freeze svelte-15uyx7j");
+    			add_location(td1, file$2, 145, 6, 4429);
+    			attr_dev(td2, "class", "text-uppercase freeze svelte-15uyx7j");
+    			add_location(td2, file$2, 146, 6, 4481);
+    			attr_dev(td3, "class", "text-uppercase freeze svelte-15uyx7j");
+    			add_location(td3, file$2, 147, 6, 4534);
+    			attr_dev(td4, "class", "text-uppercase freeze svelte-15uyx7j");
+    			add_location(td4, file$2, 148, 6, 4589);
+    			attr_dev(td5, "class", "text-uppercase freeze svelte-15uyx7j");
+    			add_location(td5, file$2, 149, 6, 4643);
+    			attr_dev(td6, "class", "text-uppercase freeze svelte-15uyx7j");
+    			add_location(td6, file$2, 150, 6, 4695);
+    			attr_dev(td7, "class", "text-uppercase freeze svelte-15uyx7j");
+    			add_location(td7, file$2, 151, 6, 4749);
+    			attr_dev(tr1, "class", "bg-light-gray svelte-15uyx7j");
     			add_location(tr1, file$2, 142, 5, 4339);
     			add_location(thead, file$2, 135, 4, 4115);
-    			attr_dev(table, "class", "table table-bordered text-center svelte-1emn6uh");
+    			attr_dev(table, "class", "table table-bordered text-center svelte-15uyx7j");
     			add_location(table, file$2, 134, 3, 4062);
     			attr_dev(div1, "class", "table-responsive");
     			add_location(div1, file$2, 133, 2, 4028);
-    			attr_dev(button0, "class", "btn btn-primary btn-login text-uppercase fw-bold svelte-1emn6uh");
+    			attr_dev(button0, "class", "btn btn-primary btn-login text-uppercase fw-bold svelte-15uyx7j");
     			attr_dev(button0, "type", "button");
     			button0.value = "Back";
-    			add_location(button0, file$2, 168, 3, 5333);
+    			add_location(button0, file$2, 168, 3, 5389);
     			attr_dev(div2, "class", "d-grid my-3");
-    			add_location(div2, file$2, 167, 2, 5304);
-    			attr_dev(button1, "class", "btn btn-primary btn-login text-uppercase fw-bold svelte-1emn6uh");
+    			add_location(div2, file$2, 167, 2, 5360);
+    			attr_dev(button1, "class", "btn btn-primary btn-login text-uppercase fw-bold svelte-15uyx7j");
     			attr_dev(button1, "type", "submit");
     			button1.value = "Submit";
-    			add_location(button1, file$2, 172, 3, 5515);
+    			add_location(button1, file$2, 172, 3, 5571);
     			attr_dev(div3, "class", "d-grid my-3");
-    			add_location(div3, file$2, 171, 2, 5486);
+    			add_location(div3, file$2, 171, 2, 5542);
     			add_location(form_1, file$2, 125, 1, 3605);
     			attr_dev(div4, "class", "container");
     			add_location(div4, file$2, 124, 0, 3580);

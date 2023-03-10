@@ -13,19 +13,16 @@
 	let boxes;
 	let locs;
 
+    // PL concept: writable stores, reactive values #reactive
 	checks.subscribe(val => {boxes = val[$currentUserNum]});
-
 	users.subscribe(val => {currUser = val[$currentUserNum]});
-
 	locations.subscribe(val => {locs = val[$currentUserNum]});
 	
 	const { form, data } = createForm({ onSubmit, initialValues })
 
-
-    
+    // a bunch of data structures to track availabilities, days, times, button IDs
 	export let dt = [];
 	export let currAvail;
-	let putItBackTogether = [];
 
 	availabilities.subscribe(val => {currAvail = val[$currentUserNum]});
 
@@ -46,6 +43,8 @@
 	    }
 	}
 
+    // concept: availability preference
+    // function to rotate through the 3 preferences
 	function changeColor(color) {
 	  if (color == "gray") {
 	    return "green";
@@ -56,7 +55,11 @@
 	  return "gray";
 	}
 
+    // rotate the color of a specific cell, or, if called from checkbox,
+    // change to a fixed color
+    // concepts: availability preference, logic-based rendering
 	function changeThisColor(id, i, j, auto) {
+	  // if just clicking one box
 	  if (auto == "auto") {
 		let currColor = document.getElementById(id).style.background;
 		document.getElementById(id).style.background = 
@@ -68,13 +71,16 @@
 		  document.getElementById(ud[j]).checked = false;
 		  document.getElementById(ut[i]).checked = false;
 		}
-	  } else {
+	  } else { // if calling from a checkbox
 	    document.getElementById(id).style.background = auto;
 	  }
+	  // update writable stores with new user data
 	  currAvail[i][j] = document.getElementById(id).style.background;
 	  $availabilities[$currentUserNum][i][j] = currAvail[i][j];
 	  }
 
+    // change color for a location preference
+    // concept: location, availability conditioned on location
 	function changeLocColor(id, i) {
 		let currColor = document.getElementById(id).style.background;
 		document.getElementById(id).style.background = changeColor(currColor);
@@ -82,6 +88,10 @@
 	  $locations[$currentUserNum][i] = locs[i];
 	}
 
+    // click a horizontal checkbox indicating availability for all 7 days
+    // for one time slot
+    // concept: logic-based rendering, binary availability
+    // can only toggle between all green & all gray
 	function clickCheckbox(row) {
 	  console.log("checkbox clicked at ", row);
       if (document.getElementById(ut[row]).checked) {
@@ -98,6 +108,8 @@
       $checks[$currentUserNum][row] = boxes[row];
 	}
 
+    // same as above, but for vertical checkboxes, indicating availability
+    // for all times on one day
 	function clickVCheckbox(column) {
 	  if (document.getElementById(ud[column]).checked) {
         for (let j = 0; j < times.length; j++) {
@@ -132,6 +144,7 @@
 		</div>
 		{/each}
 		<div class="table-responsive">
+		    <!-- display all days and times in a 2D grid - concept: logic-based rendering -->
 			<table class="table table-bordered text-center">
 				<thead>
 				    <tr> 
@@ -141,20 +154,21 @@
 				      {/each}
 				    </tr>
 					<tr class="bg-light-gray">
-						<td class="text-uppercase">Time
+						<td class="text-uppercase freeze">Time
 						</td>
-						<td class="text-uppercase">Monday</td>
-						<td class="text-uppercase">Tuesday</td>
-						<td class="text-uppercase">Wednesday</td>
-						<td class="text-uppercase">Thursday</td>
-						<td class="text-uppercase">Friday</td>
-						<td class="text-uppercase">Saturday</td>
-						<td class="text-uppercase">Sunday</td>
+						<td class="text-uppercase freeze">Monday</td>
+						<td class="text-uppercase freeze">Tuesday</td>
+						<td class="text-uppercase freeze">Wednesday</td>
+						<td class="text-uppercase freeze">Thursday</td>
+						<td class="text-uppercase freeze">Friday</td>
+						<td class="text-uppercase freeze">Saturday</td>
+						<td class="text-uppercase freeze">Sunday</td>
 					</tr>
 					{#each times as time, i}
 					<tr id={i}>
 						<td><input type="checkbox" id={ut[i]} name={time} value={time} on:click={() => clickCheckbox(i)}></td>
 						{#each days as day, j}
+						  <!-- change color on user click -->
 						  <td nowrap style="background:{currAvail[i][j]};color:black" id={dt[i][j]}>
 							<button style="width:100%" type="button" class="notavailable sm btn btn-primary text-uppercase fw-bold" on:click={() => changeThisColor(dt[i][j], i, j, "auto")}>{time}  
 							</button>
@@ -251,6 +265,13 @@ body{
 
 .bg-lightred {
     background-color: #ff5722
+}
+
+.freeze {
+	position: sticky;
+	top: 0;
+	height: 50px;
+	overflow: scroll
 }
 
 .padding-15px-lr {

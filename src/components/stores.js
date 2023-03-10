@@ -1,5 +1,6 @@
 import { writable } from 'svelte/store';
 
+// concept: log in by name
 export let users = writable([]);
 export let numUsers = writable(0);
 export let currentUserNum = writable(-1);
@@ -9,6 +10,7 @@ export let locations = writable([]);
 export let startTimes = writable([]);
 export let endTimes = writable([]);
 export let timerNumber = writable(-1);
+// concept: eligible times and days - 7 days of week, 15 min increments, 9-19 ET
 export let days = ["Monday   ", "Tuesday  ", "Wednesday ", "Thursday ", 
 					   "Friday   ", "Saturday ", "Sunday   "];
 export let times = [
@@ -22,6 +24,7 @@ export let times = [
 						"4:00 pm  ", "4:15 pm  ", "4:30 pm  ", "4:45 pm  ",
 						"5:00 pm  ", "5:15 pm  ", "5:30 pm  ", "5:45 pm  ",
 						"6:00 pm  ", "6:15 pm  ", "6:30 pm  ", "6:45 pm  ",];
+// concept: location, availability conditioned on location
 export let locationNames = ["Cambridge (River)", "Cambridge (Yard)", 
                           "Cambridge (Quad)", "Allston", "Virtual"];
 export let usersForTime = writable([]);
