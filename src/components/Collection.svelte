@@ -11,10 +11,14 @@
 	let currUser;
 	let boxes;
 	let locs;
+
+	// concept: dragging to indicate availability
+	// state for dragging concept: can/cannot drag, is/is not currently dragging
 	let dragging = false;
 	let canDrag = false;
 
     // PL concept: writable stores, reactive values #reactive
+    // action for writable stores: subscribe
 	checks.subscribe(val => {boxes = val[$currentUserNum]});
 	users.subscribe(val => {currUser = val[$currentUserNum]});
 	locations.subscribe(val => {locs = val[$currentUserNum]});
@@ -46,6 +50,8 @@
 
     // concept: availability preference
     // function to rotate through the 3 preferences
+    // action for availability preference concept: toggle availability
+    // state for availability preference: available? if need be?
 	function changeColor(color) {
 	  if (color == "gray") {
 	    return "green";
@@ -59,6 +65,7 @@
     // rotate the color of a specific cell, or, if called from checkbox,
     // change to a fixed color
     // concepts: availability preference, logic-based rendering
+    // state for logic-based rendering concept: rendered?
 	function changeThisColor(id, i, j, auto, dragging) {
 	  if (dragging) {
 		  // if just clicking one box
@@ -87,6 +94,8 @@
 
     // change color for a location preference
     // concept: location, availability conditioned on location
+    // action for location concept: change availability at location
+    // state for location concept: available?
 	function changeLocColor(id, i) {
 		let currColor = document.getElementById(id).style.background;
 		document.getElementById(id).style.background = changeColor(currColor);
@@ -98,6 +107,8 @@
     // for one time slot
     // concept: logic-based rendering, binary availability
     // can only toggle between all green & all gray
+    // state for binary availability: available?
+    // action for binary availability: change availability
 	function clickCheckbox(row) {
 	  console.log("checkbox clicked at ", row);
       if (document.getElementById(ut[row]).checked) {

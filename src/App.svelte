@@ -2,6 +2,8 @@
 
 <script>
   // PL concept: #component
+  // action for #component: import
+  // state for #component: imported?
   import Login from "./components/Login.svelte";
   import Collection from "./components/Collection.svelte";
   import Summary from "./components/Summary.svelte";
@@ -23,6 +25,7 @@
 
   // helper function to iterate to an existing user
   // concept: login with name
+  // state: previously logged in or new user?
   function hasName(userStructure, targetName) {
     for (let i = 0; i < userStructure.length; i++) {
       if (userStructure[i] == targetName) {
@@ -86,6 +89,7 @@
         currentUserNum.set(alreadyHere);
       } else {
         // create new user - concept: login
+        // action for login concept: log a new user in
         numUsers.update(n => n + 1);
         users.set($users.concat([values["firstName"] + " " + values["lastName"]]));
         let ca = [];
@@ -99,10 +103,12 @@
           }
         }
         // concept: default availability = unavailable, location preferences
+        // state: default = unavailable
         locations.set($locations.concat([["gray", "gray", "gray", "gray", "gray"]]));
         availabilities.set($availabilities.concat([ca]));
         // store checkbox data to allow faster selection
         // concept: logic-based rendering of times
+        // state for rendering of times: to render?
         checks.set($checks.concat([ch]));
         vchecks.set($checks.concat([["gray", "gray", "gray", "gray", "gray", "gray", "gray"]]));
         currentUserNum.set($numUsers - 1);
