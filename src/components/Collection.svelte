@@ -11,6 +11,8 @@
 	let currUser;
 	let boxes;
 	let locs;
+	let dragging = false;
+	let canDrag = false;
 
     // PL concept: writable stores, reactive values #reactive
 	checks.subscribe(val => {boxes = val[$currentUserNum]});
@@ -57,25 +59,30 @@
     // rotate the color of a specific cell, or, if called from checkbox,
     // change to a fixed color
     // concepts: availability preference, logic-based rendering
-	function changeThisColor(id, i, j, auto) {
-	  // if just clicking one box
-	  if (auto == "auto") {
-		let currColor = document.getElementById(id).style.background;
-		document.getElementById(id).style.background = 
-		  changeColor(currColor);
-		if (currColor == "green") {
-		  boxes[i] = false;
-		  $checks[$currentUserNum][i] = boxes[i];
-		  $vchecks[$currentUserNum][j] = false;
-		  document.getElementById(ud[j]).checked = false;
-		  document.getElementById(ut[i]).checked = false;
-		}
-	  } else { // if calling from a checkbox
-	    document.getElementById(id).style.background = auto;
-	  }
-	  // update writable stores with new user data
-	  currAvail[i][j] = document.getElementById(id).style.background;
-	  $availabilities[$currentUserNum][i][j] = currAvail[i][j];
+	function changeThisColor(id, i, j, auto, dragging) {
+	  if (dragging) {
+		  // if just clicking one box
+		  if (auto == "auto") {
+			let currColor = document.getElementById(id).style.background;
+			document.getElementById(id).style.background = 
+			  changeColor(currColor);
+			if (currColor == "green") {
+			  boxes[i] = false;
+			  $checks[$currentUserNum][i] = boxes[i];
+			  $vchecks[$currentUserNum][j] = false;
+			  document.getElementById(ud[j]).checked = false;
+			  document.getElementById(ut[i]).checked = false;
+			}
+		  } else { // if calling from a checkbox
+		    document.getElementById(id).style.background = auto;
+		  }
+		  // update writable stores with new user data
+		  currAvail[i][j] = document.getElementById(id).style.background;
+		  $availabilities[$currentUserNum][i][j] = currAvail[i][j];
+		  }
+		  else {
+	  	console.log(dragging);
+	  	} 
 	  }
 
     // change color for a location preference
@@ -95,12 +102,12 @@
 	  console.log("checkbox clicked at ", row);
       if (document.getElementById(ut[row]).checked) {
         for (let j = 0; j < days.length; j++) {
-          changeThisColor(dt[row][j], row, j, "green");
+          changeThisColor(dt[row][j], row, j, "green", true);
         }
         boxes[row] = false;
       } else {
         for (let j = 0; j < days.length; j++) {
-          changeThisColor(dt[row][j], row, j, "gray");
+          changeThisColor(dt[row][j], row, j, "gray", true);
         } 
         boxes[row] = true;
       }
@@ -112,12 +119,12 @@
 	function clickVCheckbox(column) {
 	  if (document.getElementById(ud[column]).checked) {
         for (let j = 0; j < times.length; j++) {
-          changeThisColor(dt[j][column], j, column, "green");
+          changeThisColor(dt[j][column], j, column, "green", true);
         }
         $vchecks[$currentUserNum][column] = false;
 	  } else {
 	    for (let j = 0; j < times.length; j++) {
-	      changeThisColor(dt[j][column], j, column, "gray");
+	      changeThisColor(dt[j][column], j, column, "gray", true);
 	    }
 	    $vchecks[$currentUserNum][column] = true;
 	  }
@@ -131,6 +138,8 @@
 	<hr class="my-4">
 	<p class="lead"><span class="bolded">Select once for "Available" and twice for "If need be".</span></p>
 	<p>Note: all times in Eastern Standard Time.</p>
+	<input style="float:left" type="checkbox" id="enableDrag" name="enableDrag" on:click={() => canDrag = !canDrag} />
+	<p style="padding-left:20px">Dragging Enabled</p>
   </div>
 
 <div class="container">
@@ -172,7 +181,11 @@
 						{#each days as day, j}
 						  <!-- change color on user click -->
 						  <td nowrap style="background:{currAvail[i][j]};color:black" id={dt[i][j]}>
-							<button style="width:100%" type="button" class="btn btn-primary text-uppercase fw-bold" on:click={() => changeThisColor(dt[i][j], i, j, "auto")}>{time}  
+							<button style="width:100%" type="button" class="btn btn-primary text-uppercase fw-bold" 
+								on:click={() => changeThisColor(dt[i][j], i, j, "auto", true)} 
+								on:mousedown={() => dragging = true} 
+								on:mouseup={() => dragging = false} 
+								on:mouseover={() => changeThisColor(dt[i][j], i, j, "auto", canDrag && dragging)}>{time}  
 							</button>
 						  </td>
 						{/each}

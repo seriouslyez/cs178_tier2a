@@ -2568,44 +2568,44 @@ var app = (function () {
 
     function get_each_context(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[27] = list[i];
-    	child_ctx[29] = i;
+    	child_ctx[33] = list[i];
+    	child_ctx[35] = i;
     	return child_ctx;
     }
 
     function get_each_context_1(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[30] = list[i];
-    	child_ctx[32] = i;
+    	child_ctx[36] = list[i];
+    	child_ctx[38] = i;
     	return child_ctx;
     }
 
     function get_each_context_2(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[30] = list[i];
-    	child_ctx[29] = i;
+    	child_ctx[36] = list[i];
+    	child_ctx[35] = i;
     	return child_ctx;
     }
 
     function get_each_context_3(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[34] = list[i];
-    	child_ctx[29] = i;
+    	child_ctx[40] = list[i];
+    	child_ctx[35] = i;
     	return child_ctx;
     }
 
-    // (140:2) {#each locationNames as location, i}
+    // (149:2) {#each locationNames as location, i}
     function create_each_block_3(ctx) {
     	let button;
-    	let t0_value = locationNames[/*i*/ ctx[29]] + "";
+    	let t0_value = locationNames[/*i*/ ctx[35]] + "";
     	let t0;
     	let t1;
     	let button_id_value;
     	let mounted;
     	let dispose;
 
-    	function click_handler() {
-    		return /*click_handler*/ ctx[16](/*location*/ ctx[34], /*i*/ ctx[29]);
+    	function click_handler_1() {
+    		return /*click_handler_1*/ ctx[19](/*location*/ ctx[40], /*i*/ ctx[35]);
     	}
 
     	const block = {
@@ -2613,13 +2613,13 @@ var app = (function () {
     			button = element("button");
     			t0 = text(t0_value);
     			t1 = space();
-    			attr_dev(button, "id", button_id_value = /*location*/ ctx[34]);
-    			set_style(button, "background", /*locs*/ ctx[6][/*i*/ ctx[29]]);
+    			attr_dev(button, "id", button_id_value = /*location*/ ctx[40]);
+    			set_style(button, "background", /*locs*/ ctx[6][/*i*/ ctx[35]]);
     			set_style(button, "color", "black");
     			set_style(button, "border", "blue 2px");
     			attr_dev(button, "class", "btn btn-primary btn-login text-uppercase fw-bold btn-loc svelte-z6ih7p");
     			attr_dev(button, "type", "button");
-    			add_location(button, file$1, 141, 3, 4645);
+    			add_location(button, file$1, 150, 3, 4979);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, button, anchor);
@@ -2627,7 +2627,7 @@ var app = (function () {
     			append_dev(button, t1);
 
     			if (!mounted) {
-    				dispose = listen_dev(button, "click", click_handler, false, false, false);
+    				dispose = listen_dev(button, "click", click_handler_1, false, false, false);
     				mounted = true;
     			}
     		},
@@ -2635,7 +2635,7 @@ var app = (function () {
     			ctx = new_ctx;
 
     			if (dirty[0] & /*locs*/ 64) {
-    				set_style(button, "background", /*locs*/ ctx[6][/*i*/ ctx[29]]);
+    				set_style(button, "background", /*locs*/ ctx[6][/*i*/ ctx[35]]);
     			}
     		},
     		d: function destroy(detaching) {
@@ -2649,14 +2649,14 @@ var app = (function () {
     		block,
     		id: create_each_block_3.name,
     		type: "each",
-    		source: "(140:2) {#each locationNames as location, i}",
+    		source: "(149:2) {#each locationNames as location, i}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (154:10) {#each days as day, i}
+    // (163:10) {#each days as day, i}
     function create_each_block_2(ctx) {
     	let th;
     	let input;
@@ -2666,8 +2666,8 @@ var app = (function () {
     	let mounted;
     	let dispose;
 
-    	function click_handler_1() {
-    		return /*click_handler_1*/ ctx[17](/*i*/ ctx[29]);
+    	function click_handler_2() {
+    		return /*click_handler_2*/ ctx[20](/*i*/ ctx[35]);
     	}
 
     	const block = {
@@ -2675,26 +2675,26 @@ var app = (function () {
     			th = element("th");
     			input = element("input");
     			attr_dev(input, "type", "checkbox");
-    			attr_dev(input, "id", input_id_value = /*ud*/ ctx[4][/*i*/ ctx[29]]);
-    			attr_dev(input, "name", input_name_value = /*day*/ ctx[30]);
-    			input.value = input_value_value = /*day*/ ctx[30];
-    			add_location(input, file$1, 154, 14, 5178);
+    			attr_dev(input, "id", input_id_value = /*ud*/ ctx[4][/*i*/ ctx[35]]);
+    			attr_dev(input, "name", input_name_value = /*day*/ ctx[36]);
+    			input.value = input_value_value = /*day*/ ctx[36];
+    			add_location(input, file$1, 163, 14, 5512);
     			attr_dev(th, "class", "svelte-z6ih7p");
-    			add_location(th, file$1, 154, 10, 5174);
+    			add_location(th, file$1, 163, 10, 5508);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, th, anchor);
     			append_dev(th, input);
 
     			if (!mounted) {
-    				dispose = listen_dev(input, "click", click_handler_1, false, false, false);
+    				dispose = listen_dev(input, "click", click_handler_2, false, false, false);
     				mounted = true;
     			}
     		},
     		p: function update(new_ctx, dirty) {
     			ctx = new_ctx;
 
-    			if (dirty[0] & /*ud*/ 16 && input_id_value !== (input_id_value = /*ud*/ ctx[4][/*i*/ ctx[29]])) {
+    			if (dirty[0] & /*ud*/ 16 && input_id_value !== (input_id_value = /*ud*/ ctx[4][/*i*/ ctx[35]])) {
     				attr_dev(input, "id", input_id_value);
     			}
     		},
@@ -2709,25 +2709,29 @@ var app = (function () {
     		block,
     		id: create_each_block_2.name,
     		type: "each",
-    		source: "(154:10) {#each days as day, i}",
+    		source: "(163:10) {#each days as day, i}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (172:6) {#each days as day, j}
+    // (181:6) {#each days as day, j}
     function create_each_block_1(ctx) {
     	let td;
     	let button;
-    	let t_value = /*time*/ ctx[27] + "";
+    	let t_value = /*time*/ ctx[33] + "";
     	let t;
     	let td_id_value;
     	let mounted;
     	let dispose;
 
-    	function click_handler_3() {
-    		return /*click_handler_3*/ ctx[19](/*i*/ ctx[29], /*j*/ ctx[32]);
+    	function click_handler_4() {
+    		return /*click_handler_4*/ ctx[22](/*i*/ ctx[35], /*j*/ ctx[38]);
+    	}
+
+    	function mouseover_handler() {
+    		return /*mouseover_handler*/ ctx[25](/*i*/ ctx[35], /*j*/ ctx[38]);
     	}
 
     	const block = {
@@ -2738,13 +2742,13 @@ var app = (function () {
     			set_style(button, "width", "100%");
     			attr_dev(button, "type", "button");
     			attr_dev(button, "class", "btn btn-primary text-uppercase fw-bold");
-    			add_location(button, file$1, 174, 7, 6099);
+    			add_location(button, file$1, 183, 7, 6433);
     			attr_dev(td, "nowrap", "");
-    			set_style(td, "background", /*currAvail*/ ctx[0][/*i*/ ctx[29]][/*j*/ ctx[32]]);
+    			set_style(td, "background", /*currAvail*/ ctx[0][/*i*/ ctx[35]][/*j*/ ctx[38]]);
     			set_style(td, "color", "black");
-    			attr_dev(td, "id", td_id_value = /*dt*/ ctx[2][/*i*/ ctx[29]][/*j*/ ctx[32]]);
+    			attr_dev(td, "id", td_id_value = /*dt*/ ctx[2][/*i*/ ctx[35]][/*j*/ ctx[38]]);
     			attr_dev(td, "class", "svelte-z6ih7p");
-    			add_location(td, file$1, 173, 8, 6017);
+    			add_location(td, file$1, 182, 8, 6351);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, td, anchor);
@@ -2752,7 +2756,13 @@ var app = (function () {
     			append_dev(button, t);
 
     			if (!mounted) {
-    				dispose = listen_dev(button, "click", click_handler_3, false, false, false);
+    				dispose = [
+    					listen_dev(button, "click", click_handler_4, false, false, false),
+    					listen_dev(button, "mousedown", /*mousedown_handler*/ ctx[23], false, false, false),
+    					listen_dev(button, "mouseup", /*mouseup_handler*/ ctx[24], false, false, false),
+    					listen_dev(button, "mouseover", mouseover_handler, false, false, false)
+    				];
+
     				mounted = true;
     			}
     		},
@@ -2760,17 +2770,17 @@ var app = (function () {
     			ctx = new_ctx;
 
     			if (dirty[0] & /*currAvail*/ 1) {
-    				set_style(td, "background", /*currAvail*/ ctx[0][/*i*/ ctx[29]][/*j*/ ctx[32]]);
+    				set_style(td, "background", /*currAvail*/ ctx[0][/*i*/ ctx[35]][/*j*/ ctx[38]]);
     			}
 
-    			if (dirty[0] & /*dt*/ 4 && td_id_value !== (td_id_value = /*dt*/ ctx[2][/*i*/ ctx[29]][/*j*/ ctx[32]])) {
+    			if (dirty[0] & /*dt*/ 4 && td_id_value !== (td_id_value = /*dt*/ ctx[2][/*i*/ ctx[35]][/*j*/ ctx[38]])) {
     				attr_dev(td, "id", td_id_value);
     			}
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(td);
     			mounted = false;
-    			dispose();
+    			run_all(dispose);
     		}
     	};
 
@@ -2778,14 +2788,14 @@ var app = (function () {
     		block,
     		id: create_each_block_1.name,
     		type: "each",
-    		source: "(172:6) {#each days as day, j}",
+    		source: "(181:6) {#each days as day, j}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (169:5) {#each times as time, i}
+    // (178:5) {#each times as time, i}
     function create_each_block(ctx) {
     	let tr;
     	let td;
@@ -2799,8 +2809,8 @@ var app = (function () {
     	let mounted;
     	let dispose;
 
-    	function click_handler_2() {
-    		return /*click_handler_2*/ ctx[18](/*i*/ ctx[29]);
+    	function click_handler_3() {
+    		return /*click_handler_3*/ ctx[21](/*i*/ ctx[35]);
     	}
 
     	let each_value_1 = days;
@@ -2824,14 +2834,14 @@ var app = (function () {
 
     			t1 = space();
     			attr_dev(input, "type", "checkbox");
-    			attr_dev(input, "id", input_id_value = /*ut*/ ctx[3][/*i*/ ctx[29]]);
-    			attr_dev(input, "name", input_name_value = /*time*/ ctx[27]);
-    			input.value = input_value_value = /*time*/ ctx[27];
-    			add_location(input, file$1, 170, 10, 5837);
+    			attr_dev(input, "id", input_id_value = /*ut*/ ctx[3][/*i*/ ctx[35]]);
+    			attr_dev(input, "name", input_name_value = /*time*/ ctx[33]);
+    			input.value = input_value_value = /*time*/ ctx[33];
+    			add_location(input, file$1, 179, 10, 6171);
     			attr_dev(td, "class", "svelte-z6ih7p");
-    			add_location(td, file$1, 170, 6, 5833);
-    			attr_dev(tr, "id", tr_id_value = /*i*/ ctx[29]);
-    			add_location(tr, file$1, 169, 5, 5815);
+    			add_location(td, file$1, 179, 6, 6167);
+    			attr_dev(tr, "id", tr_id_value = /*i*/ ctx[35]);
+    			add_location(tr, file$1, 178, 5, 6149);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, tr, anchor);
@@ -2846,18 +2856,18 @@ var app = (function () {
     			append_dev(tr, t1);
 
     			if (!mounted) {
-    				dispose = listen_dev(input, "click", click_handler_2, false, false, false);
+    				dispose = listen_dev(input, "click", click_handler_3, false, false, false);
     				mounted = true;
     			}
     		},
     		p: function update(new_ctx, dirty) {
     			ctx = new_ctx;
 
-    			if (dirty[0] & /*ut*/ 8 && input_id_value !== (input_id_value = /*ut*/ ctx[3][/*i*/ ctx[29]])) {
+    			if (dirty[0] & /*ut*/ 8 && input_id_value !== (input_id_value = /*ut*/ ctx[3][/*i*/ ctx[35]])) {
     				attr_dev(input, "id", input_id_value);
     			}
 
-    			if (dirty[0] & /*currAvail, dt, changeThisColor*/ 1029) {
+    			if (dirty[0] & /*currAvail, dt, changeThisColor, dragging, canDrag*/ 4485) {
     				each_value_1 = days;
     				validate_each_argument(each_value_1);
     				let i;
@@ -2893,7 +2903,7 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(169:5) {#each times as time, i}",
+    		source: "(178:5) {#each times as time, i}",
     		ctx
     	});
 
@@ -2913,41 +2923,45 @@ var app = (function () {
     	let t5;
     	let p1;
     	let t7;
+    	let input;
+    	let t8;
+    	let p2;
+    	let t10;
     	let div4;
     	let form_1;
     	let label;
     	let br;
-    	let t9;
+    	let t12;
     	let div1;
-    	let t10;
+    	let t13;
     	let div2;
     	let table;
     	let thead;
     	let tr0;
     	let th;
-    	let t11;
-    	let t12;
+    	let t14;
+    	let t15;
     	let tr1;
     	let td0;
-    	let t14;
+    	let t17;
     	let td1;
-    	let t16;
+    	let t19;
     	let td2;
-    	let t18;
+    	let t21;
     	let td3;
-    	let t20;
+    	let t23;
     	let td4;
-    	let t22;
+    	let t25;
     	let td5;
-    	let t24;
+    	let t27;
     	let td6;
-    	let t26;
-    	let td7;
-    	let t28;
     	let t29;
+    	let td7;
+    	let t31;
+    	let t32;
     	let div3;
     	let button0;
-    	let t31;
+    	let t34;
     	let button1;
     	let form_action;
     	let mounted;
@@ -2992,124 +3006,136 @@ var app = (function () {
     			p1 = element("p");
     			p1.textContent = "Note: all times in Eastern Standard Time.";
     			t7 = space();
+    			input = element("input");
+    			t8 = space();
+    			p2 = element("p");
+    			p2.textContent = "Dragging Enabled";
+    			t10 = space();
     			div4 = element("div");
     			form_1 = element("form");
     			label = element("label");
     			label.textContent = "Select preferred location(s):";
     			br = element("br");
-    			t9 = space();
+    			t12 = space();
     			div1 = element("div");
 
     			for (let i = 0; i < each_blocks_2.length; i += 1) {
     				each_blocks_2[i].c();
     			}
 
-    			t10 = space();
+    			t13 = space();
     			div2 = element("div");
     			table = element("table");
     			thead = element("thead");
     			tr0 = element("tr");
     			th = element("th");
-    			t11 = space();
+    			t14 = space();
 
     			for (let i = 0; i < each_blocks_1.length; i += 1) {
     				each_blocks_1[i].c();
     			}
 
-    			t12 = space();
+    			t15 = space();
     			tr1 = element("tr");
     			td0 = element("td");
     			td0.textContent = "Time";
-    			t14 = space();
+    			t17 = space();
     			td1 = element("td");
     			td1.textContent = "Monday";
-    			t16 = space();
+    			t19 = space();
     			td2 = element("td");
     			td2.textContent = "Tuesday";
-    			t18 = space();
+    			t21 = space();
     			td3 = element("td");
     			td3.textContent = "Wednesday";
-    			t20 = space();
+    			t23 = space();
     			td4 = element("td");
     			td4.textContent = "Thursday";
-    			t22 = space();
+    			t25 = space();
     			td5 = element("td");
     			td5.textContent = "Friday";
-    			t24 = space();
+    			t27 = space();
     			td6 = element("td");
     			td6.textContent = "Saturday";
-    			t26 = space();
+    			t29 = space();
     			td7 = element("td");
     			td7.textContent = "Sunday";
-    			t28 = space();
+    			t31 = space();
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
     				each_blocks[i].c();
     			}
 
-    			t29 = space();
+    			t32 = space();
     			div3 = element("div");
     			button0 = element("button");
     			button0.textContent = "Back";
-    			t31 = space();
+    			t34 = space();
     			button1 = element("button");
     			button1.textContent = "Submit";
     			attr_dev(h1, "class", "display-4");
-    			add_location(h1, file$1, 129, 1, 4199);
+    			add_location(h1, file$1, 136, 1, 4366);
     			attr_dev(hr, "class", "my-4");
-    			add_location(hr, file$1, 130, 1, 4261);
+    			add_location(hr, file$1, 137, 1, 4428);
     			attr_dev(span, "class", "bolded svelte-z6ih7p");
-    			add_location(span, file$1, 131, 17, 4296);
+    			add_location(span, file$1, 138, 17, 4463);
     			attr_dev(p0, "class", "lead");
-    			add_location(p0, file$1, 131, 1, 4280);
-    			add_location(p1, file$1, 132, 1, 4385);
+    			add_location(p0, file$1, 138, 1, 4447);
+    			add_location(p1, file$1, 139, 1, 4552);
+    			set_style(input, "float", "left");
+    			attr_dev(input, "type", "checkbox");
+    			attr_dev(input, "id", "enableDrag");
+    			attr_dev(input, "name", "enableDrag");
+    			add_location(input, file$1, 140, 1, 4602);
+    			set_style(p2, "padding-left", "20px");
+    			add_location(p2, file$1, 141, 1, 4718);
     			attr_dev(div0, "class", "jumbotron");
-    			add_location(div0, file$1, 128, 0, 4174);
+    			add_location(div0, file$1, 135, 0, 4341);
     			attr_dev(label, "for", "aboutMe");
     			set_style(label, "font-size", "1.5em");
-    			add_location(label, file$1, 137, 2, 4487);
-    			add_location(br, file$1, 137, 82, 4567);
+    			add_location(label, file$1, 146, 2, 4821);
+    			add_location(br, file$1, 146, 82, 4901);
     			attr_dev(div1, "class", "d-grid my-3");
-    			add_location(div1, file$1, 138, 2, 4574);
+    			add_location(div1, file$1, 147, 2, 4908);
     			attr_dev(th, "class", "svelte-z6ih7p");
-    			add_location(th, file$1, 152, 10, 5121);
-    			add_location(tr0, file$1, 151, 8, 5105);
+    			add_location(th, file$1, 161, 10, 5455);
+    			add_location(tr0, file$1, 160, 8, 5439);
     			attr_dev(td0, "class", "text-uppercase freeze svelte-z6ih7p");
-    			add_location(td0, file$1, 158, 6, 5346);
+    			add_location(td0, file$1, 167, 6, 5680);
     			attr_dev(td1, "class", "text-uppercase freeze svelte-z6ih7p");
-    			add_location(td1, file$1, 160, 6, 5403);
+    			add_location(td1, file$1, 169, 6, 5737);
     			attr_dev(td2, "class", "text-uppercase freeze svelte-z6ih7p");
-    			add_location(td2, file$1, 161, 6, 5455);
+    			add_location(td2, file$1, 170, 6, 5789);
     			attr_dev(td3, "class", "text-uppercase freeze svelte-z6ih7p");
-    			add_location(td3, file$1, 162, 6, 5508);
+    			add_location(td3, file$1, 171, 6, 5842);
     			attr_dev(td4, "class", "text-uppercase freeze svelte-z6ih7p");
-    			add_location(td4, file$1, 163, 6, 5563);
+    			add_location(td4, file$1, 172, 6, 5897);
     			attr_dev(td5, "class", "text-uppercase freeze svelte-z6ih7p");
-    			add_location(td5, file$1, 164, 6, 5617);
+    			add_location(td5, file$1, 173, 6, 5951);
     			attr_dev(td6, "class", "text-uppercase freeze svelte-z6ih7p");
-    			add_location(td6, file$1, 165, 6, 5669);
+    			add_location(td6, file$1, 174, 6, 6003);
     			attr_dev(td7, "class", "text-uppercase freeze svelte-z6ih7p");
-    			add_location(td7, file$1, 166, 6, 5723);
+    			add_location(td7, file$1, 175, 6, 6057);
     			attr_dev(tr1, "class", "bg-light-gray svelte-z6ih7p");
-    			add_location(tr1, file$1, 157, 5, 5313);
-    			add_location(thead, file$1, 150, 4, 5089);
+    			add_location(tr1, file$1, 166, 5, 5647);
+    			add_location(thead, file$1, 159, 4, 5423);
     			attr_dev(table, "class", "table table-bordered text-center svelte-z6ih7p");
-    			add_location(table, file$1, 149, 3, 5036);
+    			add_location(table, file$1, 158, 3, 5370);
     			attr_dev(div2, "class", "table-responsive");
-    			add_location(div2, file$1, 147, 2, 4914);
+    			add_location(div2, file$1, 156, 2, 5248);
     			attr_dev(button0, "class", "btn btn-primary btn-login text-uppercase fw-bold svelte-z6ih7p");
     			attr_dev(button0, "type", "button");
     			button0.value = "Back";
-    			add_location(button0, file$1, 184, 3, 6391);
+    			add_location(button0, file$1, 197, 3, 6922);
     			attr_dev(button1, "class", "btn btn-primary btn-login text-uppercase fw-bold svelte-z6ih7p");
     			attr_dev(button1, "type", "submit");
     			button1.value = "Submit";
-    			add_location(button1, file$1, 187, 3, 6541);
+    			add_location(button1, file$1, 200, 3, 7072);
     			attr_dev(div3, "class", "d-grid my-3");
-    			add_location(div3, file$1, 183, 2, 6362);
-    			add_location(form_1, file$1, 136, 1, 4469);
+    			add_location(div3, file$1, 196, 2, 6893);
+    			add_location(form_1, file$1, 145, 1, 4803);
     			attr_dev(div4, "class", "container");
-    			add_location(div4, file$1, 135, 0, 4444);
+    			add_location(div4, file$1, 144, 0, 4778);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -3126,63 +3152,68 @@ var app = (function () {
     			append_dev(p0, span);
     			append_dev(div0, t5);
     			append_dev(div0, p1);
-    			insert_dev(target, t7, anchor);
+    			append_dev(div0, t7);
+    			append_dev(div0, input);
+    			append_dev(div0, t8);
+    			append_dev(div0, p2);
+    			insert_dev(target, t10, anchor);
     			insert_dev(target, div4, anchor);
     			append_dev(div4, form_1);
     			append_dev(form_1, label);
     			append_dev(form_1, br);
-    			append_dev(form_1, t9);
+    			append_dev(form_1, t12);
     			append_dev(form_1, div1);
 
     			for (let i = 0; i < each_blocks_2.length; i += 1) {
     				each_blocks_2[i].m(div1, null);
     			}
 
-    			append_dev(form_1, t10);
+    			append_dev(form_1, t13);
     			append_dev(form_1, div2);
     			append_dev(div2, table);
     			append_dev(table, thead);
     			append_dev(thead, tr0);
     			append_dev(tr0, th);
-    			append_dev(tr0, t11);
+    			append_dev(tr0, t14);
 
     			for (let i = 0; i < each_blocks_1.length; i += 1) {
     				each_blocks_1[i].m(tr0, null);
     			}
 
-    			append_dev(thead, t12);
+    			append_dev(thead, t15);
     			append_dev(thead, tr1);
     			append_dev(tr1, td0);
-    			append_dev(tr1, t14);
+    			append_dev(tr1, t17);
     			append_dev(tr1, td1);
-    			append_dev(tr1, t16);
+    			append_dev(tr1, t19);
     			append_dev(tr1, td2);
-    			append_dev(tr1, t18);
+    			append_dev(tr1, t21);
     			append_dev(tr1, td3);
-    			append_dev(tr1, t20);
+    			append_dev(tr1, t23);
     			append_dev(tr1, td4);
-    			append_dev(tr1, t22);
+    			append_dev(tr1, t25);
     			append_dev(tr1, td5);
-    			append_dev(tr1, t24);
+    			append_dev(tr1, t27);
     			append_dev(tr1, td6);
-    			append_dev(tr1, t26);
+    			append_dev(tr1, t29);
     			append_dev(tr1, td7);
-    			append_dev(thead, t28);
+    			append_dev(thead, t31);
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
     				each_blocks[i].m(thead, null);
     			}
 
-    			append_dev(form_1, t29);
+    			append_dev(form_1, t32);
     			append_dev(form_1, div3);
     			append_dev(div3, button0);
-    			append_dev(div3, t31);
+    			append_dev(div3, t34);
     			append_dev(div3, button1);
 
     			if (!mounted) {
     				dispose = [
-    					listen_dev(button0, "click", /*click_handler_4*/ ctx[20], false, false, false),
-    					action_destroyer(form_action = /*form*/ ctx[8].call(null, form_1))
+    					listen_dev(input, "click", /*click_handler*/ ctx[18], false, false, false),
+    					listen_dev(button0, "click", /*click_handler_5*/ ctx[26], false, false, false),
+    					action_destroyer(form_action = /*form*/ ctx[10].call(null, form_1))
     				];
 
     				mounted = true;
@@ -3191,7 +3222,7 @@ var app = (function () {
     		p: function update(ctx, dirty) {
     			if (dirty[0] & /*currUser*/ 32) set_data_dev(t1, /*currUser*/ ctx[5]);
 
-    			if (dirty[0] & /*locs, changeLocColor*/ 2112) {
+    			if (dirty[0] & /*locs, changeLocColor*/ 8256) {
     				each_value_3 = locationNames;
     				validate_each_argument(each_value_3);
     				let i;
@@ -3215,7 +3246,7 @@ var app = (function () {
     				each_blocks_2.length = each_value_3.length;
     			}
 
-    			if (dirty[0] & /*ud, clickVCheckbox*/ 8208) {
+    			if (dirty[0] & /*ud, clickVCheckbox*/ 32784) {
     				each_value_2 = days;
     				validate_each_argument(each_value_2);
     				let i;
@@ -3239,7 +3270,7 @@ var app = (function () {
     				each_blocks_1.length = each_value_2.length;
     			}
 
-    			if (dirty[0] & /*currAvail, dt, changeThisColor, ut, clickCheckbox*/ 5133) {
+    			if (dirty[0] & /*currAvail, dt, changeThisColor, dragging, canDrag, ut, clickCheckbox*/ 20877) {
     				each_value = times;
     				validate_each_argument(each_value);
     				let i;
@@ -3267,7 +3298,7 @@ var app = (function () {
     		o: noop,
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(div0);
-    			if (detaching) detach_dev(t7);
+    			if (detaching) detach_dev(t10);
     			if (detaching) detach_dev(div4);
     			destroy_each(each_blocks_2, detaching);
     			destroy_each(each_blocks_1, detaching);
@@ -3308,15 +3339,15 @@ var app = (function () {
     	let $availabilities;
     	let $data;
     	validate_store(currentUserNum, 'currentUserNum');
-    	component_subscribe($$self, currentUserNum, $$value => $$invalidate(22, $currentUserNum = $$value));
+    	component_subscribe($$self, currentUserNum, $$value => $$invalidate(28, $currentUserNum = $$value));
     	validate_store(vchecks, 'vchecks');
-    	component_subscribe($$self, vchecks, $$value => $$invalidate(23, $vchecks = $$value));
+    	component_subscribe($$self, vchecks, $$value => $$invalidate(29, $vchecks = $$value));
     	validate_store(checks, 'checks');
-    	component_subscribe($$self, checks, $$value => $$invalidate(24, $checks = $$value));
+    	component_subscribe($$self, checks, $$value => $$invalidate(30, $checks = $$value));
     	validate_store(locations, 'locations');
-    	component_subscribe($$self, locations, $$value => $$invalidate(25, $locations = $$value));
+    	component_subscribe($$self, locations, $$value => $$invalidate(31, $locations = $$value));
     	validate_store(availabilities, 'availabilities');
-    	component_subscribe($$self, availabilities, $$value => $$invalidate(26, $availabilities = $$value));
+    	component_subscribe($$self, availabilities, $$value => $$invalidate(32, $availabilities = $$value));
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots('Collection', slots, []);
     	let { initialValues } = $$props;
@@ -3325,6 +3356,8 @@ var app = (function () {
     	let currUser;
     	let boxes;
     	let locs;
+    	let dragging = false;
+    	let canDrag = false;
 
     	// PL concept: writable stores, reactive values #reactive
     	checks.subscribe(val => {
@@ -3341,7 +3374,7 @@ var app = (function () {
 
     	const { form, data } = createForm$1({ onSubmit, initialValues });
     	validate_store(data, 'data');
-    	component_subscribe($$self, data, value => $$invalidate(7, $data = value));
+    	component_subscribe($$self, data, value => $$invalidate(9, $data = value));
     	let { dt = [] } = $$props;
     	let { currAvail } = $$props;
 
@@ -3372,28 +3405,32 @@ var app = (function () {
     	// rotate the color of a specific cell, or, if called from checkbox,
     	// change to a fixed color
     	// concepts: availability preference, logic-based rendering
-    	function changeThisColor(id, i, j, auto) {
-    		// if just clicking one box
-    		if (auto == "auto") {
-    			let currColor = document.getElementById(id).style.background;
-    			document.getElementById(id).style.background = changeColor(currColor);
+    	function changeThisColor(id, i, j, auto, dragging) {
+    		if (dragging) {
+    			// if just clicking one box
+    			if (auto == "auto") {
+    				let currColor = document.getElementById(id).style.background;
+    				document.getElementById(id).style.background = changeColor(currColor);
 
-    			if (currColor == "green") {
-    				boxes[i] = false;
-    				set_store_value(checks, $checks[$currentUserNum][i] = boxes[i], $checks);
-    				set_store_value(vchecks, $vchecks[$currentUserNum][j] = false, $vchecks);
-    				document.getElementById(ud[j]).checked = false;
-    				document.getElementById(ut[i]).checked = false;
+    				if (currColor == "green") {
+    					boxes[i] = false;
+    					set_store_value(checks, $checks[$currentUserNum][i] = boxes[i], $checks);
+    					set_store_value(vchecks, $vchecks[$currentUserNum][j] = false, $vchecks);
+    					document.getElementById(ud[j]).checked = false;
+    					document.getElementById(ut[i]).checked = false;
+    				}
+    			} else {
+    				// if calling from a checkbox
+    				document.getElementById(id).style.background = auto;
     			}
+
+    			// update writable stores with new user data
+    			$$invalidate(0, currAvail[i][j] = document.getElementById(id).style.background, currAvail);
+
+    			set_store_value(availabilities, $availabilities[$currentUserNum][i][j] = currAvail[i][j], $availabilities);
     		} else {
-    			// if calling from a checkbox
-    			document.getElementById(id).style.background = auto;
+    			console.log(dragging);
     		}
-
-    		// update writable stores with new user data
-    		$$invalidate(0, currAvail[i][j] = document.getElementById(id).style.background, currAvail);
-
-    		set_store_value(availabilities, $availabilities[$currentUserNum][i][j] = currAvail[i][j], $availabilities);
     	}
 
     	// change color for a location preference
@@ -3414,13 +3451,13 @@ var app = (function () {
 
     		if (document.getElementById(ut[row]).checked) {
     			for (let j = 0; j < days.length; j++) {
-    				changeThisColor(dt[row][j], row, j, "green");
+    				changeThisColor(dt[row][j], row, j, "green", true);
     			}
 
     			boxes[row] = false;
     		} else {
     			for (let j = 0; j < days.length; j++) {
-    				changeThisColor(dt[row][j], row, j, "gray");
+    				changeThisColor(dt[row][j], row, j, "gray", true);
     			}
 
     			boxes[row] = true;
@@ -3434,13 +3471,13 @@ var app = (function () {
     	function clickVCheckbox(column) {
     		if (document.getElementById(ud[column]).checked) {
     			for (let j = 0; j < times.length; j++) {
-    				changeThisColor(dt[j][column], j, column, "green");
+    				changeThisColor(dt[j][column], j, column, "green", true);
     			}
 
     			set_store_value(vchecks, $vchecks[$currentUserNum][column] = false, $vchecks);
     		} else {
     			for (let j = 0; j < times.length; j++) {
-    				changeThisColor(dt[j][column], j, column, "gray");
+    				changeThisColor(dt[j][column], j, column, "gray", true);
     			}
 
     			set_store_value(vchecks, $vchecks[$currentUserNum][column] = true, $vchecks);
@@ -3471,15 +3508,19 @@ var app = (function () {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== '$$' && key !== 'slot') console_1.warn(`<Collection> was created with unknown prop '${key}'`);
     	});
 
-    	const click_handler = (location, i) => changeLocColor(location, i);
-    	const click_handler_1 = i => clickVCheckbox(i);
-    	const click_handler_2 = i => clickCheckbox(i);
-    	const click_handler_3 = (i, j) => changeThisColor(dt[i][j], i, j, "auto");
-    	const click_handler_4 = () => onBack($data);
+    	const click_handler = () => $$invalidate(8, canDrag = !canDrag);
+    	const click_handler_1 = (location, i) => changeLocColor(location, i);
+    	const click_handler_2 = i => clickVCheckbox(i);
+    	const click_handler_3 = i => clickCheckbox(i);
+    	const click_handler_4 = (i, j) => changeThisColor(dt[i][j], i, j, "auto", true);
+    	const mousedown_handler = () => $$invalidate(7, dragging = true);
+    	const mouseup_handler = () => $$invalidate(7, dragging = false);
+    	const mouseover_handler = (i, j) => changeThisColor(dt[i][j], i, j, "auto", canDrag && dragging);
+    	const click_handler_5 = () => onBack($data);
 
     	$$self.$$set = $$props => {
-    		if ('initialValues' in $$props) $$invalidate(14, initialValues = $$props.initialValues);
-    		if ('onSubmit' in $$props) $$invalidate(15, onSubmit = $$props.onSubmit);
+    		if ('initialValues' in $$props) $$invalidate(16, initialValues = $$props.initialValues);
+    		if ('onSubmit' in $$props) $$invalidate(17, onSubmit = $$props.onSubmit);
     		if ('onBack' in $$props) $$invalidate(1, onBack = $$props.onBack);
     		if ('dt' in $$props) $$invalidate(2, dt = $$props.dt);
     		if ('currAvail' in $$props) $$invalidate(0, currAvail = $$props.currAvail);
@@ -3509,6 +3550,8 @@ var app = (function () {
     		currUser,
     		boxes,
     		locs,
+    		dragging,
+    		canDrag,
     		form,
     		data,
     		dt,
@@ -3529,12 +3572,14 @@ var app = (function () {
     	});
 
     	$$self.$inject_state = $$props => {
-    		if ('initialValues' in $$props) $$invalidate(14, initialValues = $$props.initialValues);
-    		if ('onSubmit' in $$props) $$invalidate(15, onSubmit = $$props.onSubmit);
+    		if ('initialValues' in $$props) $$invalidate(16, initialValues = $$props.initialValues);
+    		if ('onSubmit' in $$props) $$invalidate(17, onSubmit = $$props.onSubmit);
     		if ('onBack' in $$props) $$invalidate(1, onBack = $$props.onBack);
     		if ('currUser' in $$props) $$invalidate(5, currUser = $$props.currUser);
     		if ('boxes' in $$props) boxes = $$props.boxes;
     		if ('locs' in $$props) $$invalidate(6, locs = $$props.locs);
+    		if ('dragging' in $$props) $$invalidate(7, dragging = $$props.dragging);
+    		if ('canDrag' in $$props) $$invalidate(8, canDrag = $$props.canDrag);
     		if ('dt' in $$props) $$invalidate(2, dt = $$props.dt);
     		if ('currAvail' in $$props) $$invalidate(0, currAvail = $$props.currAvail);
     		if ('ut' in $$props) $$invalidate(3, ut = $$props.ut);
@@ -3553,6 +3598,8 @@ var app = (function () {
     		ud,
     		currUser,
     		locs,
+    		dragging,
+    		canDrag,
     		$data,
     		form,
     		data,
@@ -3566,7 +3613,11 @@ var app = (function () {
     		click_handler_1,
     		click_handler_2,
     		click_handler_3,
-    		click_handler_4
+    		click_handler_4,
+    		mousedown_handler,
+    		mouseup_handler,
+    		mouseover_handler,
+    		click_handler_5
     	];
     }
 
@@ -3581,8 +3632,8 @@ var app = (function () {
     			create_fragment$1,
     			safe_not_equal,
     			{
-    				initialValues: 14,
-    				onSubmit: 15,
+    				initialValues: 16,
+    				onSubmit: 17,
     				onBack: 1,
     				dt: 2,
     				currAvail: 0,
@@ -5161,27 +5212,11 @@ var app = (function () {
 
     			endTimes.set($endTimes.concat([endTime]));
     			console.log($endTimes[$timerNumber] - $startTimes[$timerNumber]);
-
-    			const downloadFile = () => {
-    				const link = document.createElement("a");
-    				let content = "Name, Start Time, End Time, Duration (Milliseconds)\n";
-
-    				for (let i = 0; i < $usersForTime.length; i++) {
-    					content = content + $usersForTime[i] + "," + new Date($startTimes[i]).toString() + "," + new Date($endTimes[i]).toString() + "," + ($endTimes[i] - $startTimes[i]).toString() + "\n";
-    				}
-
-    				const file = new Blob([content], { type: 'text/plain' });
-    				link.href = URL.createObjectURL(file);
-    				link.download = "timelogs.csv";
-    				link.click();
-    				URL.revokeObjectURL(link.href);
-    			};
-
-    			downloadFile();
-    		} else {
+    		} else // downloadFile();
+    		{
     			// If we're not on the last page, store our data and increase a step
     			// timing for in-class competition
-    			let startTime = Date.now();
+    			let startTime = Date.now(); // uncomment the below to download time logs
 
     			startTimes.set($startTimes.concat([startTime]));
     			timerNumber.update(n => n + 1);
