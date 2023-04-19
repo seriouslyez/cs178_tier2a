@@ -15,3 +15,6 @@ Additional citations:
 - We used https://svelte.dev/repl/8eb738732cf74edd86f680c53e6ba253?version=3.44.2 for creating multiple pages.  
 - We used https://svelte.dev/tutorial/writable-stores to figure out how to store user data.  
 - We also referenced copious amounts of W3Schools to figure out things like HTML tables, JavaScript arrays, changing writable stores dynamically, etc.
+- References for dragging: 
+  - https://svelte.dev/tutorial/dom-events 
+  - https://ashutosh.dev/how-to-implement-drag-in-svelte/
